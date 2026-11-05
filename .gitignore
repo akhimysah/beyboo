@@ -11,3 +11,5 @@ dist/
 .sites-runtime/
 
 .vinext/
+
+dist-pages/
