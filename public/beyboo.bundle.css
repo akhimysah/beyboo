@@ -846,3 +846,6 @@ html:not(.beyboo-app) .app-presidents-link { display: none; }
 .eye-home-concept p{margin:0;font-size:3.3cqw;line-height:1.4;color:#c9d6ea;max-width:78%}
 .eye-home-concept .eye-home-dock button{width:10cqw;height:10cqw}
 @media(prefers-reduced-motion:reduce){.eye-app{transition:none}.eye-home-grid button:active .eye-app{transform:none}}
+
+/* ===== messages.css (v=1) ===== */
+/* Messages de famille — voir messages.js */

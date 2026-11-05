@@ -13,7 +13,10 @@
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
     "db:generate": "drizzle-kit generate",
     "bundle:css": "node scripts/bundle-css.mjs",
-    "images:variants": "python3 -I scripts/make-image-variants.py"
+    "images:variants": "python3 -I scripts/make-image-variants.py",
+    "dev:worker": "wrangler dev --port 8787",
+    "deploy": "wrangler deploy",
+    "test": "node --test tests/*.test.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",

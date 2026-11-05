@@ -1,0 +1,35 @@
+# Déploiement autonome de BEYBOO sur Cloudflare Workers (hors ChatGPT Sites).
+# Les fichiers de public/ sont servis comme ressources statiques ; le Worker ne reçoit que /api/*.
+name = "beyboo"
+main = "worker/standalone.mjs"
+compatibility_date = "2026-09-01"
+compatibility_flags = ["nodejs_compat"]
+workers_dev = true
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+run_worker_first = ["/api/*", "/"]
+html_handling = "none"
+not_found_handling = "none"
+
+[vars]
+AUTH_MODE = "password"
+CSP_MODE = "report"
+SITE_URL = "https://beyboo.aitouaretsamy1.workers.dev"
+CONTACT_EMAIL = "jhonnymparis@gmail.com"
+
+[[kv_namespaces]]
+binding = "BEYBOO_KV"
+id = "359630cc1d0f435891b03ac55f4a1619"
+
+[[durable_objects.bindings]]
+name = "FAMILY_ROOM"
+class_name = "FamilyRoom"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["FamilyRoom"]
+
+[observability]
+enabled = true
