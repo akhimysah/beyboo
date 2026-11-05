@@ -52,15 +52,35 @@
     for(const link of [met,license]){link.target='_blank';link.rel='noopener noreferrer';}
     credit.append(met,' · ',license);panel.append(credit);
   }
+  const SOURCE_LABEL={feeds:tr('Sélection de chaînes BEYBOO','BEYBOO channel selection'),google:tr('Résultats YouTube','YouTube results')};
+  const FALLBACK=tr(' Les films de la sélection restent accessibles.',' The selected films are still available.');
+  /* Resolves to {items?,message,source?,description?}; message is shown under the eye, spoken, and returned to the assistant. */
   async function search(query,signal){
+    if(typeof navigator!=='undefined'&&navigator.onLine===false)return {message:tr('Hors ligne : la recherche attendra le retour d’internet.','Offline: the search will wait for the internet to come back.')+FALLBACK};
+    let response;
     try{
-      const response=await fetch('/api/videos/search',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({query,lang:en?'en':'fr'}),signal});
-      if(!response.ok)throw Error();
-      const data=await response.json();
-      if(!data.enabled)return {message:tr('Pour ce sujet, ouvre la recherche YouTube ou choisis un film de la sélection.','For this topic, open YouTube search or choose a film from the selection.')};
-      const items=data.items;
-      return {items,message:items.length?tr('Résultats YouTube · choisis une vidéo.','YouTube results · choose a video.'):tr('Aucun résultat YouTube pour ce sujet.','No YouTube results for that topic.')};
-    }catch{return {message:tr('Recherche YouTube indisponible. Les films de la sélection restent accessibles.','YouTube search is unavailable. The selected films are still available.')};}
+      response=await fetch('/api/videos/search',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({query,lang:en?'en':'fr'}),signal});
+    }catch(error){
+      if(error?.name==='AbortError')throw error;
+      return {message:tr('Pas de connexion pour chercher. Réessaie dans un instant.','No connection to search. Try again in a moment.')+FALLBACK};
+    }
+    if(response.status===429)return {message:tr('Trop de recherches pour aujourd’hui.','Too many searches for today.')+FALLBACK};
+    if(response.status===401)return {message:tr('Connecte-toi pour chercher des vidéos.','Sign in to search for videos.')+FALLBACK};
+    let data;
+    try{if(!response.ok)throw Error();data=await response.json();}
+    catch{return {message:tr('Recherche vidéo indisponible pour le moment.','Video search is unavailable right now.')+FALLBACK};}
+    if(!data.enabled)return {message:tr('Pour ce sujet, ouvre la recherche YouTube ou choisis un film de la sélection.','For this topic, open YouTube search or choose a film from the selection.')};
+    const items=Array.isArray(data.items)?data.items.filter(v=>/^[A-Za-z0-9_-]{11}$/.test(v?.id||'')&&typeof v.title==='string').map(v=>({id:v.id,title:v.title,channel:String(v.channel||'')})):[];
+    const source=data.source==='google'?'google':'feeds';
+    const label=SOURCE_LABEL[source];
+    if(!items.length){
+      return {items,source,message:source==='feeds'
+        ?tr('Aucune vidéo sur « '+query+' » dans la sélection de chaînes BEYBOO. Essaie un autre mot ou choisis un film ci-dessous.','No video about “'+query+'” in the BEYBOO channel selection. Try another word or choose a film below.')
+        :tr('Aucun résultat YouTube pour « '+query+' ». Choisis un film ci-dessous.','No YouTube results for “'+query+'”. Choose a film below.')};
+    }
+    const count=items.length===1?tr('1 vidéo trouvée','1 video found'):items.length+tr(' vidéos trouvées',' videos found');
+    const description=label+' · '+count+' : '+items.map(v=>'« '+v.title+' » ('+v.channel+')').join(', ')+'.';
+    return {items,source,description,message:label+' · '+count+tr(', choisis-en une sous l’œil.',', choose one under the eye.')};
   }
   function videoControls(panel,button){
     panel.append(el('h4',tr('Que veux-tu regarder ?','What would you like to watch?')));
@@ -69,7 +89,7 @@
       panel.append(el('p',label.textContent));
       const results=el('div','');results.className='eye-video-list';
       for(const video of JSON.parse(label.dataset.results)){
-        results.append(button(video.title+' · '+video.channel,()=>window.BeybooScreen.run({action:'open_youtube',value:'https://www.youtube.com/watch?v='+video.id})));
+        results.append(button(video.title+(video.channel?' · '+video.channel:''),()=>window.BeybooScreen.run({action:'open_youtube',value:'https://www.youtube.com/watch?v='+video.id})));
       }
       panel.append(results);
     }

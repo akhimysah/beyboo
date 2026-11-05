@@ -1,6 +1,6 @@
 # BEYBOO — Un regard. Votre univers.
 
-Site vitrine bilingue et application web : une peluche immobile dont l'œil rond est le seul écran. Version 37 (5 novembre 2026).
+Site vitrine bilingue et application web : une peluche immobile dont l'œil rond est le seul écran. Version 38 (5 novembre 2026).
 
 ## Démarrer
 
@@ -9,6 +9,13 @@ Site vitrine bilingue et application web : une peluche immobile dont l'œil rond
 - Tests : `node --test tests/*.test.mjs`.
 - Après un changement de CSS : `npm run bundle:css` ; après un ajout d'image : `npm run images:variants`.
 - Page anglaise : `python3 -I scripts/render-english-page.py` (générée, ne pas éditer `public/index-en.html`).
+
+## Repères v38
+
+- Deux hébergements : le site vitrine seul sur GitHub Pages (https://akhimysah.github.io/beyboo/, sans `/api`), l'application complète sur un Worker Cloudflare autonome (`wrangler.toml`, `worker/standalone.mjs`, URL donnée par `npx wrangler@4 deploy`). Tout est décrit dans [`docs/DEPLOIEMENT.md`, section 1](docs/DEPLOIEMENT.md#1-v38--déploiement-autonome-cloudflare-workers).
+- Local : `npx wrangler@4 dev --port 8787` avec `.dev.vars` ; déploiement : `npx wrangler@4 deploy` ou push sur `main` (`.github/workflows/deploy-worker.yml`) ; secrets avec `npx wrangler@4 secret put`.
+- Salle de famille (`lib/family-room.mjs`, Durable Object) : un code famille = une salle ; messages texte persistants (500 derniers), présence et signalisation d'appel par WebSocket (`/api/room/socket`), jamais stockée. Client : `public/family-room.js`.
+- Tests : `tests/standalone-worker.test.mjs` (Worker avec liaisons factices) et `npm run smoke` (`scripts/smoke-room.mjs`, intégration contre un serveur en marche).
 
 ## Repères v37
 

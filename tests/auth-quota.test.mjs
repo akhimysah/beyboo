@@ -149,12 +149,14 @@ test('security headers: strict for the API, report-only CSP by default for pages
   assert.equal(api['Content-Security-Policy'], "default-src 'none'; frame-ancestors 'none'");
   assert.equal(api['X-Frame-Options'], 'DENY'); assert.match(api['Strict-Transport-Security'], /max-age=31536000/);
   const page = securityHeaders({});
-  assert.ok(page['Content-Security-Policy-Report-Only'].includes("frame-src https://www.youtube-nocookie.com https://www.youtube.com https://meet.jit.si"));
+  assert.ok(page['Content-Security-Policy-Report-Only'].includes("frame-src https://www.youtube-nocookie.com https://www.youtube.com;"));
+  assert.ok(page['Content-Security-Policy-Report-Only'].includes("connect-src 'self' https://api.openai.com;"), "'self' covers the same-origin family-room WebSocket");
   assert.equal(page['Content-Security-Policy'], undefined);
-  const enforced = securityHeaders({CSP_MODE: 'enforce', JITSI_HOST: 'meet.beyboo.family', HSTS: 'off'});
-  assert.ok(enforced['Content-Security-Policy'].includes('https://meet.beyboo.family'));
+  assert.equal(page['Permissions-Policy'], 'camera=(self), microphone=(self), geolocation=(), payment=(), usb=(), interest-cohort=()', 'calls are peer-to-peer: only this origin may capture media');
+  const enforced = securityHeaders({CSP_MODE: 'enforce', HSTS: 'off'});
+  assert.equal(enforced['Content-Security-Policy'], contentSecurityPolicy());
   assert.equal(enforced['Strict-Transport-Security'], undefined);
-  assert.ok(contentSecurityPolicy({JITSI_HOST: 'not a host'}).includes('meet.jit.si'));
+  assert.ok(!/jit\.si|jitsi/i.test(JSON.stringify(securityHeaders({CSP_MODE: 'enforce'}))), 'no Jitsi host remains in any header');
   const wrapped = withHeaders(new Response('x', {headers: {'X-Frame-Options': 'SAMEORIGIN'}}), api);
   assert.equal(wrapped.headers.get('X-Frame-Options'), 'SAMEORIGIN', 'existing headers win');
   assert.equal(wrapped.headers.get('Referrer-Policy'), 'strict-origin-when-cross-origin');

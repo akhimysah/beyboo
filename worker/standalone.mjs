@@ -1,11 +1,12 @@
 /* Worker Cloudflare autonome : sert public/ (ressources statiques) et toutes les routes /api/.
    Même logique métier que worker/index.ts, sans l'outillage ChatGPT Sites. */
-import { searchVideos } from '../lib/video-search.mjs';
+import { searchVideos, videoSearchMode } from '../lib/video-search.mjs';
 import { weatherRequest } from '../lib/weather.mjs';
 import { handleVoiceRequest } from '../lib/voice-api.mjs';
 import { handleAuthRequest, identify, sanitizeRequest } from '../lib/auth.mjs';
 import { securityHeaders, withHeaders } from '../lib/security-headers.mjs';
 import { handleRoomRequest } from '../lib/family-room.mjs';
+import { handleTurnRequest } from '../lib/turn.mjs';
 export { FamilyRoom } from '../lib/family-room.mjs';
 
 const APP_VERSION = '38';
@@ -14,12 +15,14 @@ const json = (body, status = 200) => Response.json(body, {status, headers: {'Cac
 async function apiRoute(request, env, ctx) {
   const pathname = new URL(request.url).pathname;
   if (pathname === '/api/health') {
-    return json({ok: true, version: APP_VERSION, voice: !!env.OPENAI_API_KEY, videoSearch: !!env.YOUTUBE_DATA_API_KEY, authMode: env.AUTH_MODE || 'chatgpt', room: !!env.FAMILY_ROOM});
+    return json({ok: true, version: APP_VERSION, voice: !!env.OPENAI_API_KEY, videoSearch: videoSearchMode(env), authMode: env.AUTH_MODE || 'chatgpt', room: !!env.FAMILY_ROOM});
   }
   if (pathname === '/api/videos/search') return searchVideos(request, env);
   if (pathname === '/api/weather') return weatherRequest(request, fetch, env);
   if (pathname.startsWith('/api/voice/')) return handleVoiceRequest(request, env);
   if (pathname.startsWith('/api/auth/')) return handleAuthRequest(request, env);
+  // Serveurs ICE (STUN, et TURN Cloudflare si configuré) : avant la salle, qui ne connaît que la signalisation.
+  if (pathname === '/api/calls/turn') return handleTurnRequest(request, env, await identify(request, env));
   if (pathname === '/api/messages' || pathname.startsWith('/api/messages/') || pathname.startsWith('/api/room/') || pathname.startsWith('/api/calls/')) {
     return handleRoomRequest(request, env, await identify(request, env));
   }

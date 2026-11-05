@@ -36,3 +36,13 @@ test('PIN-protected local preferences persist, reject a wrong PIN and can be res
 test('unconfigured devices retain the original demo, damaged records block restricted features',()=>{
   const h=harness();assert.equal(h.api.allowed('voice'),true);h.data.set('beyboo.family.v1','?');assert.equal(h.api.allowed('voice'),false);
 });
+test('family messages are a permission: enabled by default, also for records saved before it existed, and lockable',async()=>{
+  const h=harness();await h.enter('2580','2580');
+  assert.equal(h.api.allowed('messages'),true);
+  h.save({voice:true,camera:true,calls:true,messages:false});
+  assert.equal(h.api.allowed('messages'),false);assert.equal(h.api.guard('messages'),false);
+  assert.match(h.el('.family-body').innerHTML,/Messages de famille/);
+  const legacy=JSON.parse(h.data.get('beyboo.family.v1'));delete legacy.permissions.messages;legacy.permissions.calls=false;
+  const older=harness([['beyboo.family.v1',JSON.stringify(legacy)]]);
+  assert.equal(older.api.allowed('messages'),true);assert.equal(older.api.allowed('calls'),false);
+});

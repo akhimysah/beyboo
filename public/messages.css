@@ -1,1 +1,47 @@
-/* Messages de famille — voir messages.js */
+/* Messages de famille dans l'œil : l'écran fait 400 × 400 px (mis à l'échelle par la loupe), toutes les zones restent dans le cercle. */
+.eye-app-messages{position:relative;background:linear-gradient(160deg,#5fc2ff,#1d6fe0)}
+.eye-app-badge{position:absolute;top:-1.4cqw;right:-1.4cqw;min-width:5.6cqw;height:5.6cqw;padding:0 1.2cqw;box-sizing:border-box;border-radius:3cqw;background:#ff3b30;color:#fff;font:700 3.4cqw/5.6cqw system-ui,-apple-system,"Segoe UI",sans-serif;text-align:center;box-shadow:0 0 0 .6cqw #0c1424}
+.eye-app-badge[hidden]{display:none}
+.voice-stage--messages{background:radial-gradient(circle at 50% 20%,#1b3350 0%,#0d1b2d 60%,#050a12 100%);color:#fff}
+.msg-screen{position:absolute;inset:0;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#fff;text-align:center}
+.msg-head{position:absolute;top:26px;left:27%;width:46%}
+.msg-head h4{margin:0;font-size:16px;line-height:20px;font-weight:600}
+.msg-presence{margin:2px 0 0;font-size:10px;line-height:13px;color:#a9c4e2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.msg-list{position:absolute;top:66px;left:54px;width:292px;height:172px;margin:0;padding:2px 6px;box-sizing:border-box;list-style:none;overflow-y:auto;overscroll-behavior:contain;display:flex;flex-direction:column;gap:6px;scrollbar-width:thin;scrollbar-color:#ffffff40 transparent;text-align:left}
+.msg-list::-webkit-scrollbar{width:4px}.msg-list::-webkit-scrollbar-thumb{background:#ffffff40;border-radius:2px}
+.msg-item{display:flex;flex-direction:column;align-items:flex-start;max-width:82%;flex:none}
+.msg-item.is-mine{align-self:flex-end;align-items:flex-end;cursor:pointer}
+.msg-item:first-child{margin-top:auto}
+.msg-name{font-size:9px;line-height:11px;color:#9fb8d6;margin:0 0 2px 6px}
+.msg-bubble{display:inline-block;padding:7px 10px;border-radius:14px 14px 14px 4px;background:#283a4f;color:#fff;font-size:13px;line-height:17px;word-break:break-word;overflow-wrap:anywhere;white-space:pre-wrap}
+.msg-item.is-mine .msg-bubble{background:#2678e0;border-radius:14px 14px 4px 14px}
+.msg-item.is-selected .msg-bubble{box-shadow:0 0 0 2px #9fd1ff}
+.msg-bubble time{display:inline-block;margin-left:7px;font-size:9px;line-height:11px;color:#ffffffa8;vertical-align:bottom;white-space:nowrap}
+.msg-item.is-emoji .msg-bubble{background:none;padding:2px 4px;font-size:26px;line-height:30px}
+.msg-item.is-emoji .msg-bubble time{color:#9fb8d6}
+.msg-delete{margin-top:4px;min-height:52px;padding:0 16px;border:0;border-radius:22px;background:#ffdad6;color:#8f1f1f;font:600 12px system-ui,-apple-system,"Segoe UI",sans-serif;cursor:pointer}
+.msg-delete[hidden]{display:none}
+.msg-empty{margin:auto;font-size:12px;line-height:16px;color:#a9c4e2;text-align:center;padding:0 20px}
+.msg-typing{position:absolute;top:240px;left:60px;width:280px;margin:0;font-size:10px;line-height:13px;color:#9fd1ff;font-style:italic;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.msg-emoji{position:absolute;top:256px;left:50px;width:300px;display:flex;justify-content:center;gap:10px}
+.msg-emoji button{width:52px;height:52px;padding:0;border:0;border-radius:50%;background:#ffffff14;font-size:22px;line-height:1;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.msg-emoji button:hover{background:#ffffff28}
+.msg-form{position:absolute;top:314px;left:89px;width:222px;margin:0;display:flex;gap:6px}
+.msg-form input{flex:1;min-width:0;height:52px;padding:0 14px;box-sizing:border-box;border:1px solid #6d8aa8;border-radius:22px;background:#17283a;color:#fff;font:16px system-ui,-apple-system,"Segoe UI",sans-serif}
+.msg-form input::placeholder{color:#8fa6bf}
+.msg-form button{width:52px;height:52px;padding:0;border:0;border-radius:50%;background:#5fc2ff;color:#06203a;font-size:18px;cursor:pointer}
+.msg-form button:disabled{opacity:.5}
+.msg-status{position:absolute;top:371px;left:130px;width:140px;margin:0;font-size:10px;line-height:13px;color:#8fb3d9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.msg-status[data-status=open]{color:#8ef0b8}.msg-status[data-status=error]{color:#ffb4a8}
+.msg-status[data-status=closed],.msg-status[data-status=connecting]{color:#ffd58a}
+.msg-note{position:absolute;top:110px;left:70px;width:260px;display:flex;flex-direction:column;align-items:center;gap:8px}
+.msg-note p{margin:0;font-size:15px;line-height:20px;font-weight:600}
+.msg-note small{font-size:11px;line-height:15px;color:#a9c4e2}
+.msg-note button,.msg-login button{min-height:52px;padding:0 20px;border:0;border-radius:22px;background:#eff6ff;color:#1f3f63;font:600 13px system-ui,-apple-system,"Segoe UI",sans-serif;cursor:pointer}
+.msg-login{position:absolute;top:86px;left:80px;width:240px;margin:0;display:grid;gap:8px;text-align:left}
+.msg-login>p:first-child{margin:0;font-size:12px;line-height:16px;color:#d6e5f3;text-align:center}
+.msg-login label{display:grid;gap:4px;font-size:11px;font-weight:600;color:#d6e5f3}
+.msg-login input{height:52px;padding:0 12px;box-sizing:border-box;border:1px solid #6d8aa8;border-radius:12px;background:#17283a;color:#fff;font-size:16px}
+.msg-login [role=status]{margin:0;min-height:13px;font-size:10px;line-height:13px;color:#ffb4a8;text-align:center}
+.msg-screen button:focus-visible,.msg-screen input:focus-visible{outline:3px solid #a0dbff;outline-offset:2px}
+@media(prefers-reduced-motion:reduce){.msg-list{scroll-behavior:auto}}

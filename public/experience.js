@@ -1,10 +1,10 @@
 'use strict';
-// Product interface with OpenAI voice and a Jitsi video-call trial.
+// Product interface with OpenAI voice and peer-to-peer family video calls (call.js).
 const modeData={
   eye:['Un regard vivant.','Écoute, joie ou attention : choisissez une expression, puis touchez l’œil pour ouvrir ses applications.'],
   menu:['Tout commence au toucher.','Choisissez une activité directement sur l’écran. La peluche reste immobile pendant toute l’expérience.'],
   video:['Une petite fenêtre sur l’ailleurs.','Lancez le clip original « Mission Lune », mettez-le en pause et reprenez la lecture. YouTube est accessible depuis l’accueil de votre compagnon.'],
-  call:['Un coucou. Pour de vrai.','Préparez un lien BEYBOO, envoyez-le à un proche et retrouvez-vous dans la même salle Jitsi.'],
+  call:['Un coucou. Pour de vrai.','Appelez un proche connecté à la même famille, ou envoyez-lui un lien d’invitation : l’appel passe directement entre vos appareils, dans l’œil.'],
   assistant:['Parle. Je t’écoute.','Pose ta question à voix haute. Ton compagnon comprend, te répond et garde le fil pendant la conversation. Seul l’écran réagit ; la peluche reste immobile.'],
   story:['Chaque personnage a son histoire.','Feuilletez les dix univers, rencontrez leurs personnages et ouvrez leur histoire complète.']
 };
@@ -33,7 +33,7 @@ function showMode(next){
   $('#expression-controls').hidden=next!=='eye';
   $$('[data-app]').forEach(b=>{b.classList.toggle('selected',b.dataset.app===next);b.setAttribute('aria-pressed',String(b.dataset.app===next));});
   $('#mode-title').textContent=modeData[next][0];$('#mode-description').textContent=modeData[next][1];
-  $('#device-hint').textContent=next==='eye'?'Touchez l’œil pour ouvrir son univers.':next==='call'?'Appel réel via Jitsi Meet · Essai sur votre appareil':'BEYBOO One · Démonstration interactive';
+  $('#device-hint').textContent=next==='eye'?'Touchez l’œil pour ouvrir son univers.':next==='call'?'Appel entre proches · D’appareil à appareil':'BEYBOO One · Démonstration interactive';
   if(next==='menu')screen.innerHTML='<span class="screen-label">BONJOUR, VOUS.</span><h4>On fait quoi ensemble ?</h4><div class="mini-apps">'+[['video','▷','Vidéo'],['game','✦','Jeu'],['music','♫','Musique'],['assistant','◉','Assistant'],['call','▣','Appel'],['story','▤','Histoires']].map(([id,icon,label])=>`<button type="button" data-screen-app="${id}"><span>${icon}</span>${label}</button>`).join('')+'</div>';
   if(next==='video')renderVideo();
   if(next==='call')window.BeybooCall?.enter();

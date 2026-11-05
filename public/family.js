@@ -3,7 +3,8 @@
   if(!button)return;
   const en=document.documentElement.lang==='en';
   const t=(fr,english)=>en?english:fr;
-  const labels={voice:t('Voix IA et dictée','AI voice and dictation'),camera:t('Photo et suivi du regard','Photos and gaze tracking'),calls:t('Appels Jitsi','Jitsi calls')};
+  const labels={voice:t('Voix IA et dictée','AI voice and dictation'),camera:t('Photo et suivi du regard','Photos and gaze tracking'),calls:t('Appels vidéo','Video calls'),messages:t('Messages de famille','Family messages')};
+  const defaults={voice:true,camera:true,calls:true,messages:true};
   const key='beyboo.family.v1';
   const dialog=document.createElement('dialog');
   dialog.className='family-dialog';
@@ -17,8 +18,11 @@
       const raw=localStorage.getItem(key);
       if(!raw)return null;
       const s=JSON.parse(raw);
-      if(!/^[a-f0-9]{32}$/.test(s.salt)||!/^[a-f0-9]{64}$/.test(s.hash)||!Object.keys(labels).every(k=>typeof s.permissions?.[k]==='boolean'))throw Error();
-      return s;
+      if(!/^[a-f0-9]{32}$/.test(s.salt)||!/^[a-f0-9]{64}$/.test(s.hash)||!s.permissions||typeof s.permissions!=='object')throw Error();
+      // Permissions added after a family locked its settings start enabled, like a fresh record.
+      const permissions={messages:defaults.messages,...s.permissions};
+      if(!Object.keys(labels).every(k=>typeof permissions[k]==='boolean'))throw Error();
+      return {...s,permissions};
     }catch{return {unavailable:true};}
   }
   function allowed(feature){const s=read();return !s || s.permissions?.[feature]===true;}
@@ -42,13 +46,14 @@
     if(!allowed('voice')){if(window.BeybooVoice?.isActive())window.BeybooVoice.end();window.BeybooDevice?.reset();}
     if(!allowed('camera')){window.BeybooGaze?.stop();window.BeybooCamera?.leave();}
     if(!allowed('calls'))window.BeybooCall?.leave();
+    if(!allowed('messages')&&window.BeybooMessages?.isOpen())window.BeybooScreen?.run({action:'show_eye'});
     const link=document.getElementById('call-external');
     if(link)link.hidden=!allowed('calls');
   }
   function settings(record){
     render('<p>'+t('Choisis les fonctions autorisées sur cet appareil. Les jeux, la musique et la veilleuse restent accessibles.','Choose the features allowed on this device. Games, music and the night light stay available.')+'</p><form>'+
       Object.entries(labels).map(([id,label])=>'<label class="family-option"><span>'+label+'</span><input type="checkbox" name="'+id+'" '+(record.permissions[id]?'checked':'')+'></label>').join('')+
-      '<p class="family-small">'+t('Un appel autorisé peut utiliser le micro et la caméra chez Jitsi.','An allowed Jitsi call can use the microphone and camera.')+'</p><button type="submit">'+t('Enregistrer et verrouiller','Save and lock')+'</button><p role="status"></p></form>');
+      '<p class="family-small">'+t('Un appel autorisé peut utiliser le micro et la caméra. Les messages restent dans la famille.','An allowed call can use the microphone and camera. Messages stay within the family.')+'</p><button type="submit">'+t('Enregistrer et verrouiller','Save and lock')+'</button><p role="status"></p></form>');
     body.querySelector('form').onsubmit=e=>{
       e.preventDefault();
       const permissions=Object.fromEntries(Object.keys(labels).map(k=>[k,e.target.elements.namedItem(k).checked]));
@@ -80,7 +85,7 @@
         if(!dialog.open||revision!==generation)return;
         if(record && hash!==record.hash){if(++failures>=5){failures=0;retryAt=Date.now()+30000;}note(t('Code incorrect.','Incorrect PIN.'));form.elements.pin.value='';return;}
         failures=0;retryAt=0;
-        settings(record||{salt,hash,permissions:{voice:true,camera:true,calls:true}});
+        settings(record||{salt,hash,permissions:{...defaults}});
       } catch {note(t('Le code nécessite un navigateur sécurisé.','A secure browser is required for the PIN.'));}
       finally {submit.disabled=false;}
     };

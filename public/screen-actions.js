@@ -5,7 +5,7 @@
   const stage = q('voice-stage'), toolbar = q('voice-screen-toolbar');
   if (!stage || !toolbar) return;
   const eye = q('living-eye'), card = document.querySelector('.experience-card');
-  const allowed = new Set(['show_eye','open_profile','set_speaking_mood','set_expression','play_video','open_youtube','pause_media','resume_media','stop_media','open_game','open_math','answer_math','next_math','play_music','open_story','open_call','open_weather','open_clock','set_nightlight','open_camera','open_face','take_photo','get_state','open_home']);
+  const allowed = new Set(['show_eye','open_profile','set_speaking_mood','set_expression','play_video','open_youtube','pause_media','resume_media','stop_media','open_game','open_math','answer_math','next_math','play_music','open_story','open_call','open_weather','open_clock','set_nightlight','open_camera','open_face','take_photo','open_messages','get_state','open_home']);
   const maths = [[7,5],[4,3],[9,6],[8,8],[12,7],[15,9]];
   let view = 'eye', playback = 'idle', revision = 0, video = null, youtube = null, youtubeLoader = null;
   let question = 0, mathAnswered = false, score = 0, target = 4, cancelYouTube = null;
@@ -40,11 +40,12 @@
   }
   function snapshot(description) {
     const camera=view==='camera'?(window.BeybooCamera?.publicState()||{}):{};
-    return {ok:playback!=='error'&&camera.camera!=='error',screen:view,media:playback,...(description?{description}:{}),...(view==='math'?{question:`${maths[question][0]} + ${maths[question][1]}`,answered:mathAnswered}:{}),...(view==='game'?{...window.BeybooArcade?.state(),score}: {}),...(view==='music'?window.BeybooMusic?.state():{}),...(view==='youtube'?{sound:youtubeSound()}:{}),...(['clock','nightlight'].includes(view)?window.BeybooBedside?.state():{}),...camera};
+    return {ok:playback!=='error'&&camera.camera!=='error',screen:view,media:playback,...(description?{description}:{}),...(view==='math'?{question:`${maths[question][0]} + ${maths[question][1]}`,answered:mathAnswered}:{}),...(view==='game'?{...window.BeybooArcade?.state(),score}: {}),...(view==='music'?window.BeybooMusic?.state():{}),...(view==='youtube'?{sound:youtubeSound()}:{}),...(['clock','nightlight'].includes(view)?window.BeybooBedside?.state():{}),...(window.BeybooMessages?{unreadMessages:window.BeybooMessages.unread(),lastSender:window.BeybooMessages.lastSender(),...(view==='messages'?window.BeybooMessages.state():{})}:{}),...camera};
   }
   let weatherAbort=null, searchAbort=null;
   function clear() {
     window.BeybooBedside?.reset();
+    window.BeybooMessages?.leave();
     window.BeybooMood?.stopPreview();
     weatherAbort?.abort();weatherAbort=null;searchAbort?.abort();searchAbort=null;
     window.BeybooDevice?.stopSpeech();
@@ -64,7 +65,7 @@
     stage.innerHTML=html; buttons();
     window.BeybooCompanion?.refresh({reveal:true}); // Keep the full product visible; the user alone chooses the optional magnifier.
     // Touch targets inside a small eye are unusable: interactive screens open the magnifier automatically.
-    if(['home','game','math','profile'].includes(next) && q('plush-eye-dock').getBoundingClientRect().width<200)window.BeybooCompanion?.setDetail(true,{reveal:true});
+    if(['home','game','math','profile','messages'].includes(next) && q('plush-eye-dock').getBoundingClientRect().width<200)window.BeybooCompanion?.setDetail(true,{reveal:true});
     return revision;
   }
   function showEye() {
@@ -127,7 +128,7 @@
         if(results.message){
           const label=stage.querySelector('p');label.textContent=results.message;
           label.dataset.results=JSON.stringify(results.items||[]);
-          say(results.message);return snapshot(results.message);
+          say(results.message);return snapshot(results.description||results.message);
         }
       }
       say('Choisis un film sous l’œil ou ouvre la recherche sur YouTube.');
@@ -210,7 +211,7 @@
   async function run(args) {
     if(!args||!allowed.has(args.action)|| (args.value!==undefined&&(typeof args.value!=='string'||args.value.length>500)))return {ok:false,description:'Commande non reconnue.'};
     const {action,value,number}=args;
-    const feature={open_camera:'camera',open_face:'camera',take_photo:'camera',open_call:'calls'}[action];
+    const feature={open_camera:'camera',open_face:'camera',take_photo:'camera',open_call:'calls',open_messages:'messages'}[action];
     if(feature && window.BeybooFamily && !window.BeybooFamily.guard(feature))return {ok:false,description:'Fonction désactivée dans l’espace famille.'};
     if(args.mood!==undefined || action==='set_speaking_mood'){
       if(!window.BeybooMood?.choose(args.mood))return {ok:false,description:"Choisis une émotion prévue pour BEYBOO."};
@@ -237,6 +238,12 @@
       if(!launcher.has(value))return {ok:false,description:launcher.unknown()};
       display('home',launcher.markup(value));launcher.mount(stage,run);
       const message=launcher.message(value);say(message);return snapshot(message);
+    }
+    if(action==='open_messages'){
+      const messages=window.BeybooMessages;
+      if(!messages)return {ok:false,description:'Les messages sont indisponibles.'};
+      display('messages',messages.markup());messages.open(stage,say);
+      const message=messages.message();say(message);return snapshot(message);
     }
     if(action==='show_eye'||action==='stop_media')return showEye();
     if(action==='set_expression'){
@@ -306,9 +313,9 @@
       say(c.name+' est à l’écran. Demande à BEYBOO de raconter son histoire.');return {...snapshot('Personnage affiché. Tu peux maintenant raconter son histoire.'),character:c.name,story:c.story};
     }
     if(action==='open_call'){
-      display('call','<div class="voice-screen-copy"><span class="screen-label">UN COUCOU EN VIDÉO</span><h4>Retrouver un proche.</h4><p>Ton appel passe par Jitsi.<br>La conversation IA s’arrêtera au toucher.</p><button type="button" id="voice-go-call">Passer à l’appel vidéo →</button></div>');
+      display('call','<div class="voice-screen-copy"><span class="screen-label">UN COUCOU EN VIDÉO</span><h4>Retrouver un proche.</h4><p>Ton appel relie directement vos appareils.<br>La conversation IA s’arrêtera au toucher.</p><button type="button" id="voice-go-call">Passer à l’appel vidéo →</button></div>');
       q('voice-go-call').addEventListener('click',()=>showMode('call'));
-      say('Appel prêt à préparer. Touche le bouton dans l’écran pour passer à Jitsi.');return snapshot('Bouton de passage à Jitsi affiché. Personne n’a été appelé.');
+      say('Appel prêt à préparer. Touche le bouton dans l’écran pour choisir qui appeler.');return snapshot('Bouton de passage à l’écran Appels affiché. Personne n’a été appelé.');
     }
   }
   q('voice-video-fallback').addEventListener('click',()=>run({action:'play_video'}));

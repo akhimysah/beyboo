@@ -1,4 +1,4 @@
-import { searchVideos } from "../lib/video-search.mjs";
+import { searchVideos, videoSearchMode } from "../lib/video-search.mjs";
 import { weatherRequest } from "../lib/weather.mjs";
 import handler from "vinext/server/fetch-handler";
 import { runWithConnectorBinding } from "../lib/connector-context";
@@ -45,7 +45,7 @@ const worker = {
 async function apiRoute(pathname: string, request: Request, env: Cloudflare.Env): Promise<Response> {
   if (pathname === "/api/health") {
     return Response.json(
-      { ok: true, version: APP_VERSION, voice: !!env.OPENAI_API_KEY, videoSearch: !!env.YOUTUBE_DATA_API_KEY, authMode: env.AUTH_MODE || "chatgpt" },
+      { ok: true, version: APP_VERSION, voice: !!env.OPENAI_API_KEY, videoSearch: videoSearchMode(env), authMode: env.AUTH_MODE || "chatgpt" },
       { headers: { "Cache-Control": "no-store" } },
     );
   }

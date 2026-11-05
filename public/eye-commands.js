@@ -28,6 +28,7 @@
     if (/horloge|quelle heure|affiche l heure|montre l heure|\bclock\b|what time|show the time/.test(s)) return {action:'open_clock'};
     if (/meteo|weather|forecast|quel temps/.test(s)) return {action:'open_weather', value:cityFor(s)?.[0] || ''};
     if (/accueil|\bmenu\b|applications?|\bapps?\b|home screen|\bhome\b/.test(s)) return {action:'open_home'};
+    if (/\bmessages?\b|messagerie|whatsapp|\btexto/.test(s)) return {action:'open_messages'};
     if (/\bpause\b/.test(s)) return {action:'pause_media'};
     if (/youtube|you tube/.test(s) || /video/.test(s) && (videoFor(s) || /sur |about |of /.test(s))) {
       const video = videoFor(s);
@@ -47,7 +48,7 @@
     if (track) return {action:'play_music',value:track[0]};
     if (/musique|music|melod/.test(s)) return {action:'play_music'};
     if (/mini.jeu|\bjeu\b|game/.test(s)) return {action:'open_game'};
-    if (/appel|call|whatsapp/.test(s)) return {action:'open_call'};
+    if (/appel|call/.test(s)) return {action:'open_call'};
     if (/lune|moon|video|clip/.test(s)) return {action:'play_video'};
     const answer=s.match(/^(?:c est |it is |the answer is )?(\d{1,2})[.!?]?$/);
     return answer ? {action:'answer_math', number:Number(answer[1])} : null;

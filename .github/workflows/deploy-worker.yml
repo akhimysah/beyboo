@@ -1,0 +1,55 @@
+# Déploie l'application complète (Worker + ressources statiques public/ + Durable Object FamilyRoom + KV)
+# sur Cloudflare Workers à chaque push sur main, après la suite de tests. Le site vitrine seul reste
+# publié par pages.yml sur GitHub Pages.
+#
+# Secrets et variables GitHub à créer (Settings → Secrets and variables → Actions) :
+#   - secret CLOUDFLARE_API_TOKEN : jeton API Cloudflare (dash.cloudflare.com → My Profile → API Tokens →
+#     Create Token → modèle « Edit Cloudflare Workers »). Ce modèle regroupe les permissions nécessaires :
+#     Account › Workers Scripts : Edit (couvre aussi les Durable Objects et les migrations),
+#     Account › Workers KV Storage : Edit, Account › Account Settings : Read, User › User Details : Read,
+#     plus Zone › Workers Routes : Edit (inutile tant que l'on reste sur *.workers.dev ; restreindre
+#     « Account Resources » au compte BEYBOO). Si vous créez le jeton à la main, vérifiez les libellés exacts
+#     dans la doc Cloudflare (developers.cloudflare.com/fundamentals/api/reference/permissions/).
+#   - variable (ou secret) CLOUDFLARE_ACCOUNT_ID : identifiant du compte. Par défaut, l'identifiant du
+#     compte BEYBOO est utilisé ci-dessous ; une variable d'Actions le remplace sans toucher au fichier.
+#
+# Les secrets de l'APPLICATION ne passent pas par GitHub : ils se posent une fois sur Cloudflare avec
+#   npx wrangler@4 secret put OPENAI_API_KEY      (voix)
+#   npx wrangler@4 secret put YOUTUBE_DATA_API_KEY (recherche YouTube, facultatif)
+#   npx wrangler@4 secret put AUTH_SECRET          (signature du cookie de session)
+#   npx wrangler@4 secret put SITE_PASSWORD        (code famille)
+#   npx wrangler@4 secret put SESSION_SIGNING_SECRET
+#   npx wrangler@4 secret put TURN_KEY_ID / TURN_KEY_API_TOKEN (Cloudflare Realtime TURN, facultatif)
+# Ils survivent aux déploiements suivants. Voir docs/DEPLOIEMENT.md, section v38.
+name: Déployer le Worker Cloudflare
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-worker
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: cloudflare-worker
+      url: https://beyboo.aitouaretsamy1.workers.dev
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Tests
+        run: node --test tests/*.test.mjs
+      - name: Déploiement (wrangler deploy)
+        run: npx --yes wrangler@4 deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID || secrets.CLOUDFLARE_ACCOUNT_ID || '5eb23048400a67c614b9446e73c6c1c0' }}

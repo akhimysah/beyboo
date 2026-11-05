@@ -1,10 +1,10 @@
 'use strict';
-// Product interface with OpenAI voice and a Jitsi video-call trial.
+// Product interface with OpenAI voice and peer-to-peer family video calls (call.js).
 const modeData={
   eye:['A lively gaze.','Choose listening, joy or curiosity, then tap the eye to open its apps.'],
   menu:['It starts with a tap.','Choose an activity on the screen. The plush stays still throughout the demo.'],
   video:['A little window into space.','Play the original Moon Mission clip, pause it and pick up where you left off. Open YouTube from your companion’s home screen.'],
-  call:['Say hello on a video call.','Prepare a link, share it with someone you love and meet in the same Jitsi room.'],
+  call:['Say hello on a video call.','Call someone signed in to the same family, or send them an invitation link: the call goes directly between your devices, inside the eye.'],
   assistant:['I’m listening.','Ask a question out loud. Your companion listens, replies and remembers what you’ve said during your chat. The eye reacts while the plush stays still.'],
   story:['Every character has a story.','Get to know the ten companions. Pick a character to read their full story.']
 };
@@ -33,7 +33,7 @@ function showMode(next){
   $('#expression-controls').hidden=next!=='eye';
   $$('[data-app]').forEach(b=>{b.classList.toggle('selected',b.dataset.app===next);b.setAttribute('aria-pressed',String(b.dataset.app===next));});
   $('#mode-title').textContent=modeData[next][0];$('#mode-description').textContent=modeData[next][1];
-  $('#device-hint').textContent=next==='eye'?'Tap the eye to explore.':next==='call'?'Live call via Jitsi Meet · Try it on your device':'BEYBOO One · Interactive demo';
+  $('#device-hint').textContent=next==='eye'?'Tap the eye to explore.':next==='call'?'Family calls · Device to device':'BEYBOO One · Interactive demo';
   if(next==='menu')screen.innerHTML='<span class="screen-label">HELLO THERE</span><h4>What shall we do?</h4><div class="mini-apps">'+[['video','▷','Video'],['game','✦','Game'],['music','♫','Music'],['assistant','◉','Assistant'],['call','▣','Call'],['story','▤','Stories']].map(([id,icon,label])=>`<button type="button" data-screen-app="${id}"><span>${icon}</span>${label}</button>`).join('')+'</div>';
   if(next==='video')renderVideo();
   if(next==='call')window.BeybooCall?.enter();

@@ -61,7 +61,7 @@
     }else if(type==='weather'){
       window.BeybooLibrary.weatherControls(panel,button);
     }else if(type==='call'){
-      panel.append(element('h4','Say hello to someone you love.'),element('p','Set up a video call, then share the link with the person you want to call.'),button('Set up a Jitsi call →',()=>q('voice-go-call').click()));
+      panel.append(element('h4','Say hello to someone you love.'),element('p','Set up a video call, then share the link with the person you want to call.'),button('Set up a video call →',()=>q('voice-go-call').click()));
     }
     if(restoreFocus){const buttons=[...panel.querySelectorAll('button')];(buttons.find(b=>focusKey && !b.disabled && (b.dataset.move===focusKey||b.dataset.track===focusKey))||buttons.find(b=>!b.disabled && b.textContent===focusedText)||buttons.find(b=>!b.disabled))?.focus({preventScroll:true});}
   }

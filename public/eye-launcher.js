@@ -5,7 +5,7 @@
   const t = (fr, english) => en ? english : fr;
   const svg = (body, extra = '') => '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"' + extra + '>' + body + '</svg>';
   const glyphs = {
-    whatsapp: svg('<path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.5-1.2A9 9 0 1 0 12 3z" fill="#fff"/><path d="M9.2 8.1c.2-.3.5-.3.7-.1l1.1 1.5c.2.3.1.6-.1.8l-.6.6c.6 1.2 1.6 2.2 2.8 2.8l.6-.6c.2-.2.5-.3.8-.1l1.5 1.1c.3.2.3.5.1.7l-.6.9c-.4.5-1 .7-1.6.5-2.7-.9-4.9-3.1-5.8-5.8-.2-.6 0-1.2.5-1.6z" fill="#1fb857"/>'),
+    messages: svg('<path d="M12 3.5c-4.9 0-8.8 3.3-8.8 7.4 0 2.2 1.1 4.1 2.9 5.5L5.4 20.5l4.4-1.6c.7.2 1.4.2 2.2.2 4.9 0 8.8-3.3 8.8-7.4S16.9 3.5 12 3.5z" fill="#fff"/><circle cx="8.6" cy="10.9" r="1.1" fill="#1d6fe0"/><circle cx="12" cy="10.9" r="1.1" fill="#1d6fe0"/><circle cx="15.4" cy="10.9" r="1.1" fill="#1d6fe0"/>'),
     youtube: svg('<rect x="3" y="6" width="18" height="12" rx="4" fill="#fff"/><path d="M10 9.2v5.6l5-2.8z" fill="#e00000"/>'),
     spotify: svg('<circle cx="12" cy="12" r="9" fill="#101314"/><path d="M7.5 9.6c3-.9 6.3-.7 9 .9M8 12.3c2.5-.7 5.2-.5 7.4.8M8.5 14.8c2-.5 4.1-.4 5.9.7" stroke="#1ed760" stroke-width="1.5" stroke-linecap="round" fill="none"/>'),
     calls: svg('<path d="M6.6 3.8l2.3-.4 1.6 3.9-1.7 1.4a11 11 0 0 0 6.5 6.5l1.4-1.7 3.9 1.6-.4 2.3c-.2 1-1.1 1.7-2.1 1.6C10.4 18.4 5.6 13.6 5 5.9c-.1-1 .6-1.9 1.6-2.1z" fill="#fff"/>'),
@@ -16,9 +16,9 @@
     wifi: svg('<path d="M2.5 8.5a14 14 0 0 1 19 0M5.5 11.8a9.5 9.5 0 0 1 13 0M8.5 15a5 5 0 0 1 7 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/><circle cx="12" cy="18.5" r="1.5" fill="currentColor"/><path class="eye-wifi-off" d="M4 4l16 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>', ' class="eye-wifi"'),
     battery: svg('<rect x="2.5" y="7" width="17" height="10" rx="2.5" stroke="currentColor" stroke-width="1.6" fill="none"/><rect x="20.5" y="10" width="1.8" height="4" rx=".6" fill="currentColor"/><rect class="eye-battery-level" x="4.5" y="9" width="13" height="6" rx="1" fill="currentColor"/>', ' class="eye-battery"')
   };
-  // Order and labels follow the published interface concept. WhatsApp and Spotify stay illustrative.
+  // Order and labels follow the published interface concept. Spotify stays illustrative; Messages is the family's own messaging.
   const apps = [
-    {id:'whatsapp', label:'WhatsApp', concept:true},
+    {id:'messages', label:t('Messages','Messages'), command:{action:'open_messages'}},
     {id:'youtube', label:'YouTube', command:{action:'open_youtube', value:'catalog'}},
     {id:'spotify', label:'Spotify', concept:true},
     {id:'calls', label:t('Appels','Calls'), mode:'call'},
@@ -26,11 +26,6 @@
     {id:'assistant', label:t('Assistant','Assistant'), talk:true}
   ];
   const concepts = {
-    whatsapp: {
-      title:'WhatsApp',
-      text:t('Concept d’interface. WhatsApp n’est pas intégré à cette démo : les appels vidéo passent par Jitsi, avec un adulte.','Interface concept. WhatsApp is not part of this demo: video calls run through Jitsi, with an adult.'),
-      go:'calls', goLabel:t('Préparer un appel','Prepare a call')
-    },
     spotify: {
       title:'Spotify',
       text:t('Concept d’interface. Spotify n’est pas intégré : écoute les cinq instrumentaux originaux BEYBOO.','Interface concept. Spotify is not integrated: listen to the five original BEYBOO instrumentals.'),
@@ -40,6 +35,10 @@
   const locale = en ? 'en-GB' : 'fr-FR';
   const clock = new Intl.DateTimeFormat(locale, {hour:'2-digit', minute:'2-digit', hourCycle:'h23'});
   const has = value => value === undefined || value === '' || Object.hasOwn(concepts, value);
+  // Unread family messages (messages.js) show as a dot on the Messages tile and refresh while the home screen is live.
+  const unread = () => Number(window.BeybooMessages?.unread?.()) || 0;
+  const badgeLabel = count => t('Messages','Messages') + (count ? ' · ' + count + ' ' + t(count > 1 ? 'non lus' : 'non lu', 'unread') : '');
+  const badge = count => '<span class="eye-app-badge" aria-hidden="true"' + (count ? '' : ' hidden') + '>' + (count > 99 ? '99+' : count || '') + '</span>';
   function statusBar() {
     return '<div class="eye-home-status"><time class="eye-home-time">' + clock.format(new Date()) + '</time>' + glyphs.wifi + glyphs.battery + '</div>';
   }
@@ -52,7 +51,7 @@
     }
     return '<div class="eye-home" role="group" aria-label="' + t('Accueil de l’écran BEYBOO','BEYBOO home screen') + '">' + statusBar() +
       '<div class="eye-home-grid">' + apps.map(app =>
-        '<button type="button" data-home-app="' + app.id + '"' + (app.concept ? ' data-concept="true" aria-label="' + app.label + ' · ' + t('concept','concept') + '"' : '') + '><span class="eye-app eye-app-' + app.id + '">' + glyphs[app.id] + '</span><span class="eye-app-label">' + app.label + '</span></button>'
+        '<button type="button" data-home-app="' + app.id + '"' + (app.concept ? ' data-concept="true" aria-label="' + app.label + ' · ' + t('concept','concept') + '"' : app.id === 'messages' ? ' aria-label="' + badgeLabel(unread()) + '"' : '') + '><span class="eye-app eye-app-' + app.id + '">' + glyphs[app.id] + (app.id === 'messages' ? badge(unread()) : '') + '</span><span class="eye-app-label">' + app.label + '</span></button>'
       ).join('') + '</div>' +
       '<div class="eye-home-dock"><button type="button" data-home-nav="home" aria-label="' + t('Revenir au regard','Back to the eye') + '">' + glyphs.home + '</button><button type="button" data-home-nav="mic" aria-label="' + t('Parler à BEYBOO','Talk to BEYBOO') + '">' + glyphs.mic + '</button></div></div>';
   }
@@ -86,6 +85,14 @@
       paintNetwork();
     }, 1000);
     window.addEventListener('online', paintNetwork); window.addEventListener('offline', paintNetwork);
+    const paintUnread = () => {
+      const tile = root.querySelector('[data-home-app="messages"]'), pill = root.querySelector('.eye-app-badge');
+      if (!tile || !pill) return;
+      const count = unread();
+      pill.hidden = !count; pill.textContent = count > 99 ? '99+' : count || ''; tile.setAttribute('aria-label', badgeLabel(count));
+    };
+    const onMessages = () => { if (live()) paintUnread(); else document.removeEventListener('beyboo-messages', onMessages); };
+    document.addEventListener?.('beyboo-messages', onMessages);
     navigator.getBattery?.().then(battery => {
       if (!live()) return;
       paintBattery(battery);

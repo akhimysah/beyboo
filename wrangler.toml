@@ -16,7 +16,7 @@ not_found_handling = "none"
 [vars]
 AUTH_MODE = "password"
 CSP_MODE = "report"
-SITE_URL = "https://beyboo.aitouaretsamy1.workers.dev"
+SITE_URL = "https://beyboo.neobank.workers.dev"
 CONTACT_EMAIL = "jhonnymparis@gmail.com"
 
 [[kv_namespaces]]

@@ -1,3 +1,11 @@
+Note v38 (5 novembre 2026) — hébergement autonome
+  L'application complète tourne désormais sur un Worker Cloudflare indépendant de ChatGPT Sites
+  (wrangler.toml, worker/standalone.mjs, salle de famille lib/family-room.mjs : messages, présence, appels).
+  Local : npx wrangler@4 dev --port 8787 (secrets dans .dev.vars). Déploiement : npx wrangler@4 deploy
+  ou push sur main. Secrets : npx wrangler@4 secret put. Vérification : npm run smoke.
+  Le site vitrine seul reste publié sur GitHub Pages (https://akhimysah.github.io/beyboo/, sans /api).
+  Tout est détaillé dans docs/DEPLOIEMENT.md, section 1.
+
 BEYBOO — Remise du code source | 5 novembre 2026
 Version publiée 36 | Commit 35ccb67a2bcbbecf739f631fdfa35640617b692c
 

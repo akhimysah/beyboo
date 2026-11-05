@@ -47,7 +47,7 @@ test('YouTube search works without a key as a curated shelf; configured searches
   const {searchVideos,resetVideoCache}=await import('../lib/video-search.mjs');
   const request=(user,origin='https://beyboo.test')=>new Request('https://beyboo.test/api/videos/search',{method:'POST',headers:{origin,...(user?{'oai-authenticated-user-id':user}:{})},body:JSON.stringify({query:'écureuil',lang:'fr'})});
   const env={YOUTUBE_DATA_API_KEY:'test-only'};
-  assert.equal((await (await searchVideos(request(''),{})).json()).enabled,false);
+  assert.equal((await searchVideos(request(''),{})).status,401);
   assert.equal((await searchVideos(request(''),env)).status,401);
   assert.equal((await searchVideos(request('owner','https://other.test'),env)).status,403);
   const result=await searchVideos(request('owner'),env,async(url,options)=>{
@@ -55,7 +55,7 @@ test('YouTube search works without a key as a curated shelf; configured searches
     assert.equal(options.headers['X-Goog-Api-Key'],'test-only');
     return Response.json({items:[{id:{videoId:'shQJd3oGYn8'},snippet:{title:'Paxi',channelTitle:'ESA'}},{id:{videoId:'invalid'}}]});
   });
-  assert.deepEqual(await result.json(),{enabled:true,items:[{id:'shQJd3oGYn8',title:'Paxi',channel:'ESA'}]});
+  assert.deepEqual(await result.json(),{enabled:true,items:[{id:'shQJd3oGYn8',title:'Paxi',channel:'ESA'}],source:'google'});
   assert.equal((await (await searchVideos(request('owner'),env,()=>assert.fail('cached'))).json()).cached,true);
   resetVideoCache();
   assert.equal((await searchVideos(request('owner'),env,async()=>new Response(null,{status:403}))).status,503);

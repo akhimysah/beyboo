@@ -28,8 +28,17 @@ declare namespace Cloudflare {
     VOICE_SESSION_SECONDS?: string;
     VIDEO_SEARCHES_PER_USER_PER_DAY?: string;
     VIDEO_SEARCHES_PER_DAY?: string;
-    /** Shared counters across isolates. Optional KV namespace binding. */
+    /** Shared counters across isolates. KV namespace binding (wrangler.toml: BEYBOO_KV). */
     BEYBOO_KV?: KVNamespace;
+    /** Standalone Worker (wrangler.toml): the family room Durable Object, one instance per family code. */
+    FAMILY_ROOM?: DurableObjectNamespace;
+    /** Standalone Worker (wrangler.toml): static files from public/, fetched by the Worker for / and anything outside /api. */
+    ASSETS?: Fetcher;
+    /** Cloudflare Realtime TURN credentials for /api/calls/turn. Optional: without them only STUN is offered. */
+    TURN_KEY_ID?: string;
+    TURN_KEY_API_TOKEN?: string;
+    /** Tests only: overrides the YouTube Data API base URL (default https://www.googleapis.com/youtube/v3). */
+    YOUTUBE_API_BASE?: string;
     /** Security headers: CSP_MODE report (default) | enforce | off ; HSTS off to disable. */
     CSP_MODE?: string;
     HSTS?: string;
