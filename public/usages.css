@@ -1,0 +1,21 @@
+/* Six everyday moments, with full uncropped campaign visuals. */
+.usages-section{background:linear-gradient(145deg,#fff 12%,#f1f7fc 58%,#f8f3fb);border-bottom:1px solid #e7eef5}
+.usages-section .section-heading{align-items:center}
+.usages-section .section-heading h2 span{color:#548eb9}
+.usages-section .section-heading>p{max-width:345px}
+.usage-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
+.usage-card{min-width:0;background:#fff;border:1px solid #e4eaf1;border-radius:24px;overflow:hidden;box-shadow:0 8px 30px #27486706}
+.usage-card .image-open img{display:block;width:100%;height:auto;aspect-ratio:1672/941;object-fit:contain}
+.usage-copy{padding:24px 26px 26px}
+.usage-meta{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px;color:#607c93;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.usage-number{color:#6b8ca6;font-variant-numeric:tabular-nums}
+.usage-copy h3{font-size:25px;line-height:1.2;letter-spacing:-.035em;font-weight:600}
+.usage-copy p{color:#697786;font-size:14px;line-height:1.65;margin-top:12px;max-width:450px}
+.usage-copy .text-link{font-size:12px;margin-top:17px;min-height:30px}
+.usages-footer{display:flex;align-items:center;justify-content:space-between;gap:35px;margin-top:30px}
+.usages-footer .caption{margin:0;max-width:630px;line-height:1.7}
+.usages-footer .button{flex-shrink:0}
+.usages-section button:focus-visible,.usages-section a:focus-visible{outline:3px solid #318dd3;outline-offset:3px}
+.usage-card .image-open:focus-visible{outline-offset:-4px}
+@media(max-width:900px){.usage-grid{gap:20px}.usage-copy{padding:20px}.usage-copy h3{font-size:22px}.usage-copy p{font-size:13px}.usages-footer{gap:25px}}
+@media(max-width:700px){.usages-section .section-heading>p{max-width:100%}.usage-grid{grid-template-columns:minmax(0,1fr);gap:22px}.usage-card{border-radius:19px}.usage-copy{padding:21px}.usage-copy h3{font-size:24px}.usage-meta{font-size:9px}.usage-copy p{margin-top:10px}.usage-copy .text-link{margin-top:13px;min-height:38px}.usages-footer{align-items:flex-start;flex-direction:column;gap:20px;margin-top:25px}.usages-footer .caption{max-width:100%}}

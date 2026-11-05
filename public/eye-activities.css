@@ -1,0 +1,15 @@
+.eye-device-commands{background:#f4f7fa;border:1px solid #d9e3eb;border-radius:17px;margin:18px 0;padding:14px 16px;color:#233f56;text-align:left}
+.eye-device-commands summary{font-size:14px;font-weight:600;cursor:pointer}
+.eye-device-commands p,.eye-device-commands small{font-size:12px;line-height:1.5;margin:12px 0 0;display:block}
+.eye-device-commands p:empty,.eye-device-commands [hidden]{display:none}
+.eye-device-commands form{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.eye-device-commands input{font:inherit;flex:1 1 140px;min-width:0;padding:9px;border:1px solid #bbcbd7;border-radius:9px;background:white}
+.eye-device-commands button,.eye-city-list button,.eye-video-list button{min-height:40px;padding:8px 13px;border:1px solid #b7c9d6;border-radius:12px;color:#24465e;background:#fff;cursor:pointer}
+.eye-device-commands button[aria-pressed=true]{background:#264c68;color:white}
+.eye-city-list,.eye-video-list{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0}
+.eye-weather-screen{background:linear-gradient(145deg,#215577,#10253b)}
+#eye-weather-symbol{font-size:65px;line-height:1;color:#ffdc85}
+.companion-launcher .eye-weather-icon{background:#fff0c8;color:#8e6319}
+.product-activity small a{font-size:inherit;display:inline;padding:0}
+.eye-photo-import{display:grid;gap:6px;font-size:12px;margin:12px 0;color:#34536b}
+.eye-photo-import input{font-size:12px;max-width:100%}

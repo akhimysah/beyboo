@@ -1,0 +1,26 @@
+/* Noah's jungle film opens the storefront; contain preserves the plush and all six letters. */
+html.intro-pending,html.intro-open,html.intro-pending body,html.intro-open body{overflow:hidden;overscroll-behavior:none}
+.brand-intro{position:fixed;inset:0;width:100%;max-width:none;height:100%;height:100dvh;max-height:none;margin:0;padding:0;border:0;background:#fff;color:#263c50;opacity:1;transition:opacity .6s ease;overflow:hidden;overscroll-behavior:contain}
+.brand-intro:focus{outline:0}
+#hero-title[tabindex="-1"]:focus{outline:0}
+.brand-intro[open],.intro-pending .brand-intro{display:flex;align-items:center;justify-content:center}
+.intro-pending .brand-intro{z-index:2147483646}
+.brand-intro::backdrop{background:#fff;transition:background .6s ease}
+.brand-intro.is-leaving{opacity:0;pointer-events:none}
+.brand-intro.is-leaving::backdrop{background:transparent}
+.brand-intro video{display:block;width:min(92vw,1400px);height:auto;max-height:72dvh;object-fit:contain;aspect-ratio:898/512;background:#fff;pointer-events:none}
+.intro-skip,.intro-sound,.intro-play{border:1px solid #e3e8ed;border-radius:100px;color:#34566e;background:#f7f9fb;min-height:44px;padding:12px 20px;font-size:13px;font-weight:500}
+.intro-skip{position:absolute;top:max(24px,env(safe-area-inset-top));right:max(28px,env(safe-area-inset-right))}
+.intro-sound{background:#fff}
+.intro-sound[data-unlock="true"]{background:#24475f;color:white;border-color:transparent}
+.intro-bottom{position:absolute;bottom:max(28px,env(safe-area-inset-bottom));left:max(28px,env(safe-area-inset-left));right:max(28px,env(safe-area-inset-right));display:flex;align-items:center;justify-content:space-between;gap:20px}
+.intro-status{font-size:11px;line-height:1.5;letter-spacing:.02em;color:#5f6b76;text-align:right;max-width:240px}
+.intro-play{position:absolute;left:50%;top:calc(50% + min(17vw,210px));transform:translateX(-50%);background:#24475f;color:#fff;border-color:transparent;white-space:nowrap}
+.brand-intro button:hover{filter:brightness(.97)}
+.brand-intro button:focus-visible{outline:3px solid #62a0c7;outline-offset:4px}
+.intro-progress{position:absolute;bottom:0;left:0;width:100%;height:2px;background:#f1f4f7;overflow:hidden}
+.intro-progress span{display:block;height:100%;width:100%;transform:scaleX(var(--intro-progress,0));transform-origin:left;background:#78a9c4;transition:transform .2s linear}
+.intro-replay{color:#4f6578;font-size:12px;background:transparent;padding:12px 0;text-align:left}
+.intro-replay:hover{color:#284d68}
+@media(max-width:600px){.intro-skip{top:max(18px,env(safe-area-inset-top));right:18px}.intro-bottom{left:18px;right:18px;bottom:max(24px,env(safe-area-inset-bottom));gap:12px}.intro-sound{font-size:12px;padding:11px 15px}.intro-status{font-size:10px;max-width:145px}.brand-intro video{width:96vw}.intro-play{top:calc(50% + 24vw)}}
+@media(prefers-reduced-motion:reduce){.brand-intro,.brand-intro::backdrop,.intro-progress span{transition:none}}

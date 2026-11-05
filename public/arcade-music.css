@@ -1,0 +1,45 @@
+.arcade-content {display:grid;justify-items:center;gap:9px}
+.voice-stage--game>.arcade-content,.music-eye {height:100%;align-content:center;text-align:center;background:radial-gradient(ellipse at 50% 35%,#234458,#11212f 70%);color:#fff}
+.voice-stage--game .arcade-content h4,.music-eye h4 {color:#fff;font-size:24px;margin:0;line-height:1.1}
+.voice-stage--game .board-status {color:#d7efe9;margin:0;font-size:13px;line-height:1.1}
+.arcade-menu,.music-library {width:100%;display:grid;gap:7px}
+.voice-stage--game .arcade-menu {width:62%;gap:6px}
+.arcade-menu .arcade-option,.music-library .music-row {display:flex;align-items:center;text-align:left;min-height:44px;gap:11px;padding:8px 12px;background:#f4f7fa;color:#203b4c;border:1px solid #dde6eb;border-radius:13px;width:100%}
+.voice-stage--game .arcade-option {background:#e8f1f3;min-height:43px;padding:5px 10px}
+.arcade-option i {display:grid;place-items:center;width:36px;height:36px;border-radius:10px;background:#d0eee3;color:#205641;font-size:21px;font-style:normal;font-weight:bold}
+.option-draughts i {background:#ffe3c4;color:#754323}.option-stars i{background:#deddf6;color:#514080}
+.arcade-option span,.music-row span {display:grid;gap:4px}.arcade-option b,.music-row b {font-size:14px;font-weight:650}.arcade-option small,.music-row small {font-size:12px;color:#506875}
+.product-activity .arcade-content {justify-items:stretch;gap:7px}
+.product-activity .arcade-content h4,.product-activity .arcade-content p {margin:0}
+.arcade-opponent,.board-nav,.music-transport {display:flex;flex-wrap:wrap;gap:7px}
+.arcade-opponent button,.board-nav button {min-height:40px}
+.arcade-opponent button[aria-pressed=true] {background:#234d60;color:white}
+.bey-board {display:grid;aspect-ratio:1;overflow:hidden;touch-action:manipulation;width:min(100%,360px);margin:4px auto}
+.bey-board.tic {grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);background:#7eaaa9;gap:3px;border-radius:12px;max-width:245px}
+.bey-board.draughts {grid-template-columns:repeat(10,1fr);grid-template-rows:repeat(10,1fr);background:#efe4cf;border:2px solid #634e3a;border-radius:5px}
+.voice-stage--game .bey-board {width:62%;margin:0}
+.voice-stage--game .bey-board.tic {width:53%}
+.bey-board .board-cell {position:relative;display:grid;place-items:center;margin:0;padding:0;min-height:0;min-width:0;border:0;border-radius:0;opacity:1;background:#8a6950;color:#253e47}
+.bey-board.tic .board-cell {background:#eff7f4;color:#195666;font:700 clamp(26px,6vw,45px)/1 system-ui}
+.bey-board.tic .board-cell:disabled,.bey-board.draughts .board-cell:disabled {opacity:1}
+.bey-board .board-cell.selected {box-shadow:inset 0 0 0 3px #6ee6ba;background:#49645b}
+.bey-board .board-cell.possible::after {content:'';width:35%;aspect-ratio:1;background:#7df4c9;border-radius:100%;box-shadow:0 0 0 1px #31473a}
+.bey-board .board-cell:focus-visible {z-index:1;outline:3px solid #02aaff;outline-offset:-3px}
+.disc {display:grid;place-items:center;width:76%;height:76%;border-radius:50%;line-height:1;font-size:15px;font-style:normal}
+.disc.ivory {background:#fff4da;color:#604529;box-shadow:inset 0 -3px 0 #c6aa81,0 1px 2px #412e23}
+.disc.slate {background:#263746;color:#fcdfac;box-shadow:inset 0 -3px 0 #111d24,0 1px 2px #412e23}
+.disc.captured {opacity:.4}
+.tune-0 {--cover:#e9a266;--accent:#613c48}.tune-1 {--cover:#b9a6ef;--accent:#44365f}.tune-2 {--cover:#f1cd62;--accent:#377169}.tune-3 {--cover:#94c8c3;--accent:#405b78}.tune-4 {--cover:#a5bedf;--accent:#494c70}
+.music-eye {display:grid;justify-items:center;gap:8px;background:radial-gradient(ellipse at top,var(--accent),#142232 72%)}
+.music-eye small {color:var(--cover);font-size:13px}.music-eye>span {font-size:12px;color:#d1dde8;max-width:65%}
+.bey-record,.music-art {display:grid;place-items:center;background:repeating-radial-gradient(circle,#213039 0 3px,#415057 4px,#17242f 6px);border-radius:50%}
+.bey-record {width:116px;height:116px;border:3px solid var(--cover);box-shadow:0 6px 15px #0006}
+.bey-record i,.music-art::after {content:'';width:42%;height:42%;border-radius:50%;background:radial-gradient(circle,#17242f 0 10%,var(--cover) 13% 100%)}
+.bey-record i {border-right:3px solid var(--accent)}
+.bey-record.turning {animation:bey-record-turn 4s linear infinite}
+@keyframes bey-record-turn {to {transform:rotate(360deg)}}
+.music-transport button {background:#fff;color:#233c4d;border:0;border-radius:25px;min-width:44px;min-height:37px}
+.music-row .music-art {flex:none;width:39px;height:39px;border:3px solid var(--cover)}
+.music-row em {font-style:normal;font-size:22px;color:var(--accent);margin-left:auto}
+.music-library .music-row[aria-pressed=true] {border-color:#547a82;background:#eef7f4}
+@media(prefers-reduced-motion:reduce){.bey-record.turning{animation:none}}

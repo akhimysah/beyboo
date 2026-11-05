@@ -1,0 +1,80 @@
+/* A fixed, full-body product photograph, with one live logical display. */
+.beyboo-app,#experience{overflow-anchor:none}
+.experience-card.has-companion,.beyboo-app .experience-card.has-companion{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:44px}
+.experience-card.has-companion .experience-display{position:static;min-width:0}
+.product-preview-label{display:flex;align-items:center;justify-content:center;gap:9px;color:#617789;font-size:9px;letter-spacing:.16em;margin:0 0 14px;font-weight:600}
+.product-preview-label>span{width:6px;height:6px;border-radius:50%;background:#689d94}
+.experience-card.has-companion .companion-scene{width:100%;max-width:590px;height:var(--photo-height);min-height:0;aspect-ratio:6/7;left:auto;transform:none;margin:0 auto;border-radius:28px;background:#f0ede8;overflow:hidden}
+.companion-photo{position:absolute;inset:0 0 auto;height:var(--photo-height,100%);overflow:hidden;border-radius:28px}
+.experience-card.has-companion .companion-portrait{width:128%;height:auto;left:-14%;top:-52.38%;transform:none!important;animation:none!important;transition:none!important}
+.experience-card.has-companion .plush-eye-dock{width:24%;left:39%;top:calc(var(--photo-height) * .226);aspect-ratio:1;overflow:hidden;border-radius:50%;box-shadow:0 0 0 2px #1b2028}
+.experience-card.has-companion .plush-eye-dock .device-shell{width:100%;height:100%;border:0;padding:0;border-radius:50%;box-shadow:none;overflow:hidden}
+.experience-card.has-companion .plush-eye-dock .device-screen{position:relative;width:400px;height:400px;min-height:400px;max-width:none;aspect-ratio:1;transform:scale(var(--screen-scale,1));transform-origin:top left;container-type:inline-size;border-radius:50%;overflow:hidden}
+.experience-card.has-companion .voice-stage--video{display:flex;align-items:center;justify-content:center}
+.experience-card.has-companion .voice-stage--video video{width:86%;height:auto;max-height:70%;aspect-ratio:16/9;object-fit:contain}
+.experience-card.has-companion .voice-stage--youtube>div,.experience-card.has-companion .voice-stage--youtube iframe{width:280px;height:280px;flex:0 0 280px}
+.experience-card.has-companion #call-host{position:absolute;inset:15%;width:70%;height:70%}
+.experience-card.has-companion #call-host iframe{width:100%;height:100%;border:0}
+.companion-detail-caption{position:absolute;top:var(--photo-height);left:0;width:100%;font-size:12px;font-weight:600;line-height:1.3;padding-top:16px;color:#28455d}
+.companion-detail-caption span{display:block;font-size:10px;font-weight:400;color:#687c8c;margin-top:3px}
+.experience-card.has-eye-detail .companion-scene{height:calc(var(--photo-height) + var(--detail-size) + 80px);aspect-ratio:auto;background:#ecf1f6}
+.experience-card.has-eye-detail .plush-eye-dock{width:var(--detail-size);left:calc((100% - var(--detail-size))/2);top:calc(var(--photo-height) + 60px)}
+.has-companion .companion-welcome h3,.beyboo-app .companion-welcome h3{font-size:clamp(32px,3.1vw,46px);line-height:1.08;letter-spacing:-.05em;color:#182c3d}
+.has-companion .companion-welcome>p:last-of-type{color:#71808e;font-size:14px;line-height:1.65;margin-bottom:20px}
+.product-first-demo{display:block;width:100%;text-align:left;background:#234a68;color:white;padding:16px 19px;border-radius:18px;font-size:14px;line-height:1.4;margin:18px 0 8px;box-shadow:0 7px 20px #1d456012}
+.product-first-demo span{display:block;color:#cfdfeb;font-size:10px;margin:5px 0 0 17px;font-weight:400}
+.product-first-demo:hover{background:#2f5d7d}
+.has-companion .companion-launcher{margin-top:28px;gap:24px 8px}
+.product-coming{background:#e9edf1;border-radius:8px;padding:3px 5px;color:#657989!important}
+.has-companion .companion-view-controls{justify-content:center;margin:10px auto 0;gap:9px 18px}
+.has-companion .companion-view-controls button,.has-companion .companion-view-controls a{font-size:12px;min-height:44px;padding:10px 0}
+.has-companion .companion-screen-note{font-size:12px;line-height:1.6;margin:18px 0 12px;color:#6c7e8d}
+.product-activity{background:#fff;border:1px solid #dce5ed;border-radius:22px;padding:22px;margin:18px 0 22px;text-align:left}
+.product-activity .activity-label{color:#678599;font-size:9px;font-weight:600;letter-spacing:.13em;margin:0 0 10px}
+.product-activity h4{font-size:23px;letter-spacing:-.03em;line-height:1.2;margin:0 0 12px;color:#1c3e58}
+.product-activity p{font-size:13px;line-height:1.7;color:#6c7f8e;margin:10px 0}
+.product-activity button,.product-activity a{border-radius:16px;min-height:44px;padding:11px 16px;background:#eaf3f8;color:#255676;font-size:13px;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+.product-math-options{display:flex;gap:9px;margin:14px 0}
+.product-math-options button{flex:1;font-size:23px;min-height:54px;font-weight:600}
+.product-activity [data-correct=true]{color:#267b60;font-weight:600}
+.product-star-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;max-width:240px;margin:12px auto}
+.product-star-grid button{min-height:54px;font-size:28px;background:#f2f6fa;color:#91a8b8;padding:0}
+.product-star-grid .star-target{background:#dceef8;color:#297da8}
+.product-activity .activity-footnote{font-size:10px;color:#8294a2;margin-bottom:0}
+.product-activity details summary{cursor:pointer;color:#315c7a;font-size:12px;padding:9px 0}
+.product-reality{margin:20px 0 4px;border-top:1px solid #dfe5ec;padding-top:15px;text-align:left}
+.product-reality summary{font-size:12px;color:#5f768b;cursor:pointer;min-height:36px}
+.product-reality p{font-size:11px;line-height:1.7;color:#7b8997;margin-top:12px}
+.has-companion .voice-screen-buttons button{min-height:44px;font-size:12px}
+.has-companion .voice-screen-toolbar p{font-size:12px;line-height:1.6}
+.has-companion .voice-panel{margin-top:18px}
+.beyboo-app .experience-card.has-companion{gap:52px}
+@media(min-width:701px){
+  .experience-card.has-companion .experience-display{position:sticky;top:95px}
+  .experience-card.has-companion .companion-scene{max-width:min(590px,max(300px,calc((100dvh - 420px)*6/7)))}
+  .experience-card.has-eye-detail .experience-display{position:static}
+  .beyboo-app .beyboo-app-bottom{left:auto;right:36px;transform:none}
+  .has-companion .experience-controls>.voice-screen-toolbar{background:#eaf2f7;border:1px solid #d6e3ed;border-radius:20px;padding:18px;text-align:center;margin:17px 0 24px}
+}
+@media(max-width:1000px) and (min-width:701px){.experience-card.has-companion,.beyboo-app .experience-card.has-companion{gap:28px;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+@media(max-width:700px){
+  #experience.wrap,.beyboo-app #experience{width:calc(100% - 24px)}
+  .experience-card.has-companion,.beyboo-app .experience-card.has-companion{padding:0;background:none;gap:25px;display:flex}
+  .experience-card.has-companion .companion-scene{width:100%;max-width:590px;border-radius:23px}
+  .companion-photo{border-radius:23px}
+  .product-preview-label{font-size:8px;letter-spacing:.13em;margin:5px 0 12px}
+  .has-companion .experience-controls{padding:0 9px}
+  .has-companion .companion-welcome h3,.beyboo-app .companion-welcome h3{font-size:34px}
+  .has-companion .companion-welcome>p:last-of-type{font-size:13px}
+  .product-first-demo{font-size:13px;padding:15px 17px}
+  .has-companion .companion-launcher,.beyboo-app .companion-launcher{gap:23px 7px;margin-top:25px;margin-bottom:25px}
+  .has-companion .companion-launcher small{font-size:9px}
+  .product-activity{padding:20px 17px}
+  .has-companion .voice-live-meter{margin-top:13px}
+  .has-companion .companion-talk-main{max-width:none;width:calc(100% - 30px);min-height:50px;font-size:14px}
+  .has-companion .companion-view-controls{margin-top:4px;gap:6px 16px}
+}
+
+#companion-detail-close{position:absolute;right:10px;top:7px;width:40px;height:40px;border-radius:50%;background:#fff;color:#315570;font-size:24px}
+
+@media(min-width:701px) and (max-height:650px){.experience-card.has-companion .experience-display{position:static}}

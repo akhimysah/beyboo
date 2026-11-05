@@ -1,0 +1,52 @@
+/* A theatrical entrance for a still plush bouquet. Only the complete image moves. */
+.hero-arrival{isolation:isolate;grid-template-columns:.9fr 1.1fr;gap:0;min-height:700px;padding-top:25px;padding-bottom:38px}
+.hero-arrival .hero-copy{z-index:2}
+.hero-arrival h1 span{background-image:linear-gradient(110deg,#426f9a,#69a6bc 50%,#9a80b0)}
+.hero-bouquet-stage{position:relative;align-self:center;min-width:0;width:100%;aspect-ratio:1;overflow:visible;padding:0;margin:0}
+.hero-bouquet{position:relative;z-index:2;width:100%;height:100%;object-fit:contain;display:block;filter:drop-shadow(0 23px 28px #26435b12);transform-origin:50% 70%}
+.has-js .hero-bouquet:not(.is-ready){opacity:0}
+.hero-bouquet.is-arriving{animation:bouquet-arrive 3.8s cubic-bezier(.22,.7,.2,1) both;will-change:transform,opacity}
+.bouquet-halo{position:absolute;inset:8% -4% 3%;z-index:0;pointer-events:none;background:radial-gradient(ellipse at 30% 35%,#e4f3fb 0,transparent 58%),radial-gradient(ellipse at 75% 55%,#f3ebf7 0,transparent 60%);border-radius:50%;filter:blur(25px)}
+.hero-eye-link{position:absolute;z-index:3;bottom:5%;left:2%;display:flex;align-items:center;gap:12px;padding:12px 17px 12px 12px;background:#ffffffed;box-shadow:0 12px 40px #24374c12;border:1px solid #e5ebf0;border-radius:22px;backdrop-filter:blur(14px);transition:box-shadow .2s}
+.hero-eye-link:hover{box-shadow:0 14px 36px #2983b323}
+.hero-eye-link img{width:54px;height:54px;object-fit:contain}
+.hero-eye-link b{display:block;font-size:12px;font-weight:500;letter-spacing:-.02em}
+.hero-eye-link small{display:block;font-size:10px;color:#647d91;margin-top:5px}
+.arrival-replay{position:absolute;z-index:4;bottom:0;right:3%;display:flex;align-items:center;gap:6px;min-height:40px;padding:8px 12px;background:#fff9;border:1px solid #e5eaf0;border-radius:25px;color:#6c7d8b;font-size:10px}
+.arrival-replay>span{font-size:18px}
+.arrival-replay:disabled{opacity:.6;cursor:default}
+.arrival-sparkles{position:absolute;inset:0;z-index:1;pointer-events:none}
+.arrival-sparkles i{position:absolute;width:5px;height:5px;background:#9bbfd9;border-radius:50%;opacity:.55;box-shadow:0 0 14px #9bbfd9}
+.arrival-sparkles i:nth-child(1){left:8%;top:20%}.arrival-sparkles i:nth-child(2){left:90%;top:35%;width:8px;height:8px;background:#c6b3d8}.arrival-sparkles i:nth-child(3){left:20%;top:75%;width:4px;height:4px}.arrival-sparkles i:nth-child(4){left:83%;top:76%;width:5px;height:5px}.arrival-sparkles i:nth-child(5){left:63%;top:2%;width:4px;height:4px}.arrival-sparkles i:nth-child(6){left:2%;top:49%;width:7px;height:7px;background:#c8b6d9}
+.hero-bouquet-stage.is-arriving .arrival-sparkles i{animation:arrival-light 3.8s ease-out both}
+@keyframes bouquet-arrive{0%{opacity:0;transform:translateY(-65%) rotate(-7deg) scale(.86)}18%{opacity:1}76%{transform:translateY(2%) rotate(.8deg) scale(1.01)}100%{opacity:1;transform:translateY(0) rotate(0) scale(1)}}
+@keyframes arrival-light{0%{opacity:0;transform:translateY(-100px) scale(.3)}50%{opacity:.8}100%{opacity:.55;transform:translateY(0) scale(1)}}
+.clip-guide-horizontal{margin-top:85px;padding-top:55px;border-top:1px solid var(--line)}
+.clip-guide-horizontal .clip-guide-heading{align-items:center;margin-bottom:30px}
+.clip-guide-horizontal .clip-guide-heading h3{font-size:38px;line-height:1.1;letter-spacing:-.045em}
+.clip-guide-heading h3 span{color:#6e6e73}
+.clip-guide-horizontal .clip-guide-heading>p{max-width:300px;font-size:13px;line-height:1.8}
+.clip-step-nav{display:flex;justify-content:center;gap:8px;padding:5px;background:#f3f5f7;border-radius:30px;width:max-content;max-width:100%;margin:0 auto 28px}
+.clip-step-nav button{display:flex;align-items:center;gap:9px;min-height:44px;padding:11px 23px;border-radius:25px;background:transparent;color:#8b96a0;font-size:10px;transition:background .2s,color .2s}
+.clip-step-nav button span{font-size:12px;color:#68747e}
+.clip-step-nav button.active{background:#fff;color:#1685c5;box-shadow:0 2px 12px #20354b09}
+.clip-step-nav button.active span{color:#172936}
+.clip-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;overflow-x:auto;scrollbar-width:thin;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scroll-padding-inline:1px;padding:3px 1px 14px;outline-offset:4px}
+.clip-step{min-width:0;border:1px solid #e7ebef;border-radius:22px;overflow:hidden;background:#fff;scroll-snap-align:start;transition:border-color .2s,box-shadow .2s}
+.clip-step.active{border-color:#b6d6eb;box-shadow:0 4px 18px #228aca09}
+.clip-photo{position:relative;display:block;width:100%;padding:0;background:#fff;overflow:hidden}
+.clip-photo-window{position:relative;display:block;aspect-ratio:1;overflow:hidden}
+.clip-photo img{width:300%;max-width:none;height:100%;object-fit:fill;display:block;transform:translateX(calc(var(--panel) * -33.333333%))}
+.clip-photo .image-zoom{bottom:12px;right:12px;width:30px;height:30px;font-size:16px}
+.clip-step-copy{display:flex;gap:13px;padding:22px 22px 26px;border-top:1px solid #f0f3f5}
+.clip-number{color:#8595a4;font-size:11px;padding-top:3px}
+.clip-step-copy h4{font-size:18px;font-weight:500;letter-spacing:-.03em;line-height:1.25}
+.clip-step-copy p{font-size:12px;line-height:1.6;color:#7f858c;margin-top:8px}
+.clip-guide-footer{display:flex;align-items:center;justify-content:space-between;gap:25px;margin-top:12px}
+.clip-guide-footer .caption{margin:0;max-width:65%}
+.clip-guide-footer .text-link{font-size:11px;min-height:44px;white-space:nowrap}
+@media(min-width:1500px){.hero-arrival{min-height:750px}.hero-bouquet-stage{max-width:720px}}
+@media(max-width:1100px){.hero-arrival{min-height:600px}.hero-eye-link{left:0;padding:10px;gap:9px}.hero-eye-link img{width:43px;height:43px}.hero-eye-link b{font-size:10px}.hero-eye-link small{font-size:9px}.arrival-replay{right:1%;font-size:9px}.clip-step-copy{padding:18px 16px}.clip-step-copy h4{font-size:16px}}
+@media(max-width:900px){.hero-arrival{min-height:540px}.hero-eye-link{bottom:0}.arrival-replay{bottom:-42px;right:5%}.clip-guide-horizontal .clip-guide-heading h3{font-size:33px}.clip-step-copy{gap:9px}.clip-step-copy p{font-size:11px}}
+@media(max-width:700px){.hero-arrival{min-height:0;padding-top:0;padding-bottom:42px;gap:0;overflow:hidden}.hero-bouquet-stage{order:-1;width:min(460px,115%);max-width:none;flex-shrink:0;align-self:center;margin:-6px -7.5% 24px;aspect-ratio:1}.hero-arrival .hero-copy{order:0}.hero-arrival h1{font-size:clamp(46px,12vw,64px)}.hero-arrival .hero-lead{font-size:16px;margin-top:18px}.hero-arrival .eyebrow{font-size:8px;letter-spacing:.14em}.hero-eye-link{bottom:4%;left:9%;padding:9px 12px;gap:9px;border-radius:17px}.hero-eye-link img{width:40px;height:40px}.hero-eye-link b{font-size:10px}.hero-eye-link small{font-size:8px;margin-top:4px}.arrival-replay{bottom:4%;right:8%;padding:7px 9px;font-size:8px;min-height:38px;gap:3px}.arrival-replay>span{font-size:16px}.hero-arrival .hero-promise{display:inline-block;text-align:left;font-size:10px;margin-top:20px}.hero-arrival .hero-note{margin-top:14px}.clip-guide-horizontal{margin-top:48px;padding-top:35px}.clip-guide-horizontal .clip-guide-heading h3{font-size:31px}.clip-guide-horizontal .clip-guide-heading>p{font-size:12px;line-height:1.6;margin-top:18px}.clip-step-nav{margin-bottom:20px;gap:3px;width:100%;justify-content:space-between}.clip-step-nav button{padding:10px 12px;gap:6px;font-size:9px}.clip-step-nav button span{font-size:11px}.clip-steps{display:flex;gap:14px;margin-right:-20px;padding-right:20px;scroll-padding-left:1px}.clip-step{flex:0 0 87%;scroll-snap-stop:always}.clip-step-copy{padding:20px;min-height:105px}.clip-step-copy h4{font-size:19px}.clip-step-copy p{font-size:12px}.clip-guide-footer{display:block;margin-top:10px}.clip-guide-footer .caption{max-width:none}.clip-guide-footer .text-link{margin-top:8px}.hero-arrival+.intro-strip{margin-top:0}}
+@media(prefers-reduced-motion:reduce){.hero-bouquet.is-arriving,.hero-bouquet-stage.is-arriving .arrival-sparkles i{animation:none!important}.arrival-replay{display:none}.hero-bouquet{opacity:1!important}.clip-steps{scroll-behavior:auto}.hero-eye-link,.clip-step{transition:none}}

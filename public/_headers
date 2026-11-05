@@ -1,0 +1,15 @@
+# Static assets are served before the Worker on Cloudflare; the same policy is applied here.
+# Switch Content-Security-Policy-Report-Only to Content-Security-Policy once the browser console shows no violation on the real host.
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: DENY
+  Permissions-Policy: camera=(self "https://meet.jit.si"), microphone=(self "https://meet.jit.si"), geolocation=(), payment=(), usb=(), interest-cohort=()
+  Cross-Origin-Opener-Policy: same-origin
+  Content-Security-Policy-Report-Only: default-src 'self'; script-src 'self' https://www.youtube.com https://meet.jit.si; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data: https://i.ytimg.com; media-src 'self' blob:; connect-src 'self' https://api.openai.com https://meet.jit.si wss://meet.jit.si; frame-src https://www.youtube-nocookie.com https://www.youtube.com https://meet.jit.si; worker-src 'self' blob:; font-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'
+
+/assets/*
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+/vendor/*
+  Cache-Control: public, max-age=2592000, immutable

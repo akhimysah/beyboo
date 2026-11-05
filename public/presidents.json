@@ -1,0 +1,154 @@
+[
+  {
+    "id": "trump",
+    "profile": "zouzou",
+    "fr": {
+      "name": "Donald Trump",
+      "role": "États-Unis · Président",
+      "line": "Entre nous… tu crois que ma cravate est trop longue, ou que mes jambes sont trop courtes ?"
+    },
+    "en": {
+      "name": "Donald Trump",
+      "role": "United States · President",
+      "line": "Between us… is my tie too long, or are my legs too short?"
+    },
+    "eye": {
+      "x": 50,
+      "y": 31,
+      "r": 10.4
+    }
+  },
+  {
+    "id": "obama",
+    "profile": "velours",
+    "fr": {
+      "name": "Barack Obama",
+      "role": "États-Unis · Ancien président",
+      "line": "J’ai remonté mes manches pour une mission très sérieuse. Qui veut construire une cabane avec moi ?"
+    },
+    "en": {
+      "name": "Barack Obama",
+      "role": "United States · Former president",
+      "line": "I’ve rolled up my sleeves for a very serious mission. Who wants to build a blanket fort with me?"
+    },
+    "eye": {
+      "x": 49.7,
+      "y": 23.9,
+      "r": 10
+    }
+  },
+  {
+    "id": "sarkozy",
+    "profile": "cosmo",
+    "fr": {
+      "name": "Nicolas Sarkozy",
+      "role": "France · Ancien président",
+      "line": "J’ai une minute, deux chaussettes et zéro chaussure. On commence l’enquête ?"
+    },
+    "en": {
+      "name": "Nicolas Sarkozy",
+      "role": "France · Former president",
+      "line": "I’ve got one minute, two socks and zero shoes. Shall we solve the mystery?"
+    },
+    "eye": {
+      "x": 49.7,
+      "y": 30.6,
+      "r": 8.1
+    }
+  },
+  {
+    "id": "macron",
+    "profile": "sacha",
+    "fr": {
+      "name": "Emmanuel Macron",
+      "role": "France · Président",
+      "line": "J’avais préparé un grand discours. Puis j’ai ouvert mon livre… et un dragon en est sorti ! On tourne la page ?"
+    },
+    "en": {
+      "name": "Emmanuel Macron",
+      "role": "France · President",
+      "line": "I had a big speech ready. Then I opened my book and a dragon popped out! Shall we turn the page?"
+    },
+    "eye": {
+      "x": 48.7,
+      "y": 30.8,
+      "r": 10.9
+    }
+  },
+  {
+    "id": "brigitte",
+    "profile": "soleil",
+    "fr": {
+      "name": "Brigitte Macron",
+      "role": "France · Première dame",
+      "line": "J’ai trouvé un bouton bleu sous le canapé. Tu crois qu’il vient de ma veste ou du manteau d’un géant ?"
+    },
+    "en": {
+      "name": "Brigitte Macron",
+      "role": "France · First lady",
+      "line": "I found a blue button under the sofa. Do you think it fell off my jacket or a giant’s coat?"
+    },
+    "eye": {
+      "x": 50,
+      "y": 31.6,
+      "r": 10
+    }
+  },
+  {
+    "id": "elizabeth",
+    "profile": "plume",
+    "fr": {
+      "name": "Élisabeth II",
+      "role": "Royaume-Uni · Reine de 1952 à 2022",
+      "line": "Mon chapeau est prêt, mon sac aussi. Il manque juste le corgi… Tu as regardé sous la table ?"
+    },
+    "en": {
+      "name": "Queen Elizabeth II",
+      "role": "United Kingdom · Queen, 1952–2022",
+      "line": "My hat is ready, and so is my handbag. We’re just missing the corgi… Have you looked under the table?"
+    },
+    "eye": {
+      "x": 49.6,
+      "y": 31.5,
+      "r": 8.6
+    }
+  },
+  {
+    "id": "poutine",
+    "profile": "piko",
+    "fr": {
+      "name": "Vladimir Poutine",
+      "role": "Russie · Président",
+      "line": "J’ai défié mon ours en peluche aux échecs. Ça fait dix minutes que j’attends son premier coup."
+    },
+    "en": {
+      "name": "Vladimir Putin",
+      "role": "Russia · President",
+      "line": "I challenged my teddy bear to a game of chess. I’ve been waiting ten minutes for its first move."
+    },
+    "eye": {
+      "x": 50.2,
+      "y": 30,
+      "r": 10.5
+    }
+  },
+  {
+    "id": "xi",
+    "profile": "mimo",
+    "fr": {
+      "name": "Xi Jinping",
+      "role": "Chine · Président",
+      "line": "Ce petit bateau en papier est prêt. À ton avis, est-ce qu’il peut traverser toute la baignoire ?"
+    },
+    "en": {
+      "name": "Xi Jinping",
+      "role": "China · President",
+      "line": "This little paper boat is ready. Do you think it can sail all the way across the bathtub?"
+    },
+    "eye": {
+      "x": 49.7,
+      "y": 30.1,
+      "r": 9.2
+    }
+  }
+]

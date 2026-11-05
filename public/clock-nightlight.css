@@ -1,0 +1,36 @@
+.app-icon-clock {background:linear-gradient(145deg,#e8f0f3,#c8d4df);color:#294257}
+.app-icon-nightlight {background:linear-gradient(145deg,#fff2d6,#f1c889);color:#80502a}
+.eye-time-shortcut {display:none}
+#living-eye:not([hidden]) + .eye-time-shortcut {display:grid;place-items:center;position:absolute;z-index:3;bottom:8%;left:30%;width:40%;min-height:12%;background:#15232bcc;color:#fff;border:1px solid #f4f5ff54;border-radius:90px;font:600 32px/1 system-ui;font-variant-numeric:tabular-nums;cursor:pointer;padding:3px 0}
+.bedside-dial {position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 37% 28%,#263e50,#122536 57%,#0a151e);color:#f4eee1}
+.bedside-dial svg {width:100%;height:100%}
+.bedside-dial .major,.bedside-dial .minor,.bedside-dial [class^=hand-] {stroke-linecap:round;fill:none}
+.bedside-dial .major {stroke:#e3c299;stroke-width:1.65}
+.bedside-dial .minor {stroke:#a7becc;stroke-width:.6}
+.dial-letters {font:500 12px system-ui;text-anchor:middle;fill:#f8ead6}
+.bedside-dial .hand-hour {stroke:#f4e7d5;stroke-width:5}
+.bedside-dial .hand-minute {stroke:#faead0;stroke-width:3}
+.bedside-dial .hand-second {stroke:#eba467;stroke-width:1.2}
+.bedside-dial time {position:absolute;left:0;right:0;bottom:18%;text-align:center;color:#fff4df;font:550 35px/1 system-ui;font-variant-numeric:tabular-nums}
+#voice-stage.voice-stage--nightlight {background:#080909}
+#voice-stage .night-lamp {position:absolute;inset:0;display:block;width:100%;height:100%;background:#080909;border-radius:50%;border:0;padding:0;overflow:hidden;color:#392813}
+.night-lamp .lamp-light {position:absolute;inset:0;opacity:0;background:radial-gradient(ellipse at 46% 38%,#fff4cc 0%,#ffe0a1 38%,#ffc46f 72%,#f0a04c 100%);}
+.night-lamp[data-on=true] .lamp-light {opacity:calc(.06 + var(--lamp-level)*.94)}
+.night-lamp time {position:absolute;bottom:21%;left:0;right:0;font:600 37px/1 system-ui;letter-spacing:.01em;font-variant-numeric:tabular-nums;color:#fff4df;text-shadow:0 1px 6px #442e1b}
+#plush-eye-dock.night-glow {filter:drop-shadow(0 0 9px rgba(255,185,90,var(--lamp-halo)))}
+.bedside-controls {max-width:440px;margin:0 auto;color:#22394c}
+.bedside-controls h4 {margin:0}
+.product-activity .bedside-time {display:block;font:600 42px/1.1 system-ui;color:#203b4e;margin-top:9px;font-variant-numeric:tabular-nums}
+.bedside-date:first-letter {text-transform:uppercase}
+.bedside-controls .lamp-label,.lamp-timer legend {font-size:13px;font-weight:650;color:#30495b}
+.lamp-label {display:flex;justify-content:space-between;align-items:center;margin:15px 0 0}
+.lamp-label output {font-variant-numeric:tabular-nums}
+.bedside-controls input[type=range] {display:block;width:100%;height:36px;margin:0;accent-color:#a86b31}
+.lamp-timer {border:0;padding:0;margin:8px 0 13px}
+.lamp-timer legend {margin:0 0 7px;padding:0}
+.product-activity .lamp-timer button {margin:0 5px 5px 0;min-height:40px;padding:7px 12px}
+.product-activity .lamp-timer button[aria-pressed=true] {background:#79542e;color:#fff}
+.lamp-actions {display:flex;gap:7px;flex-wrap:wrap}.product-activity .lamp-toggle {background:#283e50;color:white}
+.product-activity .lamp-countdown {font-weight:600;color:#5a442a;font-variant-numeric:tabular-nums}
+.product-activity .lamp-foot {font-size:12px;margin-bottom:0}
+@media(prefers-reduced-motion:reduce){.bedside-dial .hand-second{display:none}}

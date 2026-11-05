@@ -1,0 +1,33 @@
+.presidents-section .section-heading { margin-bottom: 10px; }
+.presidents-note { color: var(--muted); font-size: 14px; margin: 0 0 30px; }
+.presidents-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 20px; align-items: start; }
+.president-card { position: relative; overflow: hidden; border: 1px solid var(--line); border-radius: 21px; background: #fff; }
+.president-portrait { position: relative; background: #f4eee7; }
+.president-portrait img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; }
+.president-eye-patch { display: none; position: absolute; inset: 0; pointer-events: none; clip-path: circle(var(--eye-r) at var(--eye-x) var(--eye-y)); }
+.president-card.is-speaking .president-eye-patch { display: block; }
+.president-card.is-speaking .president-eye-patch img { animation: presidents-gaze 2.8s ease-in-out infinite; }
+@keyframes presidents-gaze { 0%,100% { transform: translate(0,0); } 33%,49% { transform: translate(.8%,1.6%); } 70% { transform: translate(-.65%,.2%); } }
+.president-copy { padding: 17px clamp(12px,1.3vw,22px) 19px; }
+.president-role { font-size: 12px; color: var(--muted); margin: 0 0 4px; }
+.president-copy h3 { margin: 0; font-size: clamp(19px,1.6vw,27px); line-height: 1.15; letter-spacing: -.035em; }
+.president-play,.president-local { border: 0; background: transparent; color: #185577; padding: 0; font-size: 13px; font-weight: 600; }
+.president-play { display: inline-flex; align-items: center; gap: 7px; margin-top: 13px; min-height: 36px; }
+.president-play::after { content: ''; position: absolute; inset: 0; }
+.president-card:focus-within { outline: 2px solid #2677a8; outline-offset: 2px; }
+.president-play-icon { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: #e9f3f8; font-size: 15px; }
+.president-play:hover .president-play-label { text-decoration: underline; }
+.president-response { position: relative; z-index: 1; border-top: 1px solid var(--line); margin-top: 10px; padding-top: 10px; }
+.president-line { font-size: 14px; line-height: 1.55; margin: 0; }
+.president-status { font-size: 12px; color: var(--muted); margin: 8px 0 0; }
+.president-local { text-align: start; padding: 10px 0 3px; text-decoration: underline; }
+.president-response[hidden],.president-local[hidden] { display: none; }
+@media (max-width: 1000px) { .presidents-grid { grid-template-columns: repeat(3,minmax(0,1fr)); gap: 14px; } }
+@media (max-width: 740px) { .presidents-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; } .president-copy { padding: 12px; } .president-copy h3 { font-size: 18px; } .president-role { font-size: 11px; } .president-play { font-size: 12px; gap: 5px; } }
+@media (max-width: 360px) { .presidents-grid { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) { .president-card.is-speaking .president-eye-patch { display: none; } }
+html:not(.beyboo-app) .app-presidents-link { display: none; }
+@media (min-width:701px) and (max-width:1080px) {
+  .nav { gap: 12px; }
+  .nav .nav-links { gap: 14px; font-size: 12px; }
+}

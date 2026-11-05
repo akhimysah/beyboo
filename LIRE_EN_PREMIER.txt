@@ -1,0 +1,33 @@
+BEYBOO — Remise du code source | 5 novembre 2026
+Version publiée 36 | Commit 35ccb67a2bcbbecf739f631fdfa35640617b692c
+
+Le dossier source/ contient les 337 fichiers suivis de la version publiée. Les médias les plus lourds de cet export ont été recompressés. Le code, les tests et les chemins des ressources correspondent à la version 35.
+La documentation historique dans source/docs et source/README.md décrit aussi d’anciennes étapes.
+Le brief PDF décrit la version 35. La version 36 ajoute un espace famille avec réglages par navigateur.
+
+Visite rapide sans compte API ni installation Node
+  cd BEYBOO/source
+  python3 -m http.server 8000 --directory public
+  Ouvrir http://localhost:8000/index.html ou http://localhost:8000/index.html?app=1
+Cette méthode sert les fonctions locales. Les appels au serveur /api/ demandent le runtime complet.
+
+Développement complet depuis source/ (Node.js 22.13 ou plus récent et npm)
+  npm run install:ci
+  npm run dev
+  Ouvrir l’adresse donnée par le terminal.
+  node --test tests/*.test.mjs
+  npm run build
+
+Secrets et services
+  OPENAI_API_KEY est à définir côté serveur pour la voix. YOUTUBE_DATA_API_KEY est facultative
+  pour la recherche YouTube intégrée. L’authentification de l’utilisateur hébergé est également
+  requise par les routes protégées. Un serveur statique seul ne suffit pas pour les appels IA.
+  L’archive contient .env.example vide et les fichiers publics, sans clés de production, historique
+  Git, dépendances installées ni données de clients. Le manifeste référence le site BEYBOO existant.
+  Adapter l’hébergement et l’authentification avant un déploiement indépendant.
+
+Repères
+  public/index.html et index-en.html : site et mode application web.
+  public/assets/ : médias, personnages, films et musiques.
+  worker/ et lib/ : routage et intégrations serveur. tests/ : tests automatisés.
+  locales/en/ et scripts/render-english-page.py : génération des textes anglais.

@@ -1,0 +1,34 @@
+/* Round home screen drawn inside the eye. Sizes follow the display diameter (container units). */
+.voice-stage--home{background:radial-gradient(circle at 50% 28%,#1c2b47 0%,#0c1424 58%,#04070e 100%);color:#fff}
+.voice-stage--home::after{content:"";position:absolute;inset:0;border-radius:50%;box-shadow:inset 0 0 7cqw 2cqw #000a,inset 0 -1cqw 3cqw #ffffff12;pointer-events:none}
+.eye-home{position:absolute;inset:0;display:grid;grid-template-rows:auto 1fr auto;padding:8.5cqw 10cqw 7.5cqw;box-sizing:border-box;text-align:center;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+.eye-home-status{display:flex;justify-content:center;align-items:center;gap:2.6cqw;padding-top:1.5cqw;color:#f7f9ff;font-size:5.4cqw;font-weight:600;line-height:1;font-variant-numeric:tabular-nums;letter-spacing:.01em}
+.eye-home-status svg{width:4.8cqw;height:4.8cqw;flex:none}
+.eye-wifi .eye-wifi-off{display:none}.eye-wifi.is-off .eye-wifi-off{display:block}.eye-wifi.is-off{opacity:.55}
+.eye-home-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3.2cqw 1.6cqw;align-content:center;padding:1cqw 1.5cqw}
+.eye-home-grid button{display:flex;flex-direction:column;align-items:center;gap:1.7cqw;min-width:0;padding:0;border:0;background:none;color:#eef2ff;font:500 3.5cqw/1.1 system-ui,-apple-system,"Segoe UI",sans-serif;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.eye-home-grid button:active .eye-app{transform:scale(.94)}
+.eye-home-grid button:focus-visible{outline:none}.eye-home-grid button:focus-visible .eye-app{box-shadow:0 0 0 .9cqw #fff,0 1.2cqw 2.6cqw #0009}
+.eye-app-label{display:block;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.eye-home-grid button[data-concept] .eye-app-label::after{content:"";display:inline-block;width:1.2cqw;height:1.2cqw;margin-left:1cqw;border-radius:50%;background:#9fb3d9;vertical-align:middle;opacity:.8}
+.eye-app{display:grid;place-items:center;width:15.5cqw;height:15.5cqw;border-radius:27%;box-shadow:0 1.3cqw 2.8cqw #0009,inset 0 .35cqw 0 #ffffff36;transition:transform .15s}
+.eye-app svg{width:60%;height:60%;display:block}
+.eye-app-whatsapp{background:linear-gradient(160deg,#63f792,#1fb857)}
+.eye-app-youtube{background:linear-gradient(160deg,#ff4a4a,#cf0000)}
+.eye-app-spotify{background:linear-gradient(160deg,#34e777,#149a44)}
+.eye-app-calls{background:linear-gradient(160deg,#6fdb86,#28a548)}
+.eye-app-photo{background:linear-gradient(160deg,#9a9aa0,#3a3a3d)}
+.eye-app-assistant{background:linear-gradient(160deg,#8a79ff,#4a3dd3)}
+.eye-home-dock{display:flex;justify-content:center;align-items:center;gap:5cqw;padding-bottom:.5cqw}
+.eye-home-dock button{display:grid;place-items:center;width:12cqw;height:12cqw;padding:0;border:1px solid #ffffff30;border-radius:50%;background:#ffffff1c;color:#fff;cursor:pointer;backdrop-filter:blur(6px);-webkit-tap-highlight-color:transparent}
+.eye-home-dock button svg{width:55%;height:55%}
+.eye-home-dock button:hover{background:#ffffff2c}.eye-home-dock button:focus-visible{outline:.7cqw solid #fff;outline-offset:.5cqw}
+.eye-home-go{min-height:10cqw;margin-top:1cqw;padding:0 5cqw;border:0;border-radius:50cqw;background:#eff6ff;color:#1f3f63;font:600 3.4cqw/1.2 system-ui,-apple-system,"Segoe UI",sans-serif;cursor:pointer}
+.eye-home-go:hover{background:#dbeafe}.eye-home-go:focus-visible{outline:.7cqw solid #fff;outline-offset:.5cqw}
+.eye-home-concept{padding-bottom:6cqw}
+.eye-home-concept .eye-home-body{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2cqw;padding:0 4cqw}
+.eye-home-concept .eye-app{width:16cqw;height:16cqw}
+.eye-home-concept h4{margin:0;font-size:5.6cqw;font-weight:600;line-height:1.1}
+.eye-home-concept p{margin:0;font-size:3.3cqw;line-height:1.4;color:#c9d6ea;max-width:78%}
+.eye-home-concept .eye-home-dock button{width:10cqw;height:10cqw}
+@media(prefers-reduced-motion:reduce){.eye-app{transition:none}.eye-home-grid button:active .eye-app{transform:none}}

@@ -1,0 +1,32 @@
+{
+  "id": "/index.html?app=1",
+  "name": "BEYBOO — Mon compagnon",
+  "short_name": "BEYBOO",
+  "description": "Votre compagnon, la conversation et ses activités dans une application web.",
+  "start_url": "/index.html?app=1",
+  "scope": "/",
+  "display": "standalone",
+  "lang": "fr",
+  "background_color": "#f8f8fa",
+  "theme_color": "#f8f8fa",
+  "icons": [
+    {
+      "src": "/assets/app/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/app/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/app/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

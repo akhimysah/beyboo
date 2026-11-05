@@ -1,0 +1,27 @@
+/* New media remain uncropped; film controls use the existing below-image player. */
+.signature-section{padding-top:54px;padding-bottom:10px}
+.signature-heading{display:flex;justify-content:space-between;align-items:flex-end;gap:28px;margin-bottom:24px}
+.signature-heading .eyebrow{margin-bottom:12px}
+.signature-heading h2{font-size:clamp(26px,3vw,42px);line-height:1.14;letter-spacing:-.045em;font-weight:600}
+.signature-heading>span{font-size:12px;line-height:1.6;color:#718092;flex-shrink:0}
+.signature-film-player:not(.is-expanded) video{aspect-ratio:1550/512;background:#fff;object-fit:contain}
+.app-menu-concept{margin-top:64px;padding:32px;border:1px solid #e7eaf0;border-radius:28px;background:#fff}
+.app-menu-heading{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;margin-bottom:28px}
+.app-menu-heading .eyebrow{margin-bottom:14px}
+.app-menu-heading h3{font-size:clamp(27px,3vw,38px);line-height:1.13;letter-spacing:-.045em;font-weight:600}
+.app-menu-heading>p{font-size:14px;line-height:1.7;color:#6a7887;max-width:430px}
+.app-menu-image{display:block;position:relative;width:100%;padding:0;overflow:hidden;border-radius:20px;background:#f6f5f2}
+.app-menu-image img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:contain}
+.app-menu-note{max-width:790px;margin:20px 0 0;font-size:11px;line-height:1.65;color:#788493}
+.app-menu-image:focus-visible{outline:3px solid #398bcc;outline-offset:5px}
+.beyboo-app .app-menu-concept{margin:48px 0 30px}
+@media(max-width:700px){
+  .signature-section{padding-top:30px}
+  .signature-heading{display:block;margin-bottom:18px}
+  .signature-heading>span{display:block;margin-top:12px;font-size:11px}
+  .app-menu-concept{margin-top:36px;padding:20px 16px;border-radius:22px}
+  .app-menu-heading{grid-template-columns:1fr;gap:16px;margin-bottom:20px;padding-inline:4px}
+  .app-menu-heading>p{font-size:13px;max-width:none}
+  .app-menu-image{border-radius:12px}
+  .app-menu-note{font-size:10px;padding-inline:4px}
+}

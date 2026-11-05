@@ -1,0 +1,13 @@
+
+node_modules/
+dist/
+.next/
+.wrangler/
+.dev.vars
+.env*
+!.env.example
+.openai/execution-profile.json
+
+.sites-runtime/
+
+.vinext/

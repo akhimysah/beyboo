@@ -1,0 +1,172 @@
+[
+  {
+    "id": "noah",
+    "name": "Noah",
+    "role": "L’explorateur",
+    "group": "adventure",
+    "motto": "« Le plus beau trésor, c’est le chemin partagé. »",
+    "traits": [
+      "Curieux",
+      "Courageux",
+      "Complice"
+    ],
+    "title": "La carte des chemins oubliés",
+    "story": [
+      "Dans le grenier de son grand-père, Noah a trouvé une carte dont les chemins apparaissent seulement quand quelqu’un ose poser une question. Un matin, il a noué son foulard, rempli son sac de biscuits et suivi une ligne dorée jusqu’à une forêt que personne ne regardait plus.",
+      "Il y a découvert un pont cassé et, de l’autre côté, un village qui attendait des visiteurs. Alors Noah a rangé sa carte pour aider à reconstruire le passage. Depuis, il ne collectionne pas les pays traversés, mais les amis rencontrés. Et dans son carnet, il garde toujours une page blanche pour votre prochaine aventure."
+    ]
+  },
+  {
+    "id": "elya",
+    "name": "Alya",
+    "role": "La créative",
+    "group": "creative",
+    "motto": "« Et si on inventait quelque chose de beau ? »",
+    "traits": [
+      "Inventive",
+      "Lumineuse",
+      "Audacieuse"
+    ],
+    "title": "Le jardin qui poussait en papier",
+    "story": [
+      "Alya vivait au-dessus d’une cour toute grise. Elle avait peu de place, mais un tiroir rempli de papiers, de rubans et d’idées. Un soir de pluie, elle a plié une première fleur, puis une deuxième, puis cent autres, qu’elle a suspendues aux fenêtres.",
+      "Au matin, chaque voisin a voulu ajouter sa couleur. La cour est devenue un jardin qui ne ressemblait à aucun autre. Alya a compris ce jour-là qu’une création n’a pas besoin d’être parfaite pour donner envie aux autres de commencer. Elle garde un petit ruban vierge pour la prochaine idée que vous inventerez ensemble."
+    ]
+  },
+  {
+    "id": "izan",
+    "name": "Izan",
+    "role": "Le stratège",
+    "group": "soft",
+    "motto": "« Prenons le temps de trouver notre chemin. »",
+    "traits": [
+      "Observateur",
+      "Patient",
+      "Ingénieux"
+    ],
+    "title": "L’horloge qui avait perdu une minute",
+    "story": [
+      "Dans la ville d’Izan, toutes les horloges se sont mises à avancer d’une minute. Les habitants couraient, se croisaient et oubliaient de se saluer. Pendant que chacun cherchait une panne, Izan s’est assis sur un banc pour écouter le vieux mécanisme de la place.",
+      "Il a remarqué qu’entre deux battements, un petit oiseau cherchait à finir sa chanson. Plutôt que de presser le temps, Izan a proposé de lui laisser une minute. Les gens se sont arrêtés, puis ont souri. Depuis, il rappelle qu’une pause peut parfois résoudre ce que la précipitation complique."
+    ]
+  },
+  {
+    "id": "mila",
+    "name": "Mila",
+    "role": "La star",
+    "group": "creative",
+    "motto": "« On brille encore plus quand on partage la lumière. »",
+    "traits": [
+      "Pétillante",
+      "Généreuse",
+      "Élégante"
+    ],
+    "title": "La scène aux mille petites lumières",
+    "story": [
+      "Mila rêvait de chanter sur la grande scène du quartier. Le soir de sa première représentation, une panne a éteint tous les projecteurs. Dans la salle, personne ne voyait plus son joli béret, ni les décors qu’elle avait préparés pendant des semaines.",
+      "Alors Mila a commencé à chanter doucement, sans lumière. Une voix lui a répondu, puis dix, puis toute la salle. Quand les lampes se sont rallumées, le spectacle appartenait à tout le monde. Depuis, Mila cherche moins à attirer les regards qu’à donner aux autres l’envie d’oser. Elle vous garde toujours une place au premier rang."
+    ]
+  },
+  {
+    "id": "rayan",
+    "name": "Rayan",
+    "role": "Le sportif",
+    "group": "adventure",
+    "motto": "« Le meilleur score, c’est de jouer ensemble. »",
+    "traits": [
+      "Énergique",
+      "Loyal",
+      "Enthousiaste"
+    ],
+    "title": "Le tournoi sans dernière place",
+    "story": [
+      "Rayan s’entraînait chaque jour pour gagner la coupe du parc. Il connaissait tous les raccourcis, tous les rebonds, toutes les astuces. Mais le jour du tournoi, un nouveau joueur est resté sur le banc : il n’osait pas rejoindre une équipe.",
+      "Rayan lui a tendu la balle et a proposé une règle étonnante : chaque point compterait seulement si tous les joueurs avaient participé. Le match a duré plus longtemps, les passes ont été moins parfaites, et jamais on n’avait autant ri. Sa coupe préférée est maintenant celle où tout le monde a signé son prénom."
+    ]
+  },
+  {
+    "id": "lea",
+    "name": "Léa",
+    "role": "La cuisinière",
+    "group": "creative",
+    "motto": "« Il reste toujours une place à notre table. »",
+    "traits": [
+      "Gourmande",
+      "Attentionnée",
+      "Spontanée"
+    ],
+    "title": "La recette de la table qui s’allonge",
+    "story": [
+      "Léa avait hérité d’un carnet de recettes auquel il manquait la dernière page. On y promettait un gâteau capable de réunir tout un quartier. Elle a essayé le miel, les pommes et même une pincée de pétales, sans jamais trouver le secret.",
+      "Alors elle est allée frapper aux portes pour demander conseil. Chacun a apporté un ingrédient, un souvenir ou une chaise. À la fin de la journée, la table traversait le jardin. Léa a enfin écrit la dernière page : le secret était de cuisiner ensemble. Depuis, elle prépare toujours une part de plus."
+    ]
+  },
+  {
+    "id": "sana",
+    "name": "Sana",
+    "role": "La douce",
+    "group": "soft",
+    "motto": "« Les petits moments méritent une grande place. »",
+    "traits": [
+      "Douce",
+      "Attentive",
+      "Paisible"
+    ],
+    "title": "La maison des petits silences",
+    "story": [
+      "Au bout d’une rue animée, Sana a installé un fauteuil près d’une fenêtre. Elle y collectionnait des choses presque invisibles : le bruit de la pluie, une tasse qui réchauffe les mains, une feuille qui tourne avant de tomber.",
+      "Un jour, un voisin est entré en disant qu’il n’avait pas une minute à perdre. Sana lui a simplement montré le ciel. Ils ont regardé passer un nuage, puis un autre. En repartant, il avait trouvé un peu de temps. Depuis, sa petite maison accueille ceux qui ont envie de ralentir, sans rien avoir à raconter."
+    ]
+  },
+  {
+    "id": "liam",
+    "name": "Aaron",
+    "role": "Le geek",
+    "group": "creative",
+    "motto": "« Une bonne invention rapproche les gens. »",
+    "traits": [
+      "Curieux",
+      "Malicieux",
+      "Inventif"
+    ],
+    "title": "La fréquence des amis perdus",
+    "story": [
+      "Dans son atelier, Aaron construisait une radio capable de capter des sons très lointains. Il espérait entendre une planète inconnue. Mais la première voix reçue venait du toit voisin : quelqu’un y jouait une mélodie que personne n’écoutait.",
+      "Aaron a réglé son antenne, ouvert sa fenêtre et répondu avec trois petites notes. D’autres fenêtres se sont allumées. Bientôt, toute la rue formait un orchestre improvisé. Sa radio n’a jamais trouvé les étoiles, mais elle a trouvé quelque chose de précieux tout près de lui. Depuis, chacune de ses inventions commence par une invitation."
+    ]
+  },
+  {
+    "id": "adam",
+    "name": "Adam",
+    "role": "Le protecteur",
+    "group": "soft",
+    "motto": "« On peut être courageux et demander une main. »",
+    "traits": [
+      "Fidèle",
+      "Rassurant",
+      "Bienveillant"
+    ],
+    "title": "Le phare au milieu des nuages",
+    "story": [
+      "Adam pilotait un petit avion qui livrait le courrier entre les îles. Un jour, une brume épaisse a effacé les repères. Il aurait pu continuer seul, mais il a choisi d’appeler les habitants pour leur demander de guider son retour.",
+      "Une à une, les fenêtres se sont éclairées, dessinant une piste de lumière jusqu’au port. Adam a atterri au milieu de ceux qu’il croyait devoir toujours protéger. Ce soir-là, il a compris que la force pouvait circuler dans les deux sens. Depuis, il veille sur les autres et sait aussi leur confier ses doutes."
+    ]
+  },
+  {
+    "id": "zephyr",
+    "name": "Zéphyr",
+    "role": "Le rêveur",
+    "group": "adventure",
+    "motto": "« Tout voyage commence par un petit “et si”. »",
+    "traits": [
+      "Poétique",
+      "Libre",
+      "Émerveillé"
+    ],
+    "title": "Le bateau qui suivait les nuages",
+    "story": [
+      "Zéphyr avait fabriqué un petit bateau avec une vieille caisse et une voile cousue dans un drap. Tout le monde lui demandait sa destination. Il répondait en montrant un nuage : “Là où il me donnera une idée.”",
+      "Au fil du voyage, il a rencontré une île en forme de tasse, un arbre penché comme un danseur et une plage où les coquillages sifflaient. À son retour, personne ne retrouvait ces lieux sur une carte. Zéphyr a donc ouvert son carnet et commencé à dessiner. Depuis, il invite chacun à raconter le monde à sa façon."
+    ]
+  }
+]

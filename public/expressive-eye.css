@@ -1,0 +1,50 @@
+/* Digital sclera and independent iris; every animated pixel stays within the screen. */
+#living-eye{background:#11121b;isolation:isolate}
+#living-eye>img,#living-eye>.eye-shine{display:none}
+#living-eye::after{display:none}
+#living-eye .voice-iris-window,#living-eye.gaze-active .voice-iris-window,#camera-follow-eye .voice-iris-window{
+  display:block;position:absolute;inset:1.8%;overflow:hidden;border-radius:50%;
+  background:radial-gradient(ellipse at 42% 43%,#fffefa 25%,#fff 52%,#f1f0ed 75%,#d4dce2 100%);
+  box-shadow:inset 0 4px 10px #34496122,inset 0 -2px 8px #95a4b329;
+}
+#living-eye .voice-iris-motion,#camera-follow-eye .voice-iris-motion{
+  display:block;position:absolute;width:64%;height:64%;max-width:none;left:18%;top:18%;
+  overflow:hidden;border-radius:50%;background:#072c42;
+  transform:translate(calc(var(--gaze-x,0%) * 2.2 + var(--voice-x,0%) * 1.5),calc(var(--gaze-y,0%) * 2 + var(--voice-y,0%) * 1.5)) scale(var(--iris-scale,1));
+  transition:filter .5s;filter:hue-rotate(var(--iris-hue,0deg));
+  box-shadow:0 0 0 1px #183c4e,0 2px 4px #23485f30;
+}
+#living-eye .voice-iris-texture,#camera-follow-eye .voice-iris-texture{display:block;width:100%;height:100%;max-width:none}
+#living-eye .voice-pupil,#camera-follow-eye .voice-pupil{
+  position:absolute;width:32.5%;height:35%;left:33.25%;top:32.3%;border-radius:50%;
+  background:radial-gradient(ellipse,#010407 55%,#02050af0 72%,#02050a00 100%);
+  transform:scale(calc(1 + var(--voice-level,0) * .13));pointer-events:none;
+}
+#living-eye .voice-iris-window::after,#camera-follow-eye .voice-iris-window::after{
+  content:"";position:absolute;inset:0;pointer-events:none;border-radius:50%;
+  background:radial-gradient(ellipse at 26% 15%,#ffffff35,transparent 34%),linear-gradient(165deg,#5872940b,transparent 38%,transparent 80%,#eefaff12);
+  box-shadow:inset 0 6px 9px #23394a1f,inset 0 0 3px 1px #31455b38;
+}
+#camera-follow-eye{background:#11121b}
+#camera-follow-eye .voice-iris-motion{transform:translate(calc(var(--face-x,0%) * 2.2),calc(var(--face-y,0%) * 2));transition:transform .18s linear}
+#living-eye[data-expression=joy]{--iris-hue:-65deg}
+#living-eye[data-expression=attention]{--iris-hue:110deg}
+#living-eye .voice-signal-ring{
+  display:block;inset:2.4%;border:1px solid #ffffffba;border-radius:50%;
+  opacity:calc(.12 + var(--voice-level,0) * .45);
+  box-shadow:inset 0 0 calc(2px + var(--voice-level,0) * 8px) #ffffff55;
+  animation:none!important;pointer-events:none;
+}
+#living-eye[data-voice-state=thinking] .voice-signal-ring{opacity:.22}
+#living-eye[data-voice-state=error] .voice-signal-ring{opacity:.1}
+.eye-preview-control{display:flex;flex-direction:column;align-items:center;gap:5px;margin:9px auto 0}
+#eye-preview-button{background:transparent;color:#60768b;font-size:11px;border-radius:22px;min-height:40px;padding:8px 14px;border:1px solid #dce4eb;cursor:pointer}
+#eye-preview-button:disabled{opacity:.5;cursor:default}
+#eye-preview-button[aria-pressed=true]{background:#eaf3fa;color:#234f73;border-color:#b3cce0}
+#eye-preview-status{font-size:10px;color:#5a6b7c;line-height:1.4;margin:0;max-width:340px;text-align:center}
+@media(prefers-reduced-motion:reduce){
+  #living-eye .voice-iris-motion{transform:translate(calc(var(--gaze-x,0%) * 2.2 + var(--voice-x,0%) * 1.5),calc(var(--gaze-y,0%) * 2 + var(--voice-y,0%) * 1.5)) scale(var(--iris-scale,1))!important;transition:none}
+  #camera-follow-eye .voice-iris-motion{transition:none}
+  #living-eye .voice-pupil{transform:none}
+}
+@media(min-width:701px){.experience-card.has-companion .companion-scene{max-width:min(590px,max(300px,calc((100dvh - 470px)*6/7)))}}
