@@ -13,3 +13,5 @@ dist/
 .vinext/
 
 dist-pages/
+server/node_modules/
+data/

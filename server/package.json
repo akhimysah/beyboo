@@ -1,0 +1,10 @@
+{
+  "name": "beyboo-server",
+  "private": true,
+  "description": "Serveur Node.js de BEYBOO pour un VPS : mêmes routes que le Worker Cloudflare.",
+  "type": "module",
+  "engines": { "node": ">=22.13.0" },
+  "dependencies": {
+    "ws": "^8.18.0"
+  }
+}

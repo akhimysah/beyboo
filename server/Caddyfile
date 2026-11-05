@@ -1,0 +1,6 @@
+# /etc/caddy/Caddyfile — HTTPS automatique (Let's Encrypt) et proxy vers le serveur Node.
+# Remplacer le nom d'hôte par un domaine personnalisé quand il pointera vers le VPS.
+srv2132780.hstgr.cloud {
+	encode zstd gzip
+	reverse_proxy 127.0.0.1:8080
+}

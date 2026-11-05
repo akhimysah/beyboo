@@ -1,0 +1,28 @@
+# /etc/systemd/system/beyboo.service — application BEYBOO (serveur Node.js, derrière Caddy)
+[Unit]
+Description=BEYBOO (serveur Node.js)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=beyboo
+Group=beyboo
+WorkingDirectory=/opt/beyboo
+Environment=NODE_ENV=production
+Environment=ENV_FILE=/opt/beyboo/.env
+Environment=DATA_DIR=/var/lib/beyboo
+Environment=PORT=8080
+Environment=HOST=127.0.0.1
+ExecStart=/usr/bin/node --disable-warning=ExperimentalWarning /opt/beyboo/server/node.mjs
+Restart=always
+RestartSec=3
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/beyboo
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target
