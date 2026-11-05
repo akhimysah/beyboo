@@ -2,6 +2,20 @@
 
 Ce document décrit comment faire tourner le site et l'application BEYBOO : le déploiement autonome sur Cloudflare Workers ajouté en v38 (section 1), puis les modes d'exécution, variables, routes et garde-fous hérités des versions 36 et 37 (sections 2 à 5).
 
+## 0. v38 — Hébergement VPS (Ubuntu, Node.js, Caddy)
+
+L'application complète tourne aussi sur un VPS avec le serveur `server/node.mjs` (mêmes routes que le Worker ; la salle de famille utilise SQLite dans `DATA_DIR` et le paquet `ws`).
+
+| Élément | Valeur |
+|---|---|
+| Serveur | Hostinger KVM 1, Ubuntu 26.04, `root@2.24.58.57`, hôte `srv2132780.hstgr.cloud` |
+| Application | `/opt/beyboo` (code), `/opt/beyboo/.env` (secrets, lisible par root et le service), `/var/lib/beyboo/rooms/*.sqlite` (messages) |
+| Service | `systemctl status beyboo` · journal `journalctl -u beyboo -f` · écoute sur 127.0.0.1:8080 |
+| HTTPS | Caddy (`/etc/caddy/Caddyfile`), certificat Let's Encrypt automatique, redirection HTTP→HTTPS |
+| Pare-feu | ufw : SSH, 80, 443 |
+
+Déployer (ou mettre à jour) depuis le Mac : `scripts/deploy-vps.sh root@2.24.58.57` (ajouter en second argument un fichier `.env` la première fois). Changer le code famille : éditer `SITE_PASSWORD` dans `/opt/beyboo/.env` puis `systemctl restart beyboo`. Pour un domaine personnalisé : faire pointer le domaine vers l'IP, remplacer le nom d'hôte dans `server/Caddyfile` et `SITE_URL`, redéployer.
+
 ## 1. v38 — Déploiement autonome Cloudflare Workers
 
 Depuis la v38, BEYBOO ne dépend plus de ChatGPT Sites. L'application complète tourne sur un Worker Cloudflare autonome ; le site vitrine reste aussi publié, sans serveur, sur GitHub Pages.

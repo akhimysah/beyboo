@@ -12,6 +12,8 @@ Site vitrine bilingue et application web : une peluche immobile dont l'œil rond
 
 ## Repères v38
 
+- Hébergement VPS : `server/node.mjs` + `scripts/deploy-vps.sh` (Node 22, systemd, Caddy HTTPS) ; voir `docs/DEPLOIEMENT.md` section 0.
+
 - Deux hébergements : le site vitrine seul sur GitHub Pages (https://akhimysah.github.io/beyboo/, sans `/api`), l'application complète sur un Worker Cloudflare autonome (`wrangler.toml`, `worker/standalone.mjs`, URL donnée par `npx wrangler@4 deploy`). Tout est décrit dans [`docs/DEPLOIEMENT.md`, section 1](docs/DEPLOIEMENT.md#1-v38--déploiement-autonome-cloudflare-workers).
 - Local : `npx wrangler@4 dev --port 8787` avec `.dev.vars` ; déploiement : `npx wrangler@4 deploy` ou push sur `main` (`.github/workflows/deploy-worker.yml`) ; secrets avec `npx wrangler@4 secret put`.
 - Salle de famille (`lib/family-room.mjs`, Durable Object) : un code famille = une salle ; messages texte persistants (500 derniers), présence et signalisation d'appel par WebSocket (`/api/room/socket`), jamais stockée. Client : `public/family-room.js`.
