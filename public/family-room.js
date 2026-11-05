@@ -8,7 +8,10 @@
   const listeners = new Map();
   let socket = null, wanted = false, retry = 0, timer = null, keepalive = null, status = 'closed', hello = null;
 
+  /* En local uniquement : ?member=<32 hex> simule un second appareil dans un autre onglet. */
+  const devMember = /^(localhost|127\.0\.0\.1)$/.test(location.hostname) ? (new URLSearchParams(location.search).get('member') || '') : '';
   function memberId() {
+    if (/^[a-f0-9]{32}$/.test(devMember)) return devMember;
     try {
       let id = localStorage.getItem(KEY);
       if (!/^[a-f0-9]{32}$/.test(id || '')) { id = Array.from(crypto.getRandomValues(new Uint8Array(16)), b => b.toString(16).padStart(2, '0')).join(''); localStorage.setItem(KEY, id); }
