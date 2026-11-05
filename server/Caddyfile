@@ -1,6 +1,15 @@
 # /etc/caddy/Caddyfile — HTTPS automatique (Let's Encrypt) et proxy vers le serveur Node.
-# Remplacer le nom d'hôte par un domaine personnalisé quand il pointera vers le VPS.
+# boozzo.com : activer (décommenter) une fois les enregistrements DNS A @ et www → 2.24.58.57 en place chez IONOS,
+# puis relancer scripts/deploy-vps.sh. Tant que le DNS ne pointe pas, Caddy ne peut pas obtenir le certificat.
 srv2132780.hstgr.cloud {
 	encode zstd gzip
 	reverse_proxy 127.0.0.1:8080
 }
+
+# boozzo.com {
+# 	encode zstd gzip
+# 	reverse_proxy 127.0.0.1:8080
+# }
+# www.boozzo.com {
+# 	redir https://boozzo.com{uri} permanent
+# }

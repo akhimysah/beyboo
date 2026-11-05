@@ -14,7 +14,7 @@ L'application complète tourne aussi sur un VPS avec le serveur `server/node.mjs
 | HTTPS | Caddy (`/etc/caddy/Caddyfile`), certificat Let's Encrypt automatique, redirection HTTP→HTTPS |
 | Pare-feu | ufw : SSH, 80, 443 |
 
-Déployer (ou mettre à jour) depuis le Mac : `scripts/deploy-vps.sh root@2.24.58.57` (ajouter en second argument un fichier `.env` la première fois). Changer le code famille : éditer `SITE_PASSWORD` dans `/opt/beyboo/.env` puis `systemctl restart beyboo`. Pour un domaine personnalisé : faire pointer le domaine vers l'IP, remplacer le nom d'hôte dans `server/Caddyfile` et `SITE_URL`, redéployer.
+Déployer (ou mettre à jour) depuis le Mac : `scripts/deploy-vps.sh root@2.24.58.57` (ajouter en second argument un fichier `.env` la première fois). Changer le code famille : éditer `SITE_PASSWORD` dans `/opt/beyboo/.env` puis `systemctl restart beyboo`. Domaine `boozzo.com` (registrar IONOS) : créer chez IONOS deux enregistrements A, `@` et `www`, vers `2.24.58.57` ; décommenter les blocs `boozzo.com` et `www.boozzo.com` dans `server/Caddyfile`, mettre `SITE_URL=https://boozzo.com` dans `/opt/beyboo/.env`, puis `scripts/deploy-vps.sh root@2.24.58.57`. Caddy obtient le certificat tout seul dès que le DNS pointe.
 
 ## 1. v38 — Déploiement autonome Cloudflare Workers
 
