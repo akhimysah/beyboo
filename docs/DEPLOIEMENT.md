@@ -10,7 +10,7 @@ Depuis la v38, BEYBOO ne dépend plus de ChatGPT Sites. L'application complète 
 
 | | Site vitrine (GitHub Pages) | Application (Cloudflare Worker) |
 |---|---|---|
-| Adresse | https://akhimysah.github.io/beyboo/ | https://beyboo.aitouaretsamy1.workers.dev (à confirmer après le premier `wrangler deploy` : l'adresse exacte s'affiche en fin de commande) |
+| Adresse | https://akhimysah.github.io/beyboo/ | https://beyboo.neobank.workers.dev (à confirmer après le premier `wrangler deploy` : l'adresse exacte s'affiche en fin de commande) |
 | Ce qui marche | Pages, galerie, configurateur, jeux, musique, horloge, caméra locale : tout ce qui est purement local au navigateur. | Tout, plus la voix OpenAI, la météo, la recherche YouTube, le code famille, les messages, la présence et les appels entre appareils. |
 | Routes `/api/` | Aucune (404) : les panneaux concernés affichent un message clair. | Toutes (`worker/standalone.mjs`). |
 | Publication | `.github/workflows/pages.yml` → `scripts/build-pages.mjs` → dossier `dist-pages/`. | `.github/workflows/deploy-worker.yml` → `npx wrangler@4 deploy`, ou la même commande à la main. |
