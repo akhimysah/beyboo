@@ -6,7 +6,7 @@ import {readFile} from 'node:fs/promises';
 const source=await readFile(new URL('../public/voice.js',import.meta.url),'utf8');
 const bridgeSource=await readFile(new URL('../public/voice-functions.js',import.meta.url),'utf8');
 const sdp='v=0\r\no=- 123 2 IN IP4 127.0.0.1\r\ns=-\r\nt=0 0\r\n';
-const sample='Salut, moi c’est BEYBOO ! Une histoire, une aventure, ou juste un petit coucou ?';
+const sample='Salut, moi c’est BOOZZO ! Une histoire, une aventure, ou juste un petit coucou ?';
 const flush=()=>new Promise(resolve=>setImmediate(resolve));
 const plain=value=>JSON.parse(JSON.stringify(value));
 function deferred(){let resolve;const promise=new Promise(done=>{resolve=done;});return {promise,resolve};}

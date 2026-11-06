@@ -33,7 +33,7 @@ function showMode(next){
   $('#expression-controls').hidden=next!=='eye';
   $$('[data-app]').forEach(b=>{b.classList.toggle('selected',b.dataset.app===next);b.setAttribute('aria-pressed',String(b.dataset.app===next));});
   $('#mode-title').textContent=modeData[next][0];$('#mode-description').textContent=modeData[next][1];
-  $('#device-hint').textContent=next==='eye'?'Tap the eye to explore.':next==='call'?'Family calls · Device to device':'BEYBOO One · Interactive demo';
+  $('#device-hint').textContent=next==='eye'?'Tap the eye to explore.':next==='call'?'Family calls · Device to device':'BOOZZO One · Interactive demo';
   if(next==='menu')screen.innerHTML='<span class="screen-label">HELLO THERE</span><h4>What shall we do?</h4><div class="mini-apps">'+[['video','▷','Video'],['game','✦','Game'],['music','♫','Music'],['assistant','◉','Assistant'],['call','▣','Call'],['story','▤','Stories']].map(([id,icon,label])=>`<button type="button" data-screen-app="${id}"><span>${icon}</span>${label}</button>`).join('')+'</div>';
   if(next==='video')renderVideo();
   if(next==='call')window.BeybooCall?.enter();

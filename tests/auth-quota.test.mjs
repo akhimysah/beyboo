@@ -111,7 +111,7 @@ test('quotas count before any paid call: interval, per-user day, site day and mo
   assert.equal(await remaining({}, 'never', 5, 60), 5);
   const kvStore = new Map();
   const kv = {get: async (k) => kvStore.has(k) ? JSON.parse(kvStore.get(k)) : null, put: async (k, v, options) => { assert.ok(options.expirationTtl >= 60); kvStore.set(k, v); }};
-  const shared = {BEYBOO_KV: kv, VIDEO_SEARCHES_PER_USER_PER_DAY: '1'};
+  const shared = {BOOZZO_KV: kv, VIDEO_SEARCHES_PER_USER_PER_DAY: '1'};
   assert.equal((await reserveVideoSearch(shared, 'ana')).ok, true);
   assert.equal((await reserveVideoSearch(shared, 'ana')).reason, 'user_quota');
   assert.ok([...kvStore.keys()].includes('video:user:ana'));
@@ -165,7 +165,7 @@ test('security headers: strict for the API, report-only CSP by default for pages
 test('weather identifies the deployment to MET Norway and serves a stale forecast when the upstream fails', async () => {
   const req = () => new Request(site + '/api/weather?city=sydney');
   const forecast = async (url, options) => {
-    assert.equal(options.headers['User-Agent'], 'BEYBOO/1.0 (+https://beyboo.family; contact@beyboo.family)');
+    assert.equal(options.headers['User-Agent'], 'BOOZZO/1.0 (+https://beyboo.family; contact@beyboo.family)');
     return Response.json({properties: {timeseries: [{time: new Date().toISOString(), data: {instant: {details: {air_temperature: 21.4}}, next_1_hours: {summary: {symbol_code: 'clearsky_day'}}}}]}}, {headers: {Expires: new Date(Date.now() + 1000).toUTCString()}});
   };
   const env = {SITE_URL: 'https://beyboo.family', CONTACT_EMAIL: 'contact@beyboo.family'};

@@ -16,7 +16,7 @@ document.querySelectorAll('[data-brand-film]').forEach(video=>{
   const player=video.closest('.film-player');
   const oldTrigger=player.querySelector('.film-trigger');
   const fallbackDuration=Number.parseFloat(oldTrigger?.querySelector('small')?.textContent)||10;
-  const label=video.getAttribute('aria-label')||'BEYBOO';
+  const label=video.getAttribute('aria-label')||'BOOZZO';
   const error=player.querySelector('.film-error');
   video.controls=false;
   video.removeAttribute('controls');

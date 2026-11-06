@@ -55,7 +55,7 @@
           info.textContent=ok===false?'Install an English voice in your device settings.':'';
         }),info);
       }
-      panel.append(button('Listen with BEYBOO ♫',()=>{q('voice-question').value='Gently tell me this story about '+c.name+' : '+c.story.join(' ');q('voice-form').requestSubmit();}),element('p','AI voice · uses this demo’s API credits.','activity-footnote'));
+      panel.append(button('Listen with BOOZZO ♫',()=>{q('voice-question').value='Gently tell me this story about '+c.name+' : '+c.story.join(' ');q('voice-form').requestSubmit();}),element('p','AI voice · uses this demo’s API credits.','activity-footnote'));
     }else if(type==='search'){
       window.BeybooLibrary.videoControls(panel,button);
     }else if(type==='weather'){

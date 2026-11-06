@@ -52,7 +52,7 @@
     for(const link of [met,license]){link.target='_blank';link.rel='noopener noreferrer';}
     credit.append(met,' · ',license);panel.append(credit);
   }
-  const SOURCE_LABEL={feeds:tr('Sélection de chaînes BEYBOO','BEYBOO channel selection'),google:tr('Résultats YouTube','YouTube results')};
+  const SOURCE_LABEL={feeds:tr('Sélection de chaînes BOOZZO','BOOZZO channel selection'),google:tr('Résultats YouTube','YouTube results')};
   const FALLBACK=tr(' Les films de la sélection restent accessibles.',' The selected films are still available.');
   /* Resolves to {items?,message,source?,description?}; message is shown under the eye, spoken, and returned to the assistant. */
   async function search(query,signal){
@@ -75,7 +75,7 @@
     const label=SOURCE_LABEL[source];
     if(!items.length){
       return {items,source,message:source==='feeds'
-        ?tr('Aucune vidéo sur « '+query+' » dans la sélection de chaînes BEYBOO. Essaie un autre mot ou choisis un film ci-dessous.','No video about “'+query+'” in the BEYBOO channel selection. Try another word or choose a film below.')
+        ?tr('Aucune vidéo sur « '+query+' » dans la sélection de chaînes BOOZZO. Essaie un autre mot ou choisis un film ci-dessous.','No video about “'+query+'” in the BOOZZO channel selection. Try another word or choose a film below.')
         :tr('Aucun résultat YouTube pour « '+query+' ». Choisis un film ci-dessous.','No YouTube results for “'+query+'”. Choose a film below.')};
     }
     const count=items.length===1?tr('1 vidéo trouvée','1 video found'):items.length+tr(' vidéos trouvées',' videos found');
@@ -94,7 +94,7 @@
       panel.append(results);
     }
     const list=el('div','');list.className='eye-video-list';
-    list.append(button(tr('Mission Lune · Film BEYBOO','Moon Mission · BEYBOO film'),()=>window.BeybooScreen.run({action:'play_video'})));
+    list.append(button(tr('Mission Lune · Film BOOZZO','Moon Mission · BOOZZO film'),()=>window.BeybooScreen.run({action:'play_video'})));
     for(const video of window.BeybooDevice.videos){
       list.append(button('Paxi · '+video[en?'en':'fr']+' · ESA ↗',()=>window.BeybooScreen.run({action:'open_youtube',value:'https://www.youtube.com/watch?v='+video.ids[Number(en)]})));
     }

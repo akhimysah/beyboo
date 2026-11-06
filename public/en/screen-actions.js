@@ -74,7 +74,7 @@
     return snapshot('The eye is showing.');
   }
   async function playLocal() {
-    if (!video) return {ok:false,description:'Open a BEYBOO clip first.'};
+    if (!video) return {ok:false,description:'Open a BOOZZO clip first.'};
     const current=revision, media=video;
     try {
       await media.play();
@@ -119,7 +119,7 @@
     const selection=window.BeybooDevice.videoFor(value);
     const id=youtubeId(value)||(selection?selection.ids[1]:null);
     if(!id){
-      const current=display('search','<div class="voice-screen-copy"><span class="screen-label">YOUTUBE</span><h4>Pick your video.</h4><p>BEYBOO and Paxi films · choose below the eye.</p><a id="voice-youtube-search" target="_blank" rel="noopener noreferrer">Search YouTube ↗</a></div>');
+      const current=display('search','<div class="voice-screen-copy"><span class="screen-label">YOUTUBE</span><h4>Pick your video.</h4><p>BOOZZO and Paxi films · choose below the eye.</p><a id="voice-youtube-search" target="_blank" rel="noopener noreferrer">Search YouTube ↗</a></div>');
       q('voice-youtube-search').href='https://www.youtube.com/results?search_query='+encodeURIComponent(value && !['space','catalog'].includes(value)?value:'Paxi ESA');
       if(value && !['space','catalog','paxi','espace','youtube','you tube'].includes(value.toLowerCase())){
         searchAbort=new AbortController();
@@ -141,7 +141,7 @@
     window.BeybooCompanion?.setDetail(true,{reveal:true});
     const playerArea=q('voice-youtube-player').getBoundingClientRect();
     if(playerArea.width<200 || playerArea.height<200){
-      playback='error';const message='This eye is too small for the YouTube player. Open the YouTube link or play the BEYBOO film in the eye.';say(message);buttons();return snapshot(message);
+      playback='error';const message='This eye is too small for the YouTube player. Open the YouTube link or play the BOOZZO film in the eye.';say(message);buttons();return snapshot(message);
     }
     say('Loading the YouTube player…');
     // The complete provider viewport sits inside the round eye. Playback controls are below the plush.
@@ -170,7 +170,7 @@
           }
         });
         const iframe=youtube.getIframe();
-        iframe.title='YouTube video in BEYBOO';iframe.setAttribute('allow','autoplay; encrypted-media; fullscreen; picture-in-picture');iframe.referrerPolicy='strict-origin-when-cross-origin';
+        iframe.title='YouTube video in BOOZZO';iframe.setAttribute('allow','autoplay; encrypted-media; fullscreen; picture-in-picture');iframe.referrerPolicy='strict-origin-when-cross-origin';
 
       });
     }catch{
@@ -184,7 +184,7 @@
     const bounds=youtube.getIframe().getBoundingClientRect();
     if(bounds.width>=200&&bounds.height>=200)return;
     ++revision;cancelYouTube?.();youtube.destroy();youtube=null;playback='error';buttons();
-    say('Player closed. Choose the BEYBOO film in the eye or open YouTube.');
+    say('Player closed. Choose the BOOZZO film in the eye or open YouTube.');
   }).observe(q('plush-eye-dock'));
   function renderMath() {
     const [a,b]=maths[question],answer=a+b;
@@ -192,7 +192,7 @@
     stage.innerHTML='<div class="voice-screen-copy"><span class="screen-label">YOUR TURN</span><h4 class="voice-math-question">'+a+' + '+b+' ?</h4><div class="voice-math-options">'+choices.map(n=>`<button type="button" data-math-answer="${n}">${n}</button>`).join('')+'</div><p id="voice-math-feedback" role="status">Say your answer or tap a number.</p><button type="button" id="voice-math-next" hidden>Next question →</button></div>';
     stage.querySelectorAll('[data-math-answer]').forEach(b=>b.addEventListener('click',()=>run({action:'answer_math',number:Number(b.dataset.mathAnswer)})));
     q('voice-math-next').addEventListener('click',()=>run({action:'next_math'}));
-    say(`What’s ${a} + ${b}? Tell BEYBOO your answer.`);
+    say(`What’s ${a} + ${b}? Tell BOOZZO your answer.`);
   }
   function renderStars() {
     stage.innerHTML=score>=5?'<div class="voice-screen-copy"><span class="screen-label">WELL DONE</span><h4>Five stars!</h4><p>A constellation of your very own.</p><button type="button" id="voice-stars-again">Play again</button></div>':'<div class="voice-screen-copy"><span class="screen-label">CATCH THE STARS</span><h4>'+score+' / 5</h4><div class="star-grid">'+Array.from({length:9},(_,i)=>`<button type="button" data-voice-star="${i}" class="${i===target?'star-target':''}" aria-label="${i===target?'Catch the star':'Empty square'}">${i===target?'✦':'·'}</button>`).join('')+'</div></div>';
@@ -310,7 +310,7 @@
       const c=characters.find(c=>c.id===(value||'liam'));if(!c)return {ok:false,description:'Unknown companion.'};
       display('story','<div class="voice-screen-copy"><span class="screen-label">A STORY WITH</span><img id="voice-story-image" class="voice-story-image" alt=""><h4 id="voice-story-name"></h4><p id="voice-story-title"></p></div>');
       q('voice-story-image').src=photo(c.id);q('voice-story-image').alt=c.name;q('voice-story-name').textContent=c.name;q('voice-story-title').textContent=c.title;
-      say(c.name+' is on the screen. Ask BEYBOO to tell their story.');return {...snapshot('The character is on screen. You can now tell their story.'),character:c.name,story:c.story};
+      say(c.name+' is on the screen. Ask BOOZZO to tell their story.');return {...snapshot('The character is on screen. You can now tell their story.'),character:c.name,story:c.story};
     }
     if(action==='open_call'){
       display('call','<div class="voice-screen-copy"><span class="screen-label">VIDEO CALL</span><h4>Say hello to someone you love.</h4><p>Your call connects your devices directly.<br>Tap below to end the AI conversation and set up your call.</p><button type="button" id="voice-go-call">Go to video call →</button></div>');

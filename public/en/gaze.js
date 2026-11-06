@@ -96,9 +96,9 @@
     if(enabled)return;
     release();window.BeybooCamera?.leave();
     if(!window.isSecureContext||!navigator.mediaDevices?.getUserMedia){
-      announce('error','Open the secure BEYBOO site in Safari or Chrome to turn on tracking.');return;
+      announce('error','Open the secure BOOZZO site in Safari or Chrome to turn on tracking.');return;
     }
-    if(document.hidden){announce('off','Bring BEYBOO back into view to turn on tracking.');return;}
+    if(document.hidden){announce('off','Bring BOOZZO back into view to turn on tracking.');return;}
     const token=generation;enabled=true;
     announce('requesting','Allow camera access so my eye can follow you.');
     let pendingDetector=null;

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "BEYBOO — Un regard. Votre univers.",
+  title: "BOOZZO — Un regard. Votre univers.",
   description: "Dix compagnons et un écran qui vous répond.",
   icons: {
     icon: "/favicon.svg",

@@ -28,8 +28,8 @@
   const concepts = {
     spotify: {
       title:'Spotify',
-      text:t('Concept d’interface. Spotify n’est pas intégré : écoute les cinq instrumentaux originaux BEYBOO.','Interface concept. Spotify is not integrated: listen to the five original BEYBOO instrumentals.'),
-      go:'music', goLabel:t('Écouter la musique BEYBOO','Play BEYBOO music')
+      text:t('Concept d’interface. Spotify n’est pas intégré : écoute les cinq instrumentaux originaux BOOZZO.','Interface concept. Spotify is not integrated: listen to the five original BOOZZO instrumentals.'),
+      go:'music', goLabel:t('Écouter la musique BOOZZO','Play BOOZZO music')
     }
   };
   const locale = en ? 'en-GB' : 'fr-FR';
@@ -49,11 +49,11 @@
         '<div class="eye-home-body"><span class="eye-app eye-app-' + value + '">' + glyphs[value] + '</span><h4>' + concept.title + '</h4><p>' + concept.text + '</p><button type="button" class="eye-home-go" data-home-go="' + concept.go + '">' + concept.goLabel + '</button></div>' +
         '<div class="eye-home-dock"><button type="button" data-home-nav="back" aria-label="' + t('Retour à l’accueil','Back to home') + '">' + glyphs.home + '</button></div></div>';
     }
-    return '<div class="eye-home" role="group" aria-label="' + t('Accueil de l’écran BEYBOO','BEYBOO home screen') + '">' + statusBar() +
+    return '<div class="eye-home" role="group" aria-label="' + t('Accueil de l’écran BOOZZO','BOOZZO home screen') + '">' + statusBar() +
       '<div class="eye-home-grid">' + apps.map(app =>
         '<button type="button" data-home-app="' + app.id + '"' + (app.concept ? ' data-concept="true" aria-label="' + app.label + ' · ' + t('concept','concept') + '"' : app.id === 'messages' ? ' aria-label="' + badgeLabel(unread()) + '"' : '') + '><span class="eye-app eye-app-' + app.id + '">' + glyphs[app.id] + (app.id === 'messages' ? badge(unread()) : '') + '</span><span class="eye-app-label">' + app.label + '</span></button>'
       ).join('') + '</div>' +
-      '<div class="eye-home-dock"><button type="button" data-home-nav="home" aria-label="' + t('Revenir au regard','Back to the eye') + '">' + glyphs.home + '</button><button type="button" data-home-nav="mic" aria-label="' + t('Parler à BEYBOO','Talk to BEYBOO') + '">' + glyphs.mic + '</button></div></div>';
+      '<div class="eye-home-dock"><button type="button" data-home-nav="home" aria-label="' + t('Revenir au regard','Back to the eye') + '">' + glyphs.home + '</button><button type="button" data-home-nav="mic" aria-label="' + t('Parler à BOOZZO','Talk to BOOZZO') + '">' + glyphs.mic + '</button></div></div>';
   }
   function message(value) {
     const concept = concepts[value];

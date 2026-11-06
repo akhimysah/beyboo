@@ -1,4 +1,4 @@
-# BEYBOO — Un regard. Votre univers.
+# BOOZZO (ex-BEYBOO) — Un regard. Votre univers.
 
 Site vitrine bilingue et application web : une peluche immobile dont l'œil rond est le seul écran. Version 38 (5 novembre 2026).
 
@@ -11,6 +11,8 @@ Site vitrine bilingue et application web : une peluche immobile dont l'œil rond
 - Page anglaise : `python3 -I scripts/render-english-page.py` (générée, ne pas éditer `public/index-en.html`).
 
 ## Repères v38
+
+- Marque : le projet s’appelle BOOZZO depuis le 6 novembre 2026 (domaine boozzo.com). Textes FR/EN, logo (`scripts/make-brand-logo.py` → `assets/universe/brand-boozzo.webp`), films d’ouverture et du logo (`assets/films/boozzo-*.mp4`) et coffret (`assets/universe/packaging-boozzo.webp`) sont à jour ; les identifiants techniques (classes `beyboo-app`, cookie, dépôt, Worker) gardent l’ancien nom. Les images de campagne qui portent encore le mot BEYBOO incrusté restent à remplacer.
 
 - Hébergement VPS : `server/node.mjs` + `scripts/deploy-vps.sh` (Node 22, systemd, Caddy HTTPS) ; voir `docs/DEPLOIEMENT.md` section 0.
 

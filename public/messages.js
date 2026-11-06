@@ -135,7 +135,7 @@
   const el = selector => stage?.querySelector(selector);
   function body(html) { const node = el('.msg-body'); if (node) node.innerHTML = html; }
   function message() {
-    if (phase === 'offline') return t('Les messages demandent le serveur BEYBOO.', 'Messages need the BEYBOO server.');
+    if (phase === 'offline') return t('Les messages demandent le serveur BOOZZO.', 'Messages need the BOOZZO server.');
     if (phase === 'login') return t('Entre le code famille dans l’œil pour lire les messages.', 'Enter the family code in the eye to read messages.');
     if (phase === 'error') return t('Les messages ne se chargent pas. Réessaie.', 'Messages did not load. Try again.');
     if (phase === 'list') return t('Messages de la famille affichés dans l’œil. Écris, ou touche un emoji.', 'Family messages are showing in the eye. Type, or tap an emoji.');
@@ -144,7 +144,7 @@
   function note(text) { say?.(text); }
   function renderOffline() {
     phase = 'offline';
-    body('<div class="msg-note"><p>' + t('Les messages demandent le serveur BEYBOO.', 'Messages need the BEYBOO server.') + '</p><small>' + t('Cet hébergement est statique : les messages et les appels restent indisponibles ici.', 'This hosting is static: messages and calls are not available here.') + '</small></div>');
+    body('<div class="msg-note"><p>' + t('Les messages demandent le serveur BOOZZO.', 'Messages need the BOOZZO server.') + '</p><small>' + t('Cet hébergement est statique : les messages et les appels restent indisponibles ici.', 'This hosting is static: messages and calls are not available here.') + '</small></div>');
     note(message());
   }
   function renderError() {

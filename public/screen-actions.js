@@ -119,7 +119,7 @@
     const selection=window.BeybooDevice.videoFor(value);
     const id=youtubeId(value)||(selection?selection.ids[0]:null);
     if(!id){
-      const current=display('search','<div class="voice-screen-copy"><span class="screen-label">YOUTUBE</span><h4>Choisis ta vidéo.</h4><p>Films BEYBOO et Paxi · choisis sous l’œil.</p><a id="voice-youtube-search" target="_blank" rel="noopener noreferrer">Rechercher sur YouTube ↗</a></div>');
+      const current=display('search','<div class="voice-screen-copy"><span class="screen-label">YOUTUBE</span><h4>Choisis ta vidéo.</h4><p>Films BOOZZO et Paxi · choisis sous l’œil.</p><a id="voice-youtube-search" target="_blank" rel="noopener noreferrer">Rechercher sur YouTube ↗</a></div>');
       q('voice-youtube-search').href='https://www.youtube.com/results?search_query='+encodeURIComponent(value && !['space','catalog'].includes(value)?value:'Paxi ESA');
       if(value && !['space','catalog','paxi','espace','youtube','you tube'].includes(value.toLowerCase())){
         searchAbort=new AbortController();
@@ -141,7 +141,7 @@
     window.BeybooCompanion?.setDetail(true,{reveal:true});
     const playerArea=q('voice-youtube-player').getBoundingClientRect();
     if(playerArea.width<200 || playerArea.height<200){
-      playback='error';const message='L’œil est trop petit pour le lecteur YouTube. Ouvre le lien YouTube ou regarde le film BEYBOO dans l’œil.';say(message);buttons();return snapshot(message);
+      playback='error';const message='L’œil est trop petit pour le lecteur YouTube. Ouvre le lien YouTube ou regarde le film BOOZZO dans l’œil.';say(message);buttons();return snapshot(message);
     }
     say('Chargement du lecteur YouTube…');
     // The complete provider viewport sits inside the round eye. Playback controls are below the plush.
@@ -170,7 +170,7 @@
           }
         });
         const iframe=youtube.getIframe();
-        iframe.title='Vidéo YouTube dans BEYBOO';iframe.setAttribute('allow','autoplay; encrypted-media; fullscreen; picture-in-picture');iframe.referrerPolicy='strict-origin-when-cross-origin';
+        iframe.title='Vidéo YouTube dans BOOZZO';iframe.setAttribute('allow','autoplay; encrypted-media; fullscreen; picture-in-picture');iframe.referrerPolicy='strict-origin-when-cross-origin';
 
       });
     }catch{
@@ -184,7 +184,7 @@
     const bounds=youtube.getIframe().getBoundingClientRect();
     if(bounds.width>=200&&bounds.height>=200)return;
     ++revision;cancelYouTube?.();youtube.destroy();youtube=null;playback='error';buttons();
-    say('Lecteur refermé. Tu peux choisir le film BEYBOO dans l’œil ou ouvrir YouTube.');
+    say('Lecteur refermé. Tu peux choisir le film BOOZZO dans l’œil ou ouvrir YouTube.');
   }).observe(q('plush-eye-dock'));
   function renderMath() {
     const [a,b]=maths[question],answer=a+b;
@@ -192,7 +192,7 @@
     stage.innerHTML='<div class="voice-screen-copy"><span class="screen-label">À TOI DE JOUER</span><h4 class="voice-math-question">'+a+' + '+b+' ?</h4><div class="voice-math-options">'+choices.map(n=>`<button type="button" data-math-answer="${n}">${n}</button>`).join('')+'</div><p id="voice-math-feedback" role="status">Dis ta réponse ou touche un nombre.</p><button type="button" id="voice-math-next" hidden>Calcul suivant →</button></div>';
     stage.querySelectorAll('[data-math-answer]').forEach(b=>b.addEventListener('click',()=>run({action:'answer_math',number:Number(b.dataset.mathAnswer)})));
     q('voice-math-next').addEventListener('click',()=>run({action:'next_math'}));
-    say(`À l’écran : ${a} + ${b}. Dis ta réponse à BEYBOO.`);
+    say(`À l’écran : ${a} + ${b}. Dis ta réponse à BOOZZO.`);
   }
   function renderStars() {
     stage.innerHTML=score>=5?'<div class="voice-screen-copy"><span class="screen-label">BIEN JOUÉ</span><h4>5 étoiles !</h4><p>Une constellation rien qu’à toi.</p><button type="button" id="voice-stars-again">Rejouer</button></div>':'<div class="voice-screen-copy"><span class="screen-label">ATTRAPE LES ÉTOILES</span><h4>'+score+' / 5</h4><div class="star-grid">'+Array.from({length:9},(_,i)=>`<button type="button" data-voice-star="${i}" class="${i===target?'star-target':''}" aria-label="${i===target?'Attraper l’étoile':'Case vide'}">${i===target?'✦':'·'}</button>`).join('')+'</div></div>';
@@ -214,7 +214,7 @@
     const feature={open_camera:'camera',open_face:'camera',take_photo:'camera',open_call:'calls',open_messages:'messages'}[action];
     if(feature && window.BeybooFamily && !window.BeybooFamily.guard(feature))return {ok:false,description:'Fonction désactivée dans l’espace famille.'};
     if(args.mood!==undefined || action==='set_speaking_mood'){
-      if(!window.BeybooMood?.choose(args.mood))return {ok:false,description:"Choisis une émotion prévue pour BEYBOO."};
+      if(!window.BeybooMood?.choose(args.mood))return {ok:false,description:"Choisis une émotion prévue pour BOOZZO."};
       if(action==='set_speaking_mood')return {ok:true,mood:args.mood,description:"Émotion prête pour ta réplique."};
     }
     if(action==='open_clock'){
@@ -310,7 +310,7 @@
       const c=characters.find(c=>c.id===(value||'liam'));if(!c)return {ok:false,description:'Personnage inconnu.'};
       display('story','<div class="voice-screen-copy"><span class="screen-label">UNE HISTOIRE AVEC</span><img id="voice-story-image" class="voice-story-image" alt=""><h4 id="voice-story-name"></h4><p id="voice-story-title"></p></div>');
       q('voice-story-image').src=photo(c.id);q('voice-story-image').alt=c.name;q('voice-story-name').textContent=c.name;q('voice-story-title').textContent=c.title;
-      say(c.name+' est à l’écran. Demande à BEYBOO de raconter son histoire.');return {...snapshot('Personnage affiché. Tu peux maintenant raconter son histoire.'),character:c.name,story:c.story};
+      say(c.name+' est à l’écran. Demande à BOOZZO de raconter son histoire.');return {...snapshot('Personnage affiché. Tu peux maintenant raconter son histoire.'),character:c.name,story:c.story};
     }
     if(action==='open_call'){
       display('call','<div class="voice-screen-copy"><span class="screen-label">UN COUCOU EN VIDÉO</span><h4>Retrouver un proche.</h4><p>Ton appel relie directement vos appareils.<br>La conversation IA s’arrêtera au toucher.</p><button type="button" id="voice-go-call">Passer à l’appel vidéo →</button></div>');

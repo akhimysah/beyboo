@@ -49,8 +49,8 @@ const BeybooShop = (() => {
     const edition = worldEditions.find(x => x.id === selection.edition);
     const name = characters.find(x => x.id === selection.character).name;
     const bundle = selection.pack === 'duo';
-    const label = bundle ? (edition ? name + ' · ' + edition.country : name) + ' + BEYBOO One' :
-      selection.pack === 'plush' ? name + t(' · peluche seule',' · plush only') : t('BEYBOO One · écran seul','BEYBOO One · screen only');
+    const label = bundle ? (edition ? name + ' · ' + edition.country : name) + ' + BOOZZO One' :
+      selection.pack === 'plush' ? name + t(' · peluche seule',' · plush only') : t('BOOZZO One · écran seul','BOOZZO One · screen only');
     const rows = [{label, cents: bundle ? (edition ? world : classic) : null}];
     for (const id of selection.accessories) {
       const item = selectedItem(id);

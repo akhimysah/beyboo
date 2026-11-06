@@ -33,7 +33,7 @@ function showMode(next){
   $('#expression-controls').hidden=next!=='eye';
   $$('[data-app]').forEach(b=>{b.classList.toggle('selected',b.dataset.app===next);b.setAttribute('aria-pressed',String(b.dataset.app===next));});
   $('#mode-title').textContent=modeData[next][0];$('#mode-description').textContent=modeData[next][1];
-  $('#device-hint').textContent=next==='eye'?'Touchez l’œil pour ouvrir son univers.':next==='call'?'Appel entre proches · D’appareil à appareil':'BEYBOO One · Démonstration interactive';
+  $('#device-hint').textContent=next==='eye'?'Touchez l’œil pour ouvrir son univers.':next==='call'?'Appel entre proches · D’appareil à appareil':'BOOZZO One · Démonstration interactive';
   if(next==='menu')screen.innerHTML='<span class="screen-label">BONJOUR, VOUS.</span><h4>On fait quoi ensemble ?</h4><div class="mini-apps">'+[['video','▷','Vidéo'],['game','✦','Jeu'],['music','♫','Musique'],['assistant','◉','Assistant'],['call','▣','Appel'],['story','▤','Histoires']].map(([id,icon,label])=>`<button type="button" data-screen-app="${id}"><span>${icon}</span>${label}</button>`).join('')+'</div>';
   if(next==='video')renderVideo();
   if(next==='call')window.BeybooCall?.enter();

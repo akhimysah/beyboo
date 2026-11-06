@@ -15,8 +15,8 @@
 /* Character complexion choices */
 .look-picker{margin:22px 0}.look-picker[hidden]{display:none}.look-label{font-size:12px;color:#6e6e73;margin:0 0 12px}.look-label span{color:#222;margin-left:8px}.look-options{display:flex;flex-wrap:wrap;gap:8px}.look-option{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:8px 12px;border:1px solid #dedee3;border-radius:24px;background:#fff;color:#444;font-size:12px}.look-option i{display:block;width:20px;height:20px;border-radius:50%;background:var(--look-color);box-shadow:inset 0 0 0 1px #00000012}.look-option[aria-pressed="true"]{border-color:#0071e3;box-shadow:0 0 0 1px #0071e3;color:#0071e3}.look-option:focus-visible{outline:3px solid #82b8f4;outline-offset:3px}.look-count{display:block;font-size:10px;color:#6e6e73;margin:7px 0}.story-copy .look-picker{margin:18px 0 24px}#selection-look-picker{margin-bottom:0}
 
-/* ===== universe.css (v=world-20261104) ===== */
-/* BEYBOO — final identity, collection and screen-only interactions. */
+/* ===== universe.css (v=boozzo-1) ===== */
+/* BOOZZO — final identity, collection and screen-only interactions. */
 .world-section{border-bottom:1px solid var(--line)}
 .world-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
 .world-card{min-width:0;overflow:hidden;border:1px solid #e9edf0;border-radius:24px;background:#fff}
@@ -70,6 +70,9 @@
 .assistant-tools{display:flex;gap:7px;justify-content:center;flex-shrink:0}.assistant-content .assistant-reply{flex-shrink:0;min-height:0}.assistant-content .screen-label,.assistant-content small{flex-shrink:0}.story-content{padding:13%;gap:7px}.game-content{padding-top:11%;padding-bottom:11%}
 @media(max-width:700px){.assistant-content{gap:9px}.assistant-orb{width:48px;height:48px}.assistant-content .assistant-reply{font-size:11px}.assistant-tools .device-action{padding:8px 10px}.assistant-content .assistant-chips{gap:7px}}
 @media(max-width:370px){.assistant-content{gap:6px}.assistant-orb{width:38px;height:38px}.assistant-content .assistant-reply{font-size:10px}.assistant-tools .device-action{font-size:9px;padding:6px 8px}.screen-character{width:60px;height:60px}.story-content h4{font-size:14px}}
+
+/* Coffret BOOZZO dans le configurateur */
+.composer-packaging{margin:44px auto 0;max-width:980px;text-align:center}.composer-packaging img{width:100%;height:auto;border-radius:24px;box-shadow:0 24px 60px #1a355514}.composer-packaging figcaption{margin-top:14px;font-size:14px;color:#6e6e73}
 
 /* ===== arrival.css (v=arrival-20261104) ===== */
 /* A theatrical entrance for a still plush bouquet. Only the complete image moves. */

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://iris-atelier-hicham-2026.jhonnymoss.chatgpt.site/sitemap.xml
+Sitemap: https://boozzo.com/sitemap.xml

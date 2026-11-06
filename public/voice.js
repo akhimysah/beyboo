@@ -137,8 +137,8 @@
     if (e.type === 'conversation.item.input_audio_transcription.completed') row(e.item_id,'Vous',e.transcript || '(Paroles non reconnues)');
     if (e.type === 'conversation.item.input_audio_transcription.failed') row(e.item_id,'Vous','La transcription est indisponible pour cette phrase.');
     if (e.type === 'response.created') { responding = true; currentReply = e.response?.id || String(Date.now()); state('thinking','Je prépare ma réponse…'); }
-    if (e.type === 'response.output_audio_transcript.delta') row(e.item_id || currentReply,previewing?(voice.selectedOptions[0]?.textContent||'BEYBOO'):(character.selectedOptions[0]?.textContent||'BEYBOO'),e.delta || '',true);
-    if (e.type === 'response.output_audio_transcript.done') row(e.item_id || currentReply,previewing?(voice.selectedOptions[0]?.textContent||'BEYBOO'):(character.selectedOptions[0]?.textContent||'BEYBOO'),e.transcript || '');
+    if (e.type === 'response.output_audio_transcript.delta') row(e.item_id || currentReply,previewing?(voice.selectedOptions[0]?.textContent||'BOOZZO'):(character.selectedOptions[0]?.textContent||'BOOZZO'),e.delta || '',true);
+    if (e.type === 'response.output_audio_transcript.done') row(e.item_id || currentReply,previewing?(voice.selectedOptions[0]?.textContent||'BOOZZO'):(character.selectedOptions[0]?.textContent||'BOOZZO'),e.transcript || '');
     if (e.type === 'output_audio_buffer.started') { if(!editionId)window.BeybooMood?.speaking('voice'); window.BeybooScreen?.duck(true); state('speaking','Je te réponds…'); }
     if (e.type === 'output_audio_buffer.stopped' || e.type === 'output_audio_buffer.cleared') { window.BeybooMood?.stop('voice'); window.BeybooScreen?.duck(false); if(previewing){stop('Extrait terminé. Choisis une autre voix ou commence à parler.');return;} listenState(); }
     if (e.type === 'response.done') {
@@ -159,7 +159,7 @@
     window.BeybooMood?.reset();
     editionId = edition;
     if (!edition) { window.BeybooEye?.prepare(); }
-    busy = true; previewing=preview; soundReady=false; const attempt = ++serial; q('voice-billing').hidden = true; q('voice-sign-in').hidden = true; if (passwordForm) passwordForm.hidden = true; controls(); state('connecting',preview?'Préparation de l’extrait…':'Connexion à BEYBOO…');
+    busy = true; previewing=preview; soundReady=false; const attempt = ++serial; q('voice-billing').hidden = true; q('voice-sign-in').hidden = true; if (passwordForm) passwordForm.hidden = true; controls(); state('connecting',preview?'Préparation de l’extrait…':'Connexion à BOOZZO…');
     try {
       const {data: info} = await api('/api/voice/status', {signal: AbortSignal.timeout(12000)});
       if (attempt !== serial) return false;
@@ -168,7 +168,7 @@
       if (!window.RTCPeerConnection) throw new Error('Ce navigateur ne permet pas la conversation vocale. Ouvre le site dans Safari ou Chrome.');
       if (withMic) {
         if (!navigator.mediaDevices?.getUserMedia) throw new Error('Le micro n’est pas accessible ici. Ouvre le site dans Safari ou utilise « Écrire une question ».');
-        state('connecting','Autorise le microphone pour parler à BEYBOO.');
+        state('connecting','Autorise le microphone pour parler à BOOZZO.');
         const local = await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true,autoGainControl:true},video:false});
         if (attempt !== serial) { local.getTracks().forEach(t=>t.stop()); return false; }
         stream = local; window.BeybooEye?.attach(local,'mic');
@@ -225,7 +225,7 @@
   }
   start.addEventListener('click',()=>connect(true));
   stopButton.addEventListener('click',()=>stop());
-  muteButton.addEventListener('click',()=>{ muted = !muted; window.BeybooEye?.mute(muted); stream?.getAudioTracks().forEach(t=>t.enabled=!muted); controls(); state(muted?'muted':'listening',muted?'Micro coupé. Tu peux toujours écouter BEYBOO.':'Micro réactivé. Je t’écoute.'); });
+  muteButton.addEventListener('click',()=>{ muted = !muted; window.BeybooEye?.mute(muted); stream?.getAudioTracks().forEach(t=>t.enabled=!muted); controls(); state(muted?'muted':'listening',muted?'Micro coupé. Tu peux toujours écouter BOOZZO.':'Micro réactivé. Je t’écoute.'); });
   q('voice-enable-sound').addEventListener('click',async()=>{const attempt=serial;try{await audio?.play();if(attempt!==serial)return;soundReady=true;q('voice-enable-sound').hidden=true;playPreview();}catch{state('error','Le son est bloqué par ton navigateur. Vérifie ses réglages.');}});
   form.addEventListener('submit',async event=>{
     event.preventDefault(); if(previewing)return; const text=input.value.trim().slice(0,1000); if (!text) return;

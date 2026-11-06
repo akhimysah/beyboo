@@ -1,7 +1,7 @@
 {
   "id": "/index-en.html?app=1",
-  "name": "BEYBOO — My companion",
-  "short_name": "BEYBOO",
+  "name": "BOOZZO — My companion",
+  "short_name": "BOOZZO",
   "description": "Your plush companion, conversations and activities in one web app.",
   "start_url": "/index-en.html?app=1",
   "scope": "/",

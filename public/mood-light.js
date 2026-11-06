@@ -10,7 +10,7 @@
   const modes = new Map(buttons.map(button => [button.dataset.mood, button]));
   const english = document.documentElement.lang === 'en';
   const prompt = status.textContent;
-  const waiting = english ? 'The eye lights up when BEYBOO speaks.' : 'L’œil s’allume quand BEYBOO parle.';
+  const waiting = english ? 'The eye lights up when BOOZZO speaks.' : 'L’œil s’allume quand BOOZZO parle.';
   const previewLabel = english ? 'Light preview' : 'Aperçu lumineux';
   let mood = 'smile';
   let source = '';

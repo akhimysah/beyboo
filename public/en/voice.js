@@ -126,7 +126,7 @@
   }
   const sessionErrorMessages = {
     sign_in_required: 'Sign in to the site to try voice chat.',
-    invalid_origin: 'Open the BEYBOO site to start a voice chat.',
+    invalid_origin: 'Open the BOOZZO site to start a voice chat.',
     not_configured: 'Voice chat hasn’t been enabled for this site yet.',
     too_large: 'The request was too large. Please start a new conversation.',
     invalid_session: 'Choose a companion and a voice, then try again.',
@@ -150,8 +150,8 @@
     if (e.type === 'conversation.item.input_audio_transcription.completed') row(e.item_id,'You',e.transcript || '(Speech unclear)');
     if (e.type === 'conversation.item.input_audio_transcription.failed') row(e.item_id,'You','There’s no transcript for that phrase.');
     if (e.type === 'response.created') { responding = true; currentReply = e.response?.id || String(Date.now()); state('thinking','Let me think…'); }
-    if (e.type === 'response.output_audio_transcript.delta') row(e.item_id || currentReply,previewing?(voice.selectedOptions[0]?.textContent||'BEYBOO'):(character.selectedOptions[0]?.textContent||'BEYBOO'),e.delta || '',true);
-    if (e.type === 'response.output_audio_transcript.done') row(e.item_id || currentReply,previewing?(voice.selectedOptions[0]?.textContent||'BEYBOO'):(character.selectedOptions[0]?.textContent||'BEYBOO'),e.transcript || '');
+    if (e.type === 'response.output_audio_transcript.delta') row(e.item_id || currentReply,previewing?(voice.selectedOptions[0]?.textContent||'BOOZZO'):(character.selectedOptions[0]?.textContent||'BOOZZO'),e.delta || '',true);
+    if (e.type === 'response.output_audio_transcript.done') row(e.item_id || currentReply,previewing?(voice.selectedOptions[0]?.textContent||'BOOZZO'):(character.selectedOptions[0]?.textContent||'BOOZZO'),e.transcript || '');
     if (e.type === 'output_audio_buffer.started') { if(!editionId)window.BeybooMood?.speaking('voice'); window.BeybooScreen?.duck(true); state('speaking','I’m answering…'); }
     if (e.type === 'output_audio_buffer.stopped' || e.type === 'output_audio_buffer.cleared') { window.BeybooMood?.stop('voice'); window.BeybooScreen?.duck(false); if(previewing){stop('That’s the end of the sample. Try another voice or start chatting.');return;} listenState(); }
     if (e.type === 'response.done') {
@@ -172,7 +172,7 @@
     window.BeybooMood?.reset();
     editionId = edition;
     if (!edition) { window.BeybooEye?.prepare(); }
-    busy = true; previewing=preview; soundReady=false; const attempt = ++serial; q('voice-billing').hidden = true; q('voice-sign-in').hidden = true; if (passwordForm) passwordForm.hidden = true; controls(); state('connecting',preview?'Getting your sample ready…':'Connecting to BEYBOO…');
+    busy = true; previewing=preview; soundReady=false; const attempt = ++serial; q('voice-billing').hidden = true; q('voice-sign-in').hidden = true; if (passwordForm) passwordForm.hidden = true; controls(); state('connecting',preview?'Getting your sample ready…':'Connecting to BOOZZO…');
     try {
       const {data: info} = await api('/api/voice/status', {signal: AbortSignal.timeout(12000)});
       if (attempt !== serial) return false;
@@ -181,7 +181,7 @@
       if (!window.RTCPeerConnection) throw new Error('To use voice chat, open this site in Safari or Chrome.');
       if (withMic) {
         if (!navigator.mediaDevices?.getUserMedia) throw new Error('The microphone is unavailable here. Open the site in Safari or type a question.');
-        state('connecting','Allow microphone access to talk to BEYBOO.');
+        state('connecting','Allow microphone access to talk to BOOZZO.');
         const local = await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true,autoGainControl:true},video:false});
         if (attempt !== serial) { local.getTracks().forEach(t=>t.stop()); return false; }
         stream = local; window.BeybooEye?.attach(local,'mic');
@@ -238,7 +238,7 @@
   }
   start.addEventListener('click',()=>connect(true));
   stopButton.addEventListener('click',()=>stop());
-  muteButton.addEventListener('click',()=>{ muted = !muted; window.BeybooEye?.mute(muted); stream?.getAudioTracks().forEach(t=>t.enabled=!muted); controls(); state(muted?'muted':'listening',muted?'Your mic is off. You can still hear BEYBOO.':'Your mic is on. I’m listening.'); });
+  muteButton.addEventListener('click',()=>{ muted = !muted; window.BeybooEye?.mute(muted); stream?.getAudioTracks().forEach(t=>t.enabled=!muted); controls(); state(muted?'muted':'listening',muted?'Your mic is off. You can still hear BOOZZO.':'Your mic is on. I’m listening.'); });
   q('voice-enable-sound').addEventListener('click',async()=>{const attempt=serial;try{await audio?.play();if(attempt!==serial)return;soundReady=true;q('voice-enable-sound').hidden=true;playPreview();}catch{state('error','Your browser is blocking audio. Check its sound settings.');}});
   form.addEventListener('submit',async event=>{
     event.preventDefault(); if(previewing)return; const text=input.value.trim().slice(0,1000); if (!text) return;

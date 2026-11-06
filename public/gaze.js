@@ -96,9 +96,9 @@
     if(enabled)return;
     release();window.BeybooCamera?.leave();
     if(!window.isSecureContext||!navigator.mediaDevices?.getUserMedia){
-      announce('error','Ouvre BEYBOO en HTTPS dans Safari ou Chrome pour activer le suivi.');return;
+      announce('error','Ouvre BOOZZO en HTTPS dans Safari ou Chrome pour activer le suivi.');return;
     }
-    if(document.hidden){announce('off','Reviens sur BEYBOO avant d’activer le suivi.');return;}
+    if(document.hidden){announce('off','Reviens sur BOOZZO avant d’activer le suivi.');return;}
     const token=generation;enabled=true;
     announce('requesting','Autorise la caméra pour que mon regard puisse te suivre.');
     let pendingDetector=null;

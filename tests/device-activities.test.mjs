@@ -33,7 +33,7 @@ const req=city=>new Request('https://beyboo.test/api/weather?city='+city);
 test('weather uses city centres, shares pending lookups, honours expiry and reports failures',async()=>{
   let calls=0;
   const upstream=async(url,opts)=>{
-    calls++;assert.match(url,/lat=48.86&lon=2.35$/);assert.ok(opts.headers['User-Agent'].includes('BEYBOO'));
+    calls++;assert.match(url,/lat=48.86&lon=2.35$/);assert.ok(opts.headers['User-Agent'].includes('BOOZZO'));
     return Response.json({properties:{timeseries:[{time:new Date().toISOString(),data:{instant:{details:{air_temperature:10.6}},next_1_hours:{summary:{symbol_code:'cloudy'}}}}]}},{headers:{Expires:new Date(Date.now()+3600000).toUTCString()}});
   };
   const results=await Promise.all([weatherRequest(req('paris'),upstream),weatherRequest(req('paris'),upstream)]);

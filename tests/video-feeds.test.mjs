@@ -61,7 +61,7 @@ test('each channel feed is fetched once per six hours, in memory and through KV 
   assert.equal(calls, 1);
   resetFeedCache();
   const kv = new Map();
-  const env = {BEYBOO_KV: {get: async (k, type) => { const v = kv.get(k); return v && type === 'json' ? JSON.parse(v) : v ?? null; }, put: async (k, v, opts) => { assert.equal(opts.expirationTtl, 6 * 3600); kv.set(k, v); }}};
+  const env = {BOOZZO_KV: {get: async (k, type) => { const v = kv.get(k); return v && type === 'json' ? JSON.parse(v) : v ?? null; }, put: async (k, v, opts) => { assert.equal(opts.expirationTtl, 6 * 3600); kv.set(k, v); }}};
   await channelVideos(channel, env, fetcher);
   assert.equal(calls, 2); assert.ok(kv.has('videofeed:' + channel.id));
   resetFeedCache();

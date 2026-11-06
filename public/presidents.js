@@ -8,12 +8,12 @@
     play:'Hear the voice', stop:'Stop sample', loading:'Preparing the voice…',
     speaking:'Playing the line…', done:'Sample finished.', stopped:'Sample stopped.',
     error:'The voice sample is unavailable right now.', localError:'Your device could not read this line aloud.',
-    busy:'Finish your current voice session before playing a sample.', image:'BEYBOO plush'
+    busy:'Finish your current voice session before playing a sample.', image:'BOOZZO plush'
   } : {
     play:'Écouter sa voix', stop:'Arrêter l’extrait', loading:'Préparation de la voix…',
     speaking:'Lecture de la réplique…', done:'Extrait terminé.', stopped:'Extrait arrêté.',
     error:'L’extrait vocal est momentanément indisponible.', localError:'La voix de cet appareil est indisponible.',
-    busy:'Terminez la session vocale en cours pour écouter un extrait.', image:'Peluche BEYBOO'
+    busy:'Terminez la session vocale en cours pour écouter un extrait.', image:'Peluche BOOZZO'
   };
   const cards = new Map();
   let active = null;

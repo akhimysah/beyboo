@@ -95,7 +95,7 @@
     const mine = me();
     const others = [...online.values()].filter(p => p.member !== mine);
     if (!others.length) {
-      list.append(node('p', 'call-peers-empty', t('Aucun proche connecté pour l’instant. Ouvrez BEYBOO sur un autre appareil de la famille, ou envoyez un lien d’invitation.', 'Nobody from the family is online yet. Open BEYBOO on another family device, or send an invitation link.')));
+      list.append(node('p', 'call-peers-empty', t('Aucun proche connecté pour l’instant. Ouvrez BOOZZO sur un autre appareil de la famille, ou envoyez un lien d’invitation.', 'Nobody from the family is online yet. Open BOOZZO on another family device, or send an invitation link.')));
       return;
     }
     for (const peer of others) {
@@ -653,7 +653,7 @@
   el('call-share').addEventListener('click', async () => {
     if (!navigator.share) { await copyLink(); return; }
     try {
-      await navigator.share({title: t('Un coucou avec BEYBOO', 'Say hello with BEYBOO'), text: t('Rejoins-moi pour notre appel vidéo :', 'Join me for our video call:'), url: el('call-link').value});
+      await navigator.share({title: t('Un coucou avec BOOZZO', 'Say hello with BOOZZO'), text: t('Rejoins-moi pour notre appel vidéo :', 'Join me for our video call:'), url: el('call-link').value});
       el('call-share-status').textContent = t('Lien transmis au menu de partage.', 'Link handed to the share menu.');
     } catch (error) { if (error.name !== 'AbortError') await copyLink(); }
   });

@@ -7,7 +7,7 @@ const source = await readFile(new URL('../public/shop.js',import.meta.url),'utf8
 function makeShop(pack, locale='fr') {
   const context = {document:{documentElement:{lang:locale}},characters:[{id:'rayan',name:'Rayan'}],
     worldEditions:[{id:'turquie',person:'Rayan',country:'Turquie'}], accessories:[
-      {id:'keychains',name:'BEYBOO Mini'},{id:'bags',name:'BEYBOO Go'},{id:'watch',name:'BEYBOO Watch'}],
+      {id:'keychains',name:'BOOZZO Mini'},{id:'bags',name:'BOOZZO Go'},{id:'watch',name:'BOOZZO Watch'}],
     selection:{pack,character:'rayan',edition:'',variants:{},accessories:[]}};
   const shop = vm.runInNewContext(source+'\nBeybooShop',context);
   return {shop, selection:context.selection};

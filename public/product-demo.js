@@ -55,7 +55,7 @@
           info.textContent=ok===false?'Installe une voix française dans les réglages de ton appareil.':'';
         }),info);
       }
-      panel.append(button('Écouter avec BEYBOO ♫',()=>{q('voice-question').value='Raconte-moi avec douceur cette histoire de '+c.name+' : '+c.story.join(' ');q('voice-form').requestSubmit();}),element('p','Voix IA · utilise les crédits API de cet essai.','activity-footnote'));
+      panel.append(button('Écouter avec BOOZZO ♫',()=>{q('voice-question').value='Raconte-moi avec douceur cette histoire de '+c.name+' : '+c.story.join(' ');q('voice-form').requestSubmit();}),element('p','Voix IA · utilise les crédits API de cet essai.','activity-footnote'));
     }else if(type==='search'){
       window.BeybooLibrary.videoControls(panel,button);
     }else if(type==='weather'){

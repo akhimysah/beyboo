@@ -79,7 +79,7 @@
   }
   function duck(on) {ducked=on;if(audio)audio.volume=on ? .22 : .72;}
   function controls(panel) {
-    const head=document.createElement('h4');head.textContent=t('Musique BEYBOO','BEYBOO Music');
+    const head=document.createElement('h4');head.textContent=t('Musique BOOZZO','BOOZZO Music');
     const desc=document.createElement('p');desc.textContent=t('5 instrumentaux originaux à écouter gratuitement.','5 original instrumentals. Free to play.');
     const list=document.createElement('div');list.className='music-library';
     tracks.forEach(([id,title,genre],i)=>{

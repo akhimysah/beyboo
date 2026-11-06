@@ -17,7 +17,7 @@ function fakeEnv(overrides = {}) {
       async fetch(request) {
         const url = new URL(request.url);
         assets.push(url.pathname + url.search);
-        if (url.pathname === '/index.html') return new Response('<!doctype html><title>BEYBOO</title>', {headers: {'Content-Type': 'text/html; charset=utf-8'}});
+        if (url.pathname === '/index.html') return new Response('<!doctype html><title>BOOZZO</title>', {headers: {'Content-Type': 'text/html; charset=utf-8'}});
         if (url.pathname === '/beyboo.bundle.css') return new Response('body{}', {headers: {'Content-Type': 'text/css'}});
         return new Response('absent', {status: 404});
       }
@@ -55,7 +55,7 @@ test('/ is rewritten to /index.html keeping the query, static files get the repo
   const response = await call(env, '/?app=1&lang=fr');
   assert.equal(response.status, 200);
   assert.deepEqual(assets, ['/index.html?app=1&lang=fr']);
-  assert.match(await response.text(), /BEYBOO/);
+  assert.match(await response.text(), /BOOZZO/);
   assert.match(response.headers.get('Content-Security-Policy-Report-Only'), /default-src 'self'/);
   assert.equal(response.headers.get('Content-Security-Policy'), null);
   assert.equal(response.headers.get('X-Frame-Options'), 'DENY');

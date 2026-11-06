@@ -35,8 +35,8 @@
   }
   function status() {
     if (result === 'draw') return t('Match nul !','It’s a draw!');
-    if (result) return (result === 'bot' ? 'BEYBOO' : result) + t(' gagne !',' wins!');
-    if (solo && side === -1) return t('BEYBOO réfléchit…','BEYBOO is thinking…');
+    if (result) return (result === 'bot' ? 'BOOZZO' : result) + t(' gagne !',' wins!');
+    if (solo && side === -1) return t('BOOZZO réfléchit…','BOOZZO is thinking…');
     if (route.length) return t('Continue la prise.','Keep jumping.');
     if (game === 'draughts' && legal[0]?.taken.length) return t('Prise obligatoire','Capture required')+' · '+sideName(side);
     return (solo ? t('À toi','Your turn') : t('Au tour de','To play'))+' · '+sideName(side);
@@ -111,7 +111,7 @@
       root.innerHTML = '<div class="arcade-content"><h4>'+title()+'</h4>'+menu(big)+'</div>';
     } else {
       const modes = big ? '<div class="arcade-opponent">'+['solo','duo'].map((key,i)=>
-        '<button type="button" data-move="'+key+'" aria-pressed="'+(solo===(i===0))+'">'+[t('Contre BEYBOO','Play BEYBOO'),t('À deux','Two players')][i]+'</button>').join('')+'</div>' : '';
+        '<button type="button" data-move="'+key+'" aria-pressed="'+(solo===(i===0))+'">'+[t('Contre BOOZZO','Play BOOZZO'),t('À deux','Two players')][i]+'</button>').join('')+'</div>' : '';
       const instructions = game==='draughts' ? t('Touche un pion puis une case marquée. Une dame porte une couronne.','Tap a piece, then a marked square. Kings wear a crown.') : hints.tic;
       root.innerHTML = '<div class="arcade-content"><h4>'+title()+'</h4>'+modes+(big?'<p>'+instructions+'</p>':'')+boardHTML()+'<p class="board-status" role="status">'+status()+'</p>'+(big?'<div class="board-nav">'+btn('zoom',t('Agrandir l’œil','Magnify the eye'))+btn('again',t('Recommencer','New game'))+btn('menu',t('Tous les jeux','All games'))+'</div>':'')+'</div>';
     }

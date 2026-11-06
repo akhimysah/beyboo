@@ -1,4 +1,4 @@
-/* Serveur Node.js de BEYBOO pour un VPS (Ubuntu + systemd + Caddy).
+/* Serveur Node.js de BOOZZO pour un VPS (Ubuntu + systemd + Caddy).
    Mêmes routes que worker/standalone.mjs : fichiers de public/, /api/*, salle de famille (messages + signalisation).
    La salle réutilise lib/family-room.mjs avec SQLite (node:sqlite) et le paquet ws à la place du Durable Object. */
 import http from 'node:http';
@@ -150,7 +150,7 @@ const server = http.createServer(async (req, res) => {
   } catch (error) {
     console.error(req.method, req.url, error);
     if (!res.headersSent) res.writeHead(error.message === 'too_large' ? 413 : 500, {'Content-Type': 'application/json'});
-    res.end(JSON.stringify({error: error.message === 'too_large' ? 'too_large' : 'server_error', message: 'Le serveur BEYBOO a rencontré une erreur.'}));
+    res.end(JSON.stringify({error: error.message === 'too_large' ? 'too_large' : 'server_error', message: 'Le serveur BOOZZO a rencontré une erreur.'}));
   }
 });
 const wss = new WebSocketServer({noServer: true, maxPayload: 64 * 1024});
@@ -168,5 +168,5 @@ server.on('upgrade', async (req, socket, head) => {
     wss.handleUpgrade(req, socket, head, ws => roomFor(identity.userId).accept(ws, member, name));
   } catch (error) { console.error('upgrade', error); refuse(500, 'Internal Server Error'); }
 });
-server.listen(PORT, HOST, () => console.log(`BEYBOO v${APP_VERSION} (Node ${process.version}) sur http://${HOST}:${PORT} · identité ${env.AUTH_MODE || 'chatgpt'} · voix ${env.OPENAI_API_KEY ? 'oui' : 'non'} · vidéos ${videoSearchMode(env)}`));
+server.listen(PORT, HOST, () => console.log(`BOOZZO v${APP_VERSION} (Node ${process.version}) sur http://${HOST}:${PORT} · identité ${env.AUTH_MODE || 'chatgpt'} · voix ${env.OPENAI_API_KEY ? 'oui' : 'non'} · vidéos ${videoSearchMode(env)}`));
 for (const signal of ['SIGINT', 'SIGTERM']) process.on(signal, () => { server.close(() => process.exit(0)); setTimeout(() => process.exit(0), 3000).unref(); });

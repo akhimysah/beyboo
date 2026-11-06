@@ -37,11 +37,11 @@
   function speak(){if(window.BeybooProfile?.isOpen())window.BeybooScreen.run({action:'show_eye'});ensureVoice();sync();return window.BeybooVoice.start();}
   function home(){large=false;ensureVoice();window.BeybooScreen.run({action:'show_eye'});sync();}
   window.BeybooCompanion={speak,home,refresh:sync,setPortraitGeometry(value){portraitGeometry=value;sizeScreen();},setDetail(value,{reveal=false}={}){large=!!value;sync();if(reveal)q('companion-detail-caption').scrollIntoView({behavior:'instant',block:'start'});}};
-  const mainTalk=document.createElement('button');mainTalk.id='companion-talk-main';mainTalk.type='button';mainTalk.className='companion-talk-main';mainTalk.textContent='◉ Parler à BEYBOO';
+  const mainTalk=document.createElement('button');mainTalk.id='companion-talk-main';mainTalk.type='button';mainTalk.className='companion-talk-main';mainTalk.textContent='◉ Parler à BOOZZO';
   q('voice-live-meter').after(mainTalk);
   mainTalk.addEventListener('click',()=>window.BeybooVoice.isActive()?window.BeybooVoice.end():speak());
   document.addEventListener('beyboo-voice-state',event=>{
-    mainTalk.textContent=event.detail.busy?'Annuler la connexion':event.detail.active?(event.detail.preview?'Arrêter l’extrait':'Terminer l’échange'):'◉ Parler à BEYBOO';
+    mainTalk.textContent=event.detail.busy?'Annuler la connexion':event.detail.active?(event.detail.preview?'Arrêter l’extrait':'Terminer l’échange'):'◉ Parler à BOOZZO';
     mainTalk.classList.toggle('is-connected',event.detail.active);
   });
   document.querySelectorAll('[data-companion-action]').forEach(button=>button.addEventListener('click',()=>{
@@ -63,12 +63,12 @@
     if(kind==='play'){
       q('companion-dialog-title').textContent='Les apps. Sur le bon appareil.';
       q('companion-dialog-label').textContent='GOOGLE PLAY · ANDROID';
-      body.innerHTML='<p>Google Play installe des applications sur un appareil Android compatible. Il ne peut pas les installer dans cette application web BEYBOO, ni sur un iPhone.</p><p>Pour le futur module BEYBOO, son fabricant devra prévoir Android, la certification Play Protect et les services Google sous licence. Les apps devront aussi fonctionner sur son écran rond.</p><p>La connexion se fera avec le compte Google du parent, directement chez Google. Nous ne demandons pas votre mot de passe Google.</p><a class="button primary" href="https://play.google.com/store" target="_blank" rel="noopener noreferrer">Ouvrir Google Play ↗</a><p class="app-dialog-note">Ce lien ouvre la boutique officielle. Il n’ajoute pas le Play Store à BEYBOO.</p>';
+      body.innerHTML='<p>Google Play installe des applications sur un appareil Android compatible. Il ne peut pas les installer dans cette application web BOOZZO, ni sur un iPhone.</p><p>Pour le futur module BOOZZO, son fabricant devra prévoir Android, la certification Play Protect et les services Google sous licence. Les apps devront aussi fonctionner sur son écran rond.</p><p>La connexion se fera avec le compte Google du parent, directement chez Google. Nous ne demandons pas votre mot de passe Google.</p><a class="button primary" href="https://play.google.com/store" target="_blank" rel="noopener noreferrer">Ouvrir Google Play ↗</a><p class="app-dialog-note">Ce lien ouvre la boutique officielle. Il n’ajoute pas le Play Store à BOOZZO.</p>';
     }else{
-      q('companion-dialog-title').textContent='BEYBOO, sur votre accueil.';
+      q('companion-dialog-title').textContent='BOOZZO, sur votre accueil.';
       q('companion-dialog-label').textContent='VOTRE APPLICATION WEB';
       const installed=matchMedia('(display-mode: standalone)').matches||navigator.standalone;
-      body.innerHTML=installed?'<p>BEYBOO est déjà ouvert comme une application. Retrouvez sa peluche et ses activités depuis votre écran d’accueil.</p>':'<p>Gardez votre compagnon à portée de main, avec une icône BEYBOO sur votre téléphone.</p><div class="app-install-step"><b>Sur iPhone</b><p>Ouvrez ce site dans Safari. Touchez Partager, puis « Sur l’écran d’accueil ». Activez « Ouvrir comme app web », puis Ajouter.</p></div><div class="app-install-step"><b>Sur Android</b><p>Ouvrez le site dans Chrome. Dans son menu, choisissez « Installer et créer un raccourci », puis « Installer » (le libellé peut varier).</p></div>'+(installPrompt?'<button type="button" class="button primary" id="app-install-now">Installer BEYBOO</button>':'')+'<p class="app-dialog-note">Une connexion Internet est nécessaire pour la voix, les vidéos et les appels. Cette application web n’installe pas d’applications Android.</p>';
+      body.innerHTML=installed?'<p>BOOZZO est déjà ouvert comme une application. Retrouvez sa peluche et ses activités depuis votre écran d’accueil.</p>':'<p>Gardez votre compagnon à portée de main, avec une icône BOOZZO sur votre téléphone.</p><div class="app-install-step"><b>Sur iPhone</b><p>Ouvrez ce site dans Safari. Touchez Partager, puis « Sur l’écran d’accueil ». Activez « Ouvrir comme app web », puis Ajouter.</p></div><div class="app-install-step"><b>Sur Android</b><p>Ouvrez le site dans Chrome. Dans son menu, choisissez « Installer et créer un raccourci », puis « Installer » (le libellé peut varier).</p></div>'+(installPrompt?'<button type="button" class="button primary" id="app-install-now">Installer BOOZZO</button>':'')+'<p class="app-dialog-note">Une connexion Internet est nécessaire pour la voix, les vidéos et les appels. Cette application web n’installe pas d’applications Android.</p>';
       q('app-install-now')?.addEventListener('click',async()=>{const prompt=installPrompt;if(!prompt)return;await prompt.prompt();await prompt.userChoice;installPrompt=null;dialog.close();});
     }
     if(!dialog.open)dialog.showModal();
@@ -76,6 +76,6 @@
   document.querySelectorAll('[data-app-dialog]').forEach(button=>button.addEventListener('click',()=>showDialog(button.dataset.appDialog)));
   window.addEventListener('beforeinstallprompt',event=>{event.preventDefault();installPrompt=event;});
   window.addEventListener('appinstalled',()=>{installPrompt=null;});
-  if(appMode){document.title='BEYBOO — Mon compagnon';document.querySelector('.companion-portrait').setAttribute('loading','eager');q('voice-sign-in').href='/signin-with-chatgpt?return_to=%2Findex.html%3Fapp%3D1';if('serviceWorker' in navigator)navigator.serviceWorker.register('/app-worker.js').catch(()=>{});}
+  if(appMode){document.title='BOOZZO — Mon compagnon';document.querySelector('.companion-portrait').setAttribute('loading','eager');q('voice-sign-in').href='/signin-with-chatgpt?return_to=%2Findex.html%3Fapp%3D1';if('serviceWorker' in navigator)navigator.serviceWorker.register('/app-worker.js').catch(()=>{});}
   if(appMode)ensureVoice();sync();
 })();
