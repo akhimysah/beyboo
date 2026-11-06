@@ -8,6 +8,12 @@
   const scene=q('companion-scene'),dock=q('plush-eye-dock');
   const toggle=(el,name,value)=>{if(el.classList.contains(name)!==value)el.classList.toggle(name,value);};
   function sizeScreen(){
+    if(document.documentElement.classList.contains('beyboo-screen')){
+      // Screen mode: the dock is the whole display; the 400px screen scales to the dock itself.
+      const d=dock.getBoundingClientRect().width||400;
+      dock.style.setProperty('--screen-scale',d/400);dock.style.setProperty('--screen-scale-y',d/400);
+      scene.style.setProperty('--detail-size',d+'px');return;
+    }
     const w=scene.getBoundingClientRect().width;
     const diameter=large?Math.min(400,w-32):w*portraitGeometry.width;
     scene.style.setProperty('--photo-height',w*portraitGeometry.aspect+'px');

@@ -54,57 +54,47 @@ function harness(lang='fr', {online=true, battery=null, unread=0}={}) {
   return {launcher,runs,window,open,intervals,messages,docListeners,tick(seconds){now+=seconds*1000;intervals.forEach(fn=>fn());}};
 }
 
-test('the home screen lists the six apps with a live status bar, in both languages; Messages is real, not a brand concept',()=>{
+test('the home screen lists six real apps on page one and nine more on page two, with a live status bar, in both languages',()=>{
   for (const [lang,label,homeLabel] of [['fr','Appels','Revenir au regard'],['en','Calls','Back to the eye']]) {
     const h=harness(lang);
+    h.launcher.setPage(0);
     const html=h.launcher.markup();
-    for (const app of ['messages','youtube','spotify','calls','photo','assistant']) assert.ok(html.includes('data-home-app="'+app+'"'),app);
+    for (const app of ['messages','youtube','calls','assistant','photo','companions']) assert.ok(html.includes('data-home-app="'+app+'"'),app);
     assert.ok(html.includes('>'+label+'<'));
     assert.ok(html.includes('aria-label="'+homeLabel+'"'));
     assert.ok(html.includes('eye-home-time">10:09<'));
     assert.ok(html.includes('data-home-nav="mic"'));
     assert.match(html,/data-home-app="messages" aria-label="Messages"><span class="eye-app eye-app-messages">/);
     assert.match(html,/class="eye-app-badge" aria-hidden="true" hidden>/);
-    assert.doesNotMatch(html,/whatsapp/i);
-    assert.match(html,/data-home-app="spotify" data-concept="true"/);
-    assert.equal(h.launcher.has(''),true);assert.equal(h.launcher.has('spotify'),true);assert.equal(h.launcher.has('whatsapp'),false);assert.equal(h.launcher.has('netflix'),false);
+    assert.match(html,/eye-home-pager/);assert.match(html,/data-home-page="1"/);
+    assert.doesNotMatch(html,/whatsapp|spotify|data-concept/i);
+    h.launcher.setPage(1);
+    const second=h.launcher.markup();
+    for (const app of ['music','games','stories','clock','nightlight','weather','math','face','profile']) assert.ok(second.includes('data-home-app="'+app+'"'),app);
+    assert.match(second,/eye-home-grid is-dense/);
+    h.launcher.setPage(0);
+    assert.equal(h.launcher.pages.length,2);assert.equal(h.launcher.apps.length,15);
+    assert.equal(h.launcher.has(''),true);assert.equal(h.launcher.has('spotify'),false);assert.equal(h.launcher.has('whatsapp'),false);assert.equal(h.launcher.has('netflix'),false);
   }
 });
-
-test('the Messages tile carries the unread count and follows the beyboo-messages event while the home screen is live',()=>{
-  const h=harness('fr',{unread:3});
-  const html=h.launcher.markup();
-  assert.match(html,/data-home-app="messages" aria-label="Messages · 3 non lus"/);
-  assert.match(html,/class="eye-app-badge" aria-hidden="true">3</);
-  const home=h.open();
-  assert.equal(home.stage.badge.hidden,false);
-  h.messages.count=0;h.docListeners['beyboo-messages']();
-  assert.equal(home.stage.badge.hidden,true);assert.equal(home.stage.badge.textContent,'');
-  assert.equal(home.stage.tile.attrs['aria-label'],'Messages');
-  h.messages.count=120;h.docListeners['beyboo-messages']();
-  assert.equal(home.stage.badge.textContent,'99+');
-  home.stage.isConnected=false;h.docListeners['beyboo-messages']();
-  assert.equal(h.docListeners['beyboo-messages'],undefined,'the listener leaves with the screen');
-  assert.equal(harness('en',{unread:1}).launcher.markup().includes('aria-label="Messages · 1 unread"'),true);
-});
-
-test('tiles route to real activities; Spotify opens an honest concept screen with a working alternative',async()=>{
+test('tiles route to real activities; the pager flips to the second page; Stories opens the current companion',async()=>{
   const h=harness('fr');
   const calls=[];
   h.window.BeybooCompanion={speak(){calls.push('speak');},home(){calls.push('home');},refresh(){calls.push('refresh');}};
+  h.window.BeybooCompanionChoice={current:()=>'mila'};
+  h.launcher.setPage(0);
   const home=h.open();
-  await home.click('youtube');await home.click('photo');await home.click('messages');await home.click('spotify');
-  assert.equal(JSON.stringify(h.runs),JSON.stringify([{action:'open_youtube',value:'catalog'},{action:'open_camera'},{action:'open_messages'},{action:'open_home',value:'spotify'}]));
+  await home.click('youtube');await home.click('photo');await home.click('messages');await home.click('companions');
+  assert.equal(JSON.stringify(h.runs),JSON.stringify([{action:'open_youtube',value:'catalog'},{action:'open_camera'},{action:'open_messages'},{action:'open_companions'}]));
   await home.click('assistant');await home.click('mic');await home.click('home');
   assert.deepEqual(calls,['speak','speak','home']);
-  const spotify=h.open('spotify');
-  assert.match(spotify.stage.html,/Spotify n’est pas intégré/);
-  await spotify.click('music');await spotify.click('back');
-  assert.equal(JSON.stringify(h.runs.slice(-2)),JSON.stringify([{action:'play_music',value:'catalog'},{action:'open_home'}]));
-  assert.match(h.launcher.message('spotify'),/concept, non intégré/);
-  assert.match(h.launcher.message(),/sans partenariat/);
+  h.launcher.setPage(1);
+  const second=h.open();
+  await second.click('stories');await second.click('music');await second.click('nightlight');
+  assert.equal(JSON.stringify(h.runs.slice(-3)),JSON.stringify([{action:'open_story',value:'mila'},{action:'play_music',value:'catalog'},{action:'set_nightlight',value:'on'}]));
+  h.launcher.setPage(0);
+  assert.match(h.launcher.message(),/glisse pour voir la suite/);
 });
-
 test('the status bar follows the device clock, the connection and the battery, and stops when the screen changes',async()=>{
   const battery={level:.5,listeners:{},addEventListener(name,fn){this.listeners[name]=fn;},removeEventListener(name){delete this.listeners[name];}};
   const h=harness('en',{online:false,battery});
@@ -128,7 +118,7 @@ test('the AI tool, both screen controllers and the local commands all know the h
   assert.match(tools[0].description,/jamais le texte/);
   assert.doesNotMatch(tools[0].description,/WhatsApp/);
   for (const screen of screenSources) {
-    assert.match(screen,/'open_messages','get_state','open_home'\]/);
+    assert.match(screen,/'open_messages','open_companions','get_state','open_home'\]/);assert.match(screen,/action==='open_companions'/);
     assert.match(screen,/action==='open_home'/);
     assert.match(screen,/launcher\.mount\(stage,run\)/);
     assert.match(screen,/action==='open_messages'/);

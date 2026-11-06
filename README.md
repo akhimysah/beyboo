@@ -12,6 +12,8 @@ Site vitrine bilingue et application web : une peluche immobile dont l'œil rond
 
 ## Repères v38
 
+- Mode écran (`index.html?screen=1`, lien « Ouvrir l’application », manifeste) : l’application est l’écran rond plein écran, tout au doigt (`public/screen-mode.js/.css`). Accueil sur deux pages (`eye-launcher.js`), choix des dix compagnons dans l’œil (`companions.js`), panneaux voix/appel/photo/réglages dans un tiroir, commandes d’activité dans une carte sous le cercle.
+
 - Marque : le projet s’appelle BOOZZO depuis le 6 novembre 2026 (domaine boozzo.com). Textes FR/EN, logo (`scripts/make-brand-logo.py` → `assets/universe/brand-boozzo.webp`), films d’ouverture et du logo (`assets/films/boozzo-*.mp4`) et coffret (`assets/universe/packaging-boozzo.webp`) sont à jour ; les identifiants techniques (classes `beyboo-app`, cookie, dépôt, Worker) gardent l’ancien nom. Les images de campagne qui portent encore le mot BEYBOO incrusté restent à remplacer.
 
 - Hébergement VPS : `server/node.mjs` + `scripts/deploy-vps.sh` (Node 22, systemd, Caddy HTTPS) ; voir `docs/DEPLOIEMENT.md` section 0.

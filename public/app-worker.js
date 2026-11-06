@@ -8,7 +8,7 @@ self.addEventListener('fetch', event => {
     const title = english ? 'BOOZZO needs a connection' : 'Connexion nécessaire';
     const message = english ? 'Connect your device to the internet to talk with BOOZZO, play videos or make calls.'
       : 'Connectez votre appareil à Internet pour parler à BOOZZO, regarder une vidéo ou passer un appel.';
-    const path = english ? '/index-en.html?app=1' : '/index.html?app=1';
+    const path = english ? '/index-en.html?screen=1' : '/index.html?screen=1';
     const html = `<!doctype html><html lang="${english ? 'en' : 'fr'}"><meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1"><title>BOOZZO · ${title}</title>
       <style>body{font:17px/1.6 system-ui;background:#f8f8fa;color:#25374d;max-width:450px;margin:15vh auto;padding:28px}a{color:#245a82}</style>

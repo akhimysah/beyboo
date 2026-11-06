@@ -77,6 +77,6 @@
   voiceSelect.addEventListener('change',()=>{if(syncingVoice)return;const result=preferences.setVoice(current,voiceSelect.value);if(result.ok)status(result.persisted?`La voix de ${lookup(current).name} est enregistrée pour le prochain échange.`:'Voix choisie pour cette visite. Enregistrement indisponible.');});
   document.addEventListener('beyboo-voices-ready',restoreVoice);
   document.addEventListener('beyboo-voice-state',event=>{if(!event.detail.active&&!event.detail.busy)q('companion-talk-main').textContent=`◉ Parler à ${lookup(current).name}`;});
-  window.BeybooCompanionChoice={name:()=>lookup(current).name,syncEyeTexture};
+  window.BeybooCompanionChoice={name:()=>lookup(current).name,syncEyeTexture,choose,current:()=>current,list:()=>characters.map(c=>({id:c.id,name:c.name,role:c.role,motto:c.motto}))};
   render();choose(current,true);
 })();

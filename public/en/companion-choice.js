@@ -77,6 +77,6 @@
   voiceSelect.addEventListener('change',()=>{if(syncingVoice)return;const result=preferences.setVoice(current,voiceSelect.value);if(result.ok)status(result.persisted?`${lookup(current).name}’s voice is saved for your next chat.`:'Voice selected for this visit. Your browser couldn’t save it.');});
   document.addEventListener('beyboo-voices-ready',restoreVoice);
   document.addEventListener('beyboo-voice-state',event=>{if(!event.detail.active&&!event.detail.busy)q('companion-talk-main').textContent=`◉ Talk to ${lookup(current).name}`;});
-  window.BeybooCompanionChoice={name:()=>lookup(current).name,syncEyeTexture};
+  window.BeybooCompanionChoice={name:()=>lookup(current).name,syncEyeTexture,choose,current:()=>current,list:()=>characters.map(c=>({id:c.id,name:c.name,role:c.role,motto:c.motto}))};
   render();choose(current,true);
 })();

@@ -406,7 +406,7 @@
   function inviteUrl(id) {
     const url = new URL(en ? '/index-en.html' : '/index.html', location.href);
     url.search = ''; url.hash = '';
-    url.searchParams.set('app', '1'); url.searchParams.set('call', id);
+    url.searchParams.set('screen', '1'); url.searchParams.set('call', id);
     return url.toString();
   }
   function guard() { const f = family(); return !f || f.guard('calls'); }

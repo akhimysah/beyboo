@@ -5,7 +5,7 @@
   const stage = q('voice-stage'), toolbar = q('voice-screen-toolbar');
   if (!stage || !toolbar) return;
   const eye = q('living-eye'), card = document.querySelector('.experience-card');
-  const allowed = new Set(['show_eye','open_profile','set_speaking_mood','set_expression','play_video','open_youtube','pause_media','resume_media','stop_media','open_game','open_math','answer_math','next_math','play_music','open_story','open_call','open_weather','open_clock','set_nightlight','open_camera','open_face','take_photo','open_messages','get_state','open_home']);
+  const allowed = new Set(['show_eye','open_profile','set_speaking_mood','set_expression','play_video','open_youtube','pause_media','resume_media','stop_media','open_game','open_math','answer_math','next_math','play_music','open_story','open_call','open_weather','open_clock','set_nightlight','open_camera','open_face','take_photo','open_messages','open_companions','get_state','open_home']);
   const maths = [[7,5],[4,3],[9,6],[8,8],[12,7],[15,9]];
   let view = 'eye', playback = 'idle', revision = 0, video = null, youtube = null, youtubeLoader = null;
   let question = 0, mathAnswered = false, score = 0, target = 4, cancelYouTube = null;
@@ -65,7 +65,7 @@
     stage.innerHTML=html; buttons();
     window.BeybooCompanion?.refresh({reveal:true}); // Keep the full product visible; the user alone chooses the optional magnifier.
     // Touch targets inside a small eye are unusable: interactive screens open the magnifier automatically.
-    if(['home','game','math','profile','messages'].includes(next) && q('plush-eye-dock').getBoundingClientRect().width<200)window.BeybooCompanion?.setDetail(true,{reveal:true});
+    if(['home','game','math','profile','messages','companions'].includes(next) && q('plush-eye-dock').getBoundingClientRect().width<200)window.BeybooCompanion?.setDetail(true,{reveal:true});
     return revision;
   }
   function showEye() {
@@ -238,6 +238,12 @@
       if(!launcher.has(value))return {ok:false,description:launcher.unknown()};
       display('home',launcher.markup(value));launcher.mount(stage,run);
       const message=launcher.message(value);say(message);return snapshot(message);
+    }
+    if(action==='open_companions'){
+      const companions=window.BeybooCompanions;
+      if(!companions)return {ok:false,description:'Choix des compagnons indisponible.'};
+      display('companions',companions.markup());companions.mount(stage,run);
+      const message=companions.message();say(message);return snapshot(message);
     }
     if(action==='open_messages'){
       const messages=window.BeybooMessages;

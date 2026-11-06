@@ -29,6 +29,7 @@
     if (/meteo|weather|forecast|quel temps/.test(s)) return {action:'open_weather', value:cityFor(s)?.[0] || ''};
     if (/accueil|\bmenu\b|applications?|\bapps?\b|home screen|\bhome\b/.test(s)) return {action:'open_home'};
     if (/\bmessages?\b|messagerie|whatsapp|\btexto/.test(s)) return {action:'open_messages'};
+    if (/compagnons?|companions?|personnages?|characters?|changer de (peluche|compagnon)/.test(s)) return {action:'open_companions'};
     if (/\bpause\b/.test(s)) return {action:'pause_media'};
     if (/youtube|you tube/.test(s) || /video/.test(s) && (videoFor(s) || /sur |about |of /.test(s))) {
       const video = videoFor(s);

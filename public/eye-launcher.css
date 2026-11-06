@@ -32,3 +32,22 @@
 .eye-home-concept p{margin:0;font-size:3.3cqw;line-height:1.4;color:#c9d6ea;max-width:78%}
 .eye-home-concept .eye-home-dock button{width:10cqw;height:10cqw}
 @media(prefers-reduced-motion:reduce){.eye-app{transition:none}.eye-home-grid button:active .eye-app{transform:none}}
+/* Deux pages d'applications, pagination et tuiles supplémentaires */
+.eye-home{grid-template-rows:auto 1fr auto auto}
+.eye-home-grid.is-dense{gap:2cqw 1.2cqw}
+.eye-home-grid.is-dense .eye-app{width:13cqw;height:13cqw}
+.eye-home-grid.is-dense button{font-size:3cqw;gap:1.2cqw}
+.eye-home-pager{display:flex;justify-content:center;align-items:center;gap:1.8cqw;padding:.4cqw 0 1.2cqw}
+.eye-home-pager i{width:1.6cqw;height:1.6cqw;border-radius:50%;background:#ffffff55}
+.eye-home-pager i.is-on{background:#fff}
+.eye-home-pager button{width:8cqw;height:8cqw;padding:0;border:0;border-radius:50%;background:#ffffff14;color:#fff;font:600 5cqw/1 system-ui,sans-serif;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.eye-app-companions{background:linear-gradient(160deg,#ffb86b,#e8702a)}
+.eye-app-music{background:linear-gradient(160deg,#ff7ab8,#c2277a)}
+.eye-app-games{background:linear-gradient(160deg,#7cd4ff,#1f7fd0)}
+.eye-app-stories{background:linear-gradient(160deg,#c9a5ff,#7a4fd6)}
+.eye-app-clock{background:linear-gradient(160deg,#4d5668,#1f2430)}
+.eye-app-nightlight{background:linear-gradient(160deg,#ffcf6b,#d9901c)}
+.eye-app-weather{background:linear-gradient(160deg,#6fc6ff,#2c7fd8)}
+.eye-app-math{background:linear-gradient(160deg,#ff9f6b,#d9541c)}
+.eye-app-face{background:linear-gradient(160deg,#8be0c8,#1f9f82)}
+.eye-app-profile{background:linear-gradient(160deg,#b8c2d6,#5f6c86)}

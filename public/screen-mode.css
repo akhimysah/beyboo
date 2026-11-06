@@ -1,0 +1,41 @@
+/* Mode écran (?screen=1) : l'application est l'écran rond lui-même, plein écran et tactile. */
+html.beyboo-screen,html.beyboo-screen body{background:#04070e!important;overflow:hidden;height:100%;margin:0;padding:0!important}
+html.beyboo-screen .beyboo-app-header,html.beyboo-screen .beyboo-app-bottom,html.beyboo-screen .companion-photo,html.beyboo-screen #companion-detail-caption,html.beyboo-screen .product-preview-label,html.beyboo-screen .device-brand,html.beyboo-screen #device-hint,html.beyboo-screen .mood-controls,html.beyboo-screen .gaze-controls,html.beyboo-screen .eye-preview-control,html.beyboo-screen #call-size,html.beyboo-screen #voice-live-meter,html.beyboo-screen #reading-screen-dock,html.beyboo-screen .intro-gate,html.beyboo-screen #voice-youtube-external,html.beyboo-screen #voice-youtube-search{display:none!important}
+html.beyboo-screen #experience{width:100%;padding:0;margin:0}
+html.beyboo-screen .experience-card{display:block;padding:0;gap:0;background:none;border:0}
+html.beyboo-screen .experience-display{position:static;padding:0;background:none;width:auto}
+html.beyboo-screen .experience-card .companion-scene{position:fixed;inset:0;width:100vw;max-width:none;height:100dvh;aspect-ratio:auto;margin:0;border-radius:0;background:#04070e;overflow:visible;z-index:1}
+html.beyboo-screen .experience-card .plush-eye-dock{position:absolute!important;left:50%!important;top:calc(50% - 36px)!important;width:var(--screen-diameter,min(100vw - 24px,100dvh - 176px))!important;max-width:none!important;height:auto!important;aspect-ratio:1;transform:translate(-50%,-50%)!important}
+html.beyboo-screen .plush-eye-dock .device-shell{box-shadow:0 0 0 6px #171b21,0 0 0 8px #2b3038,0 30px 80px #000c!important}
+html.beyboo-screen #voice-screen-toolbar{position:fixed;left:50%;bottom:calc(78px + env(safe-area-inset-bottom));transform:translateX(-50%);width:min(92vw,420px);margin:0;z-index:55}
+html.beyboo-screen .screen-wordmark{position:fixed;top:calc(10px + env(safe-area-inset-top));left:50%;transform:translateX(-50%);width:96px;opacity:.9;z-index:2;pointer-events:none}
+/* barre basse */
+.screen-bar{display:none}
+html.beyboo-screen .screen-bar{position:fixed;left:50%;bottom:calc(10px + env(safe-area-inset-bottom));transform:translateX(-50%);display:flex;gap:4px;width:min(96vw,440px);padding:6px;border-radius:26px;background:#ffffff14;border:1px solid #ffffff22;backdrop-filter:blur(16px);z-index:58;box-sizing:border-box}
+.screen-bar button{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;min-height:52px;padding:6px 2px;border:0;border-radius:20px;background:none;color:#dfe7f5;font:500 11px/1 system-ui,-apple-system,"Segoe UI",sans-serif;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.screen-bar button span{font-size:20px;line-height:22px}
+.screen-bar button[aria-pressed=true],.screen-bar button:active{background:#ffffff22;color:#fff}
+/* tiroir : panneaux et réglages */
+html.beyboo-screen .experience-controls{position:fixed;left:0;right:0;bottom:0;max-height:74dvh;overflow:auto;width:auto;margin:0;padding:12px 16px calc(84px + env(safe-area-inset-bottom));border-radius:24px 24px 0 0;background:#f8f8fa;color:#1d1d1f;box-shadow:0 -20px 60px #0008;transform:translateY(102%);transition:transform .28s ease;z-index:57;box-sizing:border-box}
+html.beyboo-screen.screen-drawer-open .experience-controls{transform:none}
+html.beyboo-screen .experience-controls>*{display:none!important}
+html.beyboo-screen .experience-controls>:is(.screen-drawer-head,#voice-panel,#call-panel,#camera-panel,#voice-studio,#device-commands):not([hidden]){display:block!important}
+html.beyboo-screen .experience-controls>.screen-drawer-head{display:flex!important;justify-content:space-between;align-items:center;gap:10px;margin:0 0 12px;position:sticky;top:0;background:#f8f8fa;padding:4px 0 8px;z-index:1}
+.screen-drawer-head b{font-size:15px}
+.screen-drawer-head div{display:flex;gap:6px}
+.screen-drawer-head button{min-height:40px;padding:0 14px;border:1px solid #d7dbe3;border-radius:20px;background:#fff;color:#1d1d1f;font-size:13px;cursor:pointer}
+html.beyboo-screen .experience-controls>#voice-panel:not([hidden]),html.beyboo-screen .experience-controls>#call-panel:not([hidden]),html.beyboo-screen .experience-controls>#camera-panel:not([hidden]),html.beyboo-screen .experience-controls>#voice-studio,html.beyboo-screen .experience-controls>#device-commands{margin:0 0 14px;padding:14px;border:1px solid #e5e8ef;border-radius:18px;background:#fff}
+@media(prefers-reduced-motion:reduce){html.beyboo-screen .experience-controls{transition:none}}
+html.beyboo-screen #voice-screen-status,html.beyboo-screen #voice-screen-home{display:none!important}
+html.beyboo-screen #voice-screen-toolbar{background:#ffffff14;border:1px solid #ffffff22;border-radius:20px;padding:8px;backdrop-filter:blur(12px)}
+html.beyboo-screen #voice-screen-toolbar:not(:has(button:not([hidden]):not(#voice-screen-home),a:not([hidden]):not(#voice-youtube-external))){display:none}
+html.beyboo-screen.screen-drawer-open .screen-bar{background:#10131a;border-color:#ffffff33;z-index:59}
+/* commandes de l'activité (films, jeux, musique, météo…) : carte sous le cercle */
+html.beyboo-screen #product-activity{position:fixed;left:12px;right:12px;top:calc(50% - 36px + var(--screen-diameter,300px) / 2 + 14px);bottom:calc(86px + env(safe-area-inset-bottom));overflow:auto;margin:0;padding:12px 14px;border-radius:18px;background:#f8f8fa;color:#1d1d1f;box-shadow:0 12px 40px #000a;z-index:50;box-sizing:border-box}
+html.beyboo-screen #product-activity[hidden]{display:none}
+html.beyboo-screen #product-activity h4{margin:0 0 8px;font-size:15px}
+html.beyboo-screen #product-activity p{margin:0 0 8px;font-size:12px;color:#4c4c50}
+html.beyboo-screen #product-activity .eye-video-list{display:grid;gap:6px}
+html.beyboo-screen #product-activity button{min-height:40px}
+html.beyboo-screen #product-activity a[target="_blank"]{display:none}
+html.beyboo-screen:has(#product-activity:not([hidden])) #voice-screen-toolbar{bottom:auto;top:calc(50% - 36px + var(--screen-diameter,300px) / 2 - 46px)}

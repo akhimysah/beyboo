@@ -1,0 +1,14 @@
+/* Choix du compagnon dans l'œil (unités du diamètre de l'écran). */
+.voice-stage--companions{background:radial-gradient(circle at 50% 30%,#1a2a44 0%,#0b1322 60%,#04070e 100%)}
+.eye-companions{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.6cqw;padding:9cqw 8cqw 10cqw;box-sizing:border-box;text-align:center;color:#fff;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+.eye-companions .screen-label{font-size:3.2cqw;letter-spacing:.14em;color:#b9c7e0}
+.eye-companion-row{display:flex;align-items:center;gap:3cqw}
+.eye-companion-row img{width:38cqw;height:38cqw;border-radius:50%;object-fit:cover;object-position:50% 10%;box-shadow:0 2cqw 5cqw #000a,0 0 0 1cqw #ffffff22;background:#e9e3da}
+.eye-companion-row button{width:11cqw;height:11cqw;padding:0;border:1px solid #ffffff30;border-radius:50%;background:#ffffff1c;color:#fff;font:600 6cqw/1 system-ui,sans-serif;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.eye-companion-row button:active{background:#ffffff33}
+.eye-companions h4{margin:.5cqw 0 0;font-size:6cqw;line-height:1.1;font-weight:600}
+.eye-companions p{margin:0;font-size:3.4cqw;color:#c9d6ea}
+.eye-companion-actions{display:flex;gap:2cqw;margin-top:1.2cqw}
+.eye-companion-actions .eye-home-go{min-height:9.5cqw;padding:0 4cqw;font-size:3.2cqw}
+.eye-companion-actions .eye-home-go.is-secondary{background:#ffffff1c;color:#fff;border:1px solid #ffffff30}
+.eye-companion-actions .eye-home-go[disabled]{opacity:.75;cursor:default}

@@ -1,9 +1,9 @@
 {
-  "id": "/index-en.html?app=1",
+  "id": "/index-en.html?screen=1",
   "name": "BOOZZO — My companion",
   "short_name": "BOOZZO",
   "description": "Your plush companion, conversations and activities in one web app.",
-  "start_url": "/index-en.html?app=1",
+  "start_url": "/index-en.html?screen=1",
   "scope": "/",
   "display": "standalone",
   "lang": "en",

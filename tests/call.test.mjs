@@ -297,7 +297,7 @@ test('invitation link: the creator waits in the call, the link joins directly af
   await flush();
   const join = h.room.sent.find(m => m.type === 'join');
   const link = h.el('call-link').value;
-  assert.match(link, /^http:\/\/127\.0\.0\.1:8787\/index\.html\?app=1&call=[a-f0-9]{32}$/);
+  assert.match(link, /^http:\/\/127\.0\.0\.1:8787\/index\.html\?screen=1&call=[a-f0-9]{32}$/);
   assert.equal(new URL(link).searchParams.get('call'), join.call);
   assert.equal(h.el('call-invite').hidden, false);
   h.emit('call-peers', {call: join.call, peers: []});

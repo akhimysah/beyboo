@@ -1,9 +1,9 @@
 {
-  "id": "/index.html?app=1",
+  "id": "/index.html?screen=1",
   "name": "BOOZZO — Mon compagnon",
   "short_name": "BOOZZO",
   "description": "Votre compagnon, la conversation et ses activités dans une application web.",
-  "start_url": "/index.html?app=1",
+  "start_url": "/index.html?screen=1",
   "scope": "/",
   "display": "standalone",
   "lang": "fr",
